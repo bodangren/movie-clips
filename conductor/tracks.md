@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Core Video Generation Pipeline (MVP)
+## [~] Track: Core Video Generation Pipeline (MVP)
 *Link: [./conductor/tracks/core_pipeline_20251229/](./conductor/tracks/core_pipeline_20251229/)*

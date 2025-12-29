@@ -6,8 +6,8 @@
 - **Runtime:** Node.js (LTS)
 
 ## AI & Cloud Services
-- **LLM:** Google Gemini 3.0 Flash/Pro (via `@google/generative-ai`)
-- **Text-to-Speech:** Google Cloud Text-to-Speech API (Neural2 voices)
+- **LLM:** Google Gemini 3.0 Flash/Pro (via `@google/genai`)
+- **Text-to-Speech:** Gemini TTS (`gemini-2.5-flash-lite-preview-tts`, random voice per video)
 - **Video Platform:** YouTube Data API v3 (via `googleapis`)
 
 ## Media Processing
