@@ -1,6 +1,6 @@
 import { config } from './config';
 import { logger } from './utils/logger';
-import { MovieSelector } from './modules/movie-selector';
+import { MovieSelector, type MovieAssets } from './modules/movie-selector';
 import { NfoParser } from './modules/nfo-parser';
 import { SubtitleParser } from './modules/subtitle-parser';
 import { LlmAnalyzer } from './modules/llm-analyzer';
@@ -31,8 +31,18 @@ export async function runPipeline() {
   }
 
   // Pick a random movie for variety during testing
-  const movieAssets = availableMovies[Math.floor(Math.random() * availableMovies.length)];
-  logger.info(`Selected movie: ${movieAssets.title}`);
+  const movieOverridePath = resolveMovieOverridePath();
+  const movieAssets = movieOverridePath
+    ? pickMovieByPath(availableMovies, movieOverridePath)
+    : availableMovies[Math.floor(Math.random() * availableMovies.length)];
+
+  if (!movieAssets) {
+    logger.error(`Requested movie not found: ${movieOverridePath}`);
+    return;
+  }
+
+  const selectionLabel = movieOverridePath ? 'Selected movie (override)' : 'Selected movie';
+  logger.info(`${selectionLabel}: ${movieAssets.title}`);
 
   // 2. Parse Metadata
   const metadata = await nfoParser.parse(movieAssets.nfoPath);
@@ -155,4 +165,102 @@ if (require.main === module) {
   runPipeline().catch(err => {
     logger.error(`Fatal error in pipeline: ${err}`);
   });
+}
+
+function resolveMovieOverridePath(): string | null {
+  const args = process.argv.slice(2);
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === '--movie') {
+      const value = args[index + 1];
+      if (!value) {
+        logger.error('Missing value for --movie.');
+        return null;
+      }
+      return value;
+    }
+
+    if (arg.startsWith('--movie=')) {
+      const value = arg.slice('--movie='.length);
+      if (!value) {
+        logger.error('Missing value for --movie.');
+        return null;
+      }
+      return value;
+    }
+  }
+
+  return null;
+}
+
+function pickMovieByPath(
+  movies: MovieAssets[],
+  overridePath: string
+): MovieAssets | null {
+  const candidates = buildOverrideCandidates(overridePath);
+  for (const candidate of candidates) {
+    const exactMatch = movies.find(
+      (movie) => path.resolve(movie.videoPath) === candidate
+    );
+    if (exactMatch) {
+      return exactMatch;
+    }
+
+    const candidateLoose = normalizePathForMatch(candidate);
+    const loosePathMatch = movies.find(
+      (movie) => normalizePathForMatch(movie.videoPath) === candidateLoose
+    );
+    if (loosePathMatch) {
+      return loosePathMatch;
+    }
+  }
+
+  const overrideBase = path.basename(overridePath);
+  const baseMatches = movies.filter(
+    (movie) => path.basename(movie.videoPath) === overrideBase
+  );
+
+  if (baseMatches.length === 1) {
+    return baseMatches[0];
+  }
+
+  if (baseMatches.length > 1) {
+    logger.error(`Multiple movies match the filename "${overrideBase}". Use a full path.`);
+  }
+
+  const overrideBaseLoose = normalizeNameForMatch(overrideBase);
+  const looseBaseMatches = movies.filter(
+    (movie) => normalizeNameForMatch(path.basename(movie.videoPath)) === overrideBaseLoose
+  );
+
+  if (looseBaseMatches.length === 1) {
+    return looseBaseMatches[0];
+  }
+
+  if (looseBaseMatches.length > 1) {
+    logger.error(
+      `Multiple movies loosely match the filename "${overrideBase}". Use a full path.`
+    );
+  }
+
+  return null;
+}
+
+function buildOverrideCandidates(overridePath: string): string[] {
+  if (path.isAbsolute(overridePath)) {
+    return [path.resolve(overridePath)];
+  }
+
+  return [
+    path.resolve(overridePath),
+    path.resolve(config.paths.movies, overridePath),
+  ];
+}
+
+function normalizeNameForMatch(value: string): string {
+  return value.replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+function normalizePathForMatch(value: string): string {
+  return normalizeNameForMatch(value.replace(/\\/g, '/'));
 }

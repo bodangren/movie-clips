@@ -6,4 +6,4 @@ logs/
 .env
 *.log
 Movies/
-tv-clips/
+tv-clips/TV/
