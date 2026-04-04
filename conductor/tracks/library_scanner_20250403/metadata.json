@@ -1,0 +1,12 @@
+{
+  "track_id": "library_scanner_20250403",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-04-03T12:00:00Z",
+  "updated_at": "2025-04-03T12:00:00Z",
+  "description": "Library Scanner",
+  "priority": "medium",
+  "estimated_days": "2",
+  "dependencies": "["config_state_20250403", "ai_integration_20250403"]",
+  "tags": "["library", "scanner", "nfo", "subtitles"]"
+}

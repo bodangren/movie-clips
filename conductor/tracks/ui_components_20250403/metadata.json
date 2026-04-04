@@ -1,0 +1,12 @@
+{
+  "track_id": "ui_components_20250403",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-04-03T12:00:00Z",
+  "updated_at": "2025-04-03T12:00:00Z",
+  "description": "Ui Components",
+  "priority": "medium",
+  "estimated_days": "3",
+  "dependencies": "["config_state_20250403", "pipeline_orchestration_20250403"]",
+  "tags": "["ui", "react", "components", "tailwind"]"
+}

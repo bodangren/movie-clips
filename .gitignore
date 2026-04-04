@@ -12,6 +12,25 @@ dist
 dist-ssr
 *.local
 
+# Bun
+bun.lockb
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# App data directories
+backup-old/
+temp/
+output/
+data/
+
+# Agent tooling
+.claude/
+.codex/
+conductor/output.log
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

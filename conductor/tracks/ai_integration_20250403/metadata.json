@@ -1,0 +1,12 @@
+{
+  "track_id": "ai_integration_20250403",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-04-03T12:00:00Z",
+  "updated_at": "2025-04-03T12:00:00Z",
+  "description": "AI/LLM Integration - Gemini analyzer and TTS generator in Bun",
+  "priority": "high",
+  "estimated_days": 3,
+  "dependencies": ["config_state_20250403"],
+  "tags": ["ai", "llm", "gemini", "tts", "bun", "typescript"]
+}
