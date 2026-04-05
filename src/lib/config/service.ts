@@ -1,0 +1,39 @@
+import { configSchema, type AppConfig } from "./schema";
+import { getDefaultConfig } from "./defaults";
+import { invoke } from "@tauri-apps/api/core";
+
+export async function loadConfig(): Promise<AppConfig> {
+  try {
+    const raw = await invoke<Record<string, unknown>>("get_config");
+    const result = configSchema.safeParse(raw);
+    if (result.success) {
+      return result.data;
+    }
+    console.warn("Config validation failed, using defaults:", result.error);
+    return getDefaultConfig();
+  } catch {
+    return getDefaultConfig();
+  }
+}
+
+export async function saveConfig(config: AppConfig): Promise<void> {
+  const validated = configSchema.parse(config);
+  await invoke("save_config", { config: validated });
+}
+
+export async function resetConfig(): Promise<AppConfig> {
+  const defaults = getDefaultConfig();
+  await invoke("save_config", { config: defaults });
+  return defaults;
+}
+
+export function validateConfig(raw: unknown): { valid: boolean; config?: AppConfig; errors?: string[] } {
+  const result = configSchema.safeParse(raw);
+  if (result.success) {
+    return { valid: true, config: result.data };
+  }
+  return {
+    valid: false,
+    errors: result.error.errors.map((e) => `${e.path.join(".")}: ${e.message}`),
+  };
+}
