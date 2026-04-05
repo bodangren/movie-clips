@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 
 mod commands;
+mod services;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AppInfo {
@@ -79,9 +80,15 @@ fn scan_directory(path: String) -> Result<Vec<String>, AppError> {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    use std::sync::Arc;
+    let video_service_state = commands::video::VideoServiceState {
+        service: Arc::new(services::ffmpeg_command::FFmpegCommandService::new(None)),
+    };
+
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_store::Builder::default().build())
+        .manage(video_service_state)
         .invoke_handler(tauri::generate_handler![
             greet,
             get_app_info,
@@ -89,6 +96,10 @@ pub fn run() {
             commands::config::get_config,
             commands::config::save_config,
             commands::config::reset_config,
+            commands::video::extract_clip,
+            commands::video::create_title_segment,
+            commands::video::assemble_video,
+            commands::video::create_image_segment,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
