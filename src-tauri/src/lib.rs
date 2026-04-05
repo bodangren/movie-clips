@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 
+mod commands;
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AppInfo {
     pub name: String,
@@ -79,10 +81,14 @@ fn scan_directory(path: String) -> Result<Vec<String>, AppError> {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_store::Builder::default().build())
         .invoke_handler(tauri::generate_handler![
             greet,
             get_app_info,
-            scan_directory
+            scan_directory,
+            commands::config::get_config,
+            commands::config::save_config,
+            commands::config::reset_config,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

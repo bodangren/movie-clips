@@ -7,7 +7,6 @@
 4. **Disk space low**: ~5.8GB available; monitor during builds
 
 ## Planned Improvements
-- Add Vitest for TypeScript testing (Phase 4)
-- Add Rust unit tests (Phase 4)
-- Configure ESLint + Prettier (Phase 5)
+- Configuration UI components (Phase 4-5 of config track)
+- Add ESLint + Prettier (Phase 5)
 - Production build size analysis (Phase 6)
