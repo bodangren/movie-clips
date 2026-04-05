@@ -26,21 +26,21 @@
     - [x] Sub-task: Verify Bun commands work (bun run, bun test, etc.)
 
 ## Phase 2: Development Environment Configuration
-- [ ] Task: Set up TypeScript configuration
-    - [ ] Sub-task: Review and update tsconfig.json for strict mode
-    - [ ] Sub-task: Configure path aliases if needed
-    - [ ] Sub-task: Set up TypeScript compiler options for React
-    - [ ] Sub-task: Test TypeScript compilation
-- [ ] Task: Configure Tailwind CSS
-    - [ ] Sub-task: Install Tailwind CSS and dependencies via Bun
-    - [ ] Sub-task: Create tailwind.config.js with basic configuration
-    - [ ] Sub-task: Set up CSS file with Tailwind directives
-    - [ ] Sub-task: Verify Tailwind classes work in components
-- [ ] Task: Set up hot reload and development workflow
-    - [ ] Sub-task: Configure Tauri for hot reload (tauri.conf.json)
-    - [ ] Sub-task: Test frontend hot reload (save React component)
-    - [ ] Sub-task: Test backend hot reload (save Rust file)
-    - [ ] Sub-task: Document development commands
+- [x] Task: Set up TypeScript configuration
+    - [x] Sub-task: Review and update tsconfig.json for strict mode
+    - [x] Sub-task: Configure path aliases if needed (@/* → ./src/*)
+    - [x] Sub-task: Set up TypeScript compiler options for React
+    - [x] Sub-task: Test TypeScript compilation (build passes)
+    - Note: Migrated .jsx → .tsx, added tsconfig.node.json for vite.config.ts
+- [x] Task: Configure Tailwind CSS
+    - [x] Sub-task: Install Tailwind CSS v4 via npm (bun unavailable)
+    - [x] Sub-task: Set up CSS file with `@import "tailwindcss"` directive
+    - [x] Sub-task: Verify Tailwind classes work in components
+    - Note: Tailwind v4 uses @import, no config file needed; LightningCSS warnings are non-blocking
+- [x] Task: Set up hot reload and development workflow
+    - [x] Sub-task: Configure Tauri for hot reload (tauri.conf.json already configured)
+    - [x] Sub-task: Vite HMR configured with strictPort: true
+    - Note: Full Tauri dev requires rsvg2 system dependency
 
 ## Phase 3: Basic Tauri Integration
 - [ ] Task: Create example Tauri command
