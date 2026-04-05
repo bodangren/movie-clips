@@ -43,31 +43,34 @@
     - Note: Full Tauri dev requires rsvg2 system dependency
 
 ## Phase 3: Basic Tauri Integration
-- [ ] Task: Create example Tauri command
-    - [ ] Sub-task: Add Rust command in src-tauri/src/lib.rs
-    - [ ] Sub-task: Expose command to frontend via Tauri API
-    - [ ] Sub-task: Create React component that calls the command
-    - [ ] Sub-task: Test command execution with UI feedback
-- [ ] Task: Set up basic error handling
-    - [ ] Sub-task: Add error types for Tauri commands
-    - [ ] Sub-task: Implement error propagation frontend → backend
-    - [ ] Sub-task: Add basic error UI components
-    - [ ] Sub-task: Test error scenarios
+- [x] Task: Create example Tauri command
+    - [x] Sub-task: Add Rust command in src-tauri/src/lib.rs
+    - [x] Sub-task: Expose command to frontend via Tauri API
+    - [x] Sub-task: Create React component that calls the command
+    - [x] Sub-task: Test command execution with UI feedback
+    - Note: Added get_app_info and scan_directory commands
+- [x] Task: Set up basic error handling
+    - [x] Sub-task: Add error types for Tauri commands (AppError enum with thiserror)
+    - [x] Sub-task: Implement error propagation frontend → backend
+    - [x] Sub-task: Add basic error UI components (error-banner with dark mode)
+    - [x] Sub-task: Test error scenarios (Rust unit tests cover invalid paths)
 
 ## Phase 4: Testing Infrastructure
-- [ ] Task: Set up Vitest for TypeScript testing
-    - [ ] Sub-task: Install Vitest and testing libraries via Bun
-    - [ ] Sub-task: Configure vitest.config.ts
-    - [ ] Sub-task: Create example test for React component
-    - [ ] Sub-task: Run tests and verify they pass
-- [ ] Task: Set up Rust testing
-    - [ ] Sub-task: Create example unit test in Rust code
-    - [ ] Sub-task: Test Rust compilation and tests
-    - [ ] Sub-task: Document Rust testing commands
-- [ ] Task: Create test utilities
-    - [ ] Sub-task: Set up test helpers for React components
-    - [ ] Sub-task: Create mock Tauri API for testing
-    - [ ] Sub-task: Document testing patterns
+- [x] Task: Set up Vitest for TypeScript testing
+    - [x] Sub-task: Install Vitest, jsdom, and Testing Library via npm
+    - [x] Sub-task: Configure vitest.config.ts with jsdom environment
+    - [x] Sub-task: Create example test for App component (4 tests)
+    - [x] Sub-task: Run tests and verify they pass (4/4 passing)
+    - Note: Added test and test:watch scripts to package.json
+- [x] Task: Set up Rust testing
+    - [x] Sub-task: Create example unit test in Rust code (7 tests)
+    - [x] Sub-task: Test Rust compilation and tests
+    - [x] Sub-task: Document Rust testing commands
+    - Note: Tests cover greet, get_app_info, scan_directory, and error serialization
+- [x] Task: Create test utilities
+    - [x] Sub-task: Set up test helpers for React components (src/test/setup.ts)
+    - [x] Sub-task: Create mock Tauri API for testing (vi.mock in App.test.tsx)
+    - [x] Sub-task: Document testing patterns
 
 ## Phase 5: Build & Script Configuration
 - [ ] Task: Configure build scripts
