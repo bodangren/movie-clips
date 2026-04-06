@@ -1,7 +1,6 @@
-use crate::services::ffmpeg_command::FFmpegCommandService;
+use crate::services::unified_service::UnifiedVideoService;
 use crate::services::video_service::{VideoDimensions, VideoError, VideoService};
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ExtractClipRequest {
@@ -34,17 +33,12 @@ pub struct ImageSegmentRequest {
     pub dimensions: Option<VideoDimensions>,
 }
 
-pub struct VideoServiceState {
-    pub service: Arc<FFmpegCommandService>,
-}
-
 #[tauri::command]
 pub async fn extract_clip(
     request: ExtractClipRequest,
-    state: tauri::State<'_, VideoServiceState>,
+    state: tauri::State<'_, UnifiedVideoService>,
 ) -> Result<(), VideoError> {
     state
-        .service
         .extract_clip(
             &request.input,
             &request.start,
@@ -58,10 +52,9 @@ pub async fn extract_clip(
 #[tauri::command]
 pub async fn create_title_segment(
     request: TitleSegmentRequest,
-    state: tauri::State<'_, VideoServiceState>,
+    state: tauri::State<'_, UnifiedVideoService>,
 ) -> Result<(), VideoError> {
     state
-        .service
         .create_title_segment(
             &request.image,
             &request.audio,
@@ -74,10 +67,9 @@ pub async fn create_title_segment(
 #[tauri::command]
 pub async fn assemble_video(
     request: AssembleVideoRequest,
-    state: tauri::State<'_, VideoServiceState>,
+    state: tauri::State<'_, UnifiedVideoService>,
 ) -> Result<(), VideoError> {
     state
-        .service
         .assemble_video(&request.segments, &request.output)
         .await
 }
@@ -85,10 +77,9 @@ pub async fn assemble_video(
 #[tauri::command]
 pub async fn create_image_segment(
     request: ImageSegmentRequest,
-    state: tauri::State<'_, VideoServiceState>,
+    state: tauri::State<'_, UnifiedVideoService>,
 ) -> Result<(), VideoError> {
     state
-        .service
         .create_image_segment(
             &request.image,
             request.duration,
@@ -96,6 +87,13 @@ pub async fn create_image_segment(
             request.dimensions,
         )
         .await
+}
+
+#[tauri::command]
+pub async fn get_video_status(
+    state: tauri::State<'_, UnifiedVideoService>,
+) -> Result<crate::services::unified_service::VideoServiceStatus, VideoError> {
+    Ok(state.get_status().await)
 }
 
 #[cfg(test)]

@@ -80,15 +80,19 @@ fn scan_directory(path: String) -> Result<Vec<String>, AppError> {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    use std::sync::Arc;
-    let video_service_state = commands::video::VideoServiceState {
-        service: Arc::new(services::ffmpeg_command::FFmpegCommandService::new(None)),
-    };
+    use services::unified_service::UnifiedVideoService;
+
+    let default_config = serde_json::json!({
+        "video": {
+            "service_type": "command"
+        }
+    });
+    let video_service = UnifiedVideoService::new(&default_config);
 
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_store::Builder::default().build())
-        .manage(video_service_state)
+        .manage(video_service)
         .invoke_handler(tauri::generate_handler![
             greet,
             get_app_info,
@@ -100,6 +104,7 @@ pub fn run() {
             commands::video::create_title_segment,
             commands::video::assemble_video,
             commands::video::create_image_segment,
+            commands::video::get_video_status,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

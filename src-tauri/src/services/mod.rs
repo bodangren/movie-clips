@@ -1,3 +1,7 @@
 pub mod video_service;
 pub mod ffmpeg_command;
 pub mod mock_video;
+pub mod video_config;
+pub mod metrics;
+pub mod health_check;
+pub mod unified_service;
