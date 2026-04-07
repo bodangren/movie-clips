@@ -4,20 +4,11 @@ use std::path::Path;
 use tokio::fs;
 use tokio::time::{sleep, Duration};
 
+#[derive(Default)]
 pub struct MockVideoService {
     pub simulate_delay: bool,
     pub simulate_errors: bool,
     pub error_message: Option<String>,
-}
-
-impl Default for MockVideoService {
-    fn default() -> Self {
-        Self {
-            simulate_delay: false,
-            simulate_errors: false,
-            error_message: None,
-        }
-    }
 }
 
 impl MockVideoService {
