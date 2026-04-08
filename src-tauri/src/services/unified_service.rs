@@ -36,6 +36,7 @@ pub struct UnifiedVideoService {
 }
 
 impl UnifiedVideoService {
+    #[allow(dead_code)]
     pub fn new(config: &serde_json::Value) -> Self {
         let video_config = Arc::new(parse_video_config(config));
         let metrics = Arc::new(MetricsCollector::new());
@@ -77,6 +78,7 @@ impl UnifiedVideoService {
         }
     }
 
+    #[allow(dead_code)]
     pub async fn reload_config(&self, config: &serde_json::Value) {
         let new_config = parse_video_config(config);
         let new_inner = Self::create_service(&new_config);
@@ -116,14 +118,17 @@ impl UnifiedVideoService {
         }
     }
 
+    #[allow(dead_code)]
     pub fn metrics(&self) -> &MetricsCollector {
         &self.metrics
     }
 
+    #[allow(dead_code)]
     pub fn config(&self) -> &VideoConfig {
         &self.config
     }
 
+    #[allow(dead_code)]
     pub fn inner(&self) -> &UnifiedVideoService {
         self
     }

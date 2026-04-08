@@ -1,5 +1,8 @@
 # Lessons Learned
 
+## 2026-04-08
+- **Rust dead_code warnings**: Use `#[allow(dead_code)]` on methods/variants kept for future API extensibility, not just to suppress warnings but to document intent.
+
 ## 2026-04-05
 - **Bun installation**: `bun.sh` may be unreachable in restricted networks; use `npm install -g bun` as fallback
 - **Tailwind v4**: Uses `@import "tailwindcss"` instead of config files; no `tailwind.config.js` needed

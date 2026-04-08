@@ -12,11 +12,13 @@ pub struct MockVideoService {
 }
 
 impl MockVideoService {
+    #[allow(dead_code)]
     pub fn with_delay(mut self) -> Self {
         self.simulate_delay = true;
         self
     }
 
+    #[allow(dead_code)]
     pub fn with_errors(mut self, message: Option<String>) -> Self {
         self.simulate_errors = true;
         self.error_message = message;

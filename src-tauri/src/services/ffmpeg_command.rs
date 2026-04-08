@@ -13,6 +13,7 @@ pub struct FFmpegCommandService {
 }
 
 impl FFmpegCommandService {
+    #[allow(dead_code)]
     pub fn new(ffmpeg_path: Option<String>) -> Self {
         Self {
             ffmpeg_path: ffmpeg_path.unwrap_or_else(|| "ffmpeg".to_string()),
@@ -20,6 +21,7 @@ impl FFmpegCommandService {
         }
     }
 
+    #[allow(dead_code)]
     pub fn with_progress_callback(mut self, callback: ProgressCallback) -> Self {
         self.progress_callback = Some(callback);
         self

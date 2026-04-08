@@ -51,6 +51,7 @@ pub trait VideoService: Send + Sync {
 }
 
 #[derive(Debug, thiserror::Error)]
+#[allow(dead_code)]
 pub enum VideoError {
     #[error("File not found: {0}")]
     FileNotFound(String),
