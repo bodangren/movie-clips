@@ -40,12 +40,7 @@ pub async fn check_ffmpeg_health(ffmpeg_path: &str) -> FFmpegHealth {
 
 async fn is_ffmpeg_in_path(path: &str) -> bool {
     if path == "ffmpeg" {
-        Command::new("which")
-            .arg("ffmpeg")
-            .output()
-            .await
-            .map(|o| o.status.success())
-            .unwrap_or(false)
+        which::which("ffmpeg").is_ok()
     } else {
         Path::new(path).exists()
     }

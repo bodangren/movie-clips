@@ -2,6 +2,7 @@
 
 ## 2026-04-08
 - **Rust dead_code warnings**: Use `#[allow(dead_code)]` on methods/variants kept for future API extensibility, not just to suppress warnings but to document intent.
+- **Cross-platform FFmpeg detection**: Use `which` crate instead of Unix `which` command for cross-platform compatibility.
 
 ## 2026-04-05
 - **Bun installation**: `bun.sh` may be unreachable in restricted networks; use `npm install -g bun` as fallback

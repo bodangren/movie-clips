@@ -14,5 +14,5 @@
 ## Review Findings (2026-04-07)
 5. **`unified_service.inner()` returns `&self`**: No-op identity method with misleading name. Remove or rename. **UPDATE 2026-04-08**: Suppressed with #[allow(dead_code)] - kept for future API.
 6. **`MetricsCollector.last_operations` always empty**: Only tracks counters, not individual ops. Needs ring-buffer for actual operation history.
-7. **`health_check.rs` uses Unix `which`**: Won't work on Windows — use `which::which()` crate or conditional compilation.
+7. **`health_check.rs` uses Unix `which`**: Won't work on Windows — use `which::which()` crate or conditional compilation. **RESOLVED 2026-04-08**: Replaced with `which` crate (cross-platform).
 8. **4 Rust dead_code warnings**: `with_progress_callback`, `with_delay`, `with_errors`, `reload_config`, `metrics`, `config`, `inner`, `Timeout`, `Internal` — all public API for future use. Suppress with `#[allow(dead_code)]` at module level or gate behind feature flags. **RESOLVED 2026-04-08**
