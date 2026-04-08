@@ -20,9 +20,9 @@ This file tracks all major tracks for the project. Each track has its own detail
   Native video processing with FFmpeg command execution. Depends on Foundation. **SUBSTANTIALLY COMPLETE 2026-04-09**  
   Note: Command-based implementation complete. Bindings deferred. Frontend layer pending.
 
-- **[ ] Track: AI/LLM Integration**  
+- **[~] Track: AI/LLM Integration**  
   *Link: [./conductor/tracks/ai_integration_20250403/](./conductor/tracks/ai_integration_20250403/)*  
-  Gemini analyzer and TTS generator in Bun. Depends on Configuration.
+  Gemini analyzer and TTS generator in Bun. Depends on Configuration. **IN PROGRESS 2026-04-09**
 
 ### Phase 2: Core Features
 - **[ ] Track: Media Library Scanner**  

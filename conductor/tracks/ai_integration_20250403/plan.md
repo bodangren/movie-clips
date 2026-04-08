@@ -7,17 +7,17 @@
 - **Dependencies:** config_state_20250403
 
 ## Phase 1: Gemini Analyzer Setup
-- [ ] Task: Install AI SDK dependencies
-    - [ ] Sub-task: Install `@ai-sdk/google-vertex` via Bun
-    - [ ] Sub-task: Install `ai` (Vercel AI SDK) via Bun
-    - [ ] Sub-task: Install `@google/genai` via Bun
-    - [ ] Sub-task: Install `zod` for response validation
-- [ ] Task: Port Gemini analyzer from backup-old
-    - [ ] Sub-task: Review `backup-old/src/modules/llm-analyzer.ts` for reference
-    - [ ] Sub-task: Create `src/lib/ai/analyzer.ts` with `generateObject` pattern
-    - [ ] Sub-task: Define Zod schema for 5-fact analysis response
-    - [ ] Sub-task: Implement prompt engineering for movie trivia extraction
-    - [ ] Sub-task: Add error handling for content policy violations and rate limits
+- [x] Task: Install AI SDK dependencies
+    - [x] Sub-task: Install `@ai-sdk/google-vertex` via Bun
+    - [x] Sub-task: Install `ai` (Vercel AI SDK) via Bun
+    - [x] Sub-task: Install `@google/genai` via Bun
+    - [x] Sub-task: Install `zod` for response validation
+- [x] Task: Port Gemini analyzer from backup-old
+    - [x] Sub-task: Review `backup-old/src/modules/llm-analyzer.ts` for reference
+    - [x] Sub-task: Create `src/lib/ai/analyzer.ts` with `generateObject` pattern
+    - [x] Sub-task: Define Zod schema for 5-fact analysis response
+    - [x] Sub-task: Implement prompt engineering for movie trivia extraction
+    - [x] Sub-task: Add error handling for content policy violations and rate limits
 - [ ] Task: Write tests for analyzer
     - [ ] Sub-task: Create `src/lib/ai/analyzer.test.ts`
     - [ ] Sub-task: Test with mock responses
@@ -25,12 +25,12 @@
     - [ ] Sub-task: Test error handling
 
 ## Phase 2: TTS Generator
-- [ ] Task: Port TTS generator from backup-old
-    - [ ] Sub-task: Review `backup-old/src/modules/tts-generator.ts` for reference
-    - [ ] Sub-task: Create `src/lib/ai/tts.ts` using Gemini TTS (`gemini-2.5-flash-lite-preview-tts`)
-    - [ ] Sub-task: Implement random voice selection from configured voices
-    - [ ] Sub-task: Use `@google/genai` SDK (NOT `@google-cloud/text-to-speech`)
-    - [ ] Sub-task: Output WAV format for FFmpeg compatibility
+- [x] Task: Port TTS generator from backup-old
+    - [x] Sub-task: Review `backup-old/src/modules/tts-generator.ts` for reference
+    - [x] Sub-task: Create `src/lib/ai/tts.ts` using Gemini TTS (`gemini-2.5-flash-lite-preview-tts`)
+    - [x] Sub-task: Implement random voice selection from configured voices
+    - [x] Sub-task: Use `@google/genai` SDK (NOT `@google-cloud/text-to-speech`)
+    - [x] Sub-task: Output WAV format for FFmpeg compatibility
 - [ ] Task: Write tests for TTS generator
     - [ ] Sub-task: Create `src/lib/ai/tts.test.ts`
     - [ ] Sub-task: Test voice selection logic
@@ -38,16 +38,16 @@
     - [ ] Sub-task: Test error handling
 
 ## Phase 3: Caching & Retry Layer
-- [ ] Task: Implement response caching
-    - [ ] Sub-task: Create `src/lib/ai/cache.ts` with in-memory cache
-    - [ ] Sub-task: Implement configurable TTL for cached responses
-    - [ ] Sub-task: Add cache key generation from request parameters
-    - [ ] Sub-task: Add optional disk persistence for cache
-- [ ] Task: Implement retry logic
-    - [ ] Sub-task: Create `src/lib/ai/retry.ts` with exponential backoff
-    - [ ] Sub-task: Configure max retries and initial delay
-    - [ ] Sub-task: Add jitter to prevent thundering herd
-    - [ ] Sub-task: Implement retry for transient errors only
+- [x] Task: Implement response caching
+    - [x] Sub-task: Create `src/lib/ai/cache.ts` with in-memory cache
+    - [x] Sub-task: Implement configurable TTL for cached responses
+    - [x] Sub-task: Add cache key generation from request parameters
+    - [x] Sub-task: Add optional disk persistence for cache
+- [x] Task: Implement retry logic
+    - [x] Sub-task: Create `src/lib/ai/retry.ts` with exponential backoff
+    - [x] Sub-task: Configure max retries and initial delay
+    - [x] Sub-task: Add jitter to prevent thundering herd
+    - [x] Sub-task: Implement retry for transient errors only
 - [ ] Task: Write tests for caching and retry
     - [ ] Sub-task: Test cache hit/miss behavior
     - [ ] Sub-task: Test TTL expiration
@@ -55,11 +55,11 @@
     - [ ] Sub-task: Test retry exhaustion
 
 ## Phase 4: Mock Service & Integration
-- [ ] Task: Create mock AI service
-    - [ ] Sub-task: Create `src/lib/ai/mock-service.ts`
-    - [ ] Sub-task: Implement realistic mock responses
-    - [ ] Sub-task: Add configurable delays and errors for testing
-    - [ ] Sub-task: Toggle mock service via configuration
+- [x] Task: Create mock AI service
+    - [x] Sub-task: Create `src/lib/ai/mock-service.ts`
+    - [x] Sub-task: Implement realistic mock responses
+    - [x] Sub-task: Add configurable delays and errors for testing
+    - [x] Sub-task: Toggle mock service via configuration
 - [ ] Task: Integrate with Tauri commands
     - [ ] Sub-task: Create Tauri commands for AI operations
     - [ ] Sub-task: Implement frontend service layer
