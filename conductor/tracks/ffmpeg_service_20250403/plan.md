@@ -7,46 +7,46 @@
 - **Dependencies:** foundation_20250403
 
 ## Phase 1: Research & Setup
-- [ ] Task: Research FFmpeg integration options
-    - [ ] Sub-task: Evaluate `ffmpeg-next` crate vs `ffmpeg` crate
-    - [ ] Sub-task: Research command-line execution approach
-    - [ ] Sub-task: Check cross-platform compatibility
-    - [ ] Sub-task: Decide on primary approach (bindings) and fallback (command)
-- [ ] Task: Set up FFmpeg development environment
-    - [ ] Sub-task: Install FFmpeg on development machine
-    - [ ] Sub-task: Verify FFmpeg version and capabilities
-    - [ ] Sub-task: Add FFmpeg crate dependencies to Cargo.toml
-    - [ ] Sub-task: Create basic FFmpeg test to verify linking works
-- [ ] Task: Design service architecture
-    - [ ] Sub-task: Define VideoService trait with core operations
-    - [ ] Sub-task: Design error types for video processing
-    - [ ] Sub-task: Plan progress reporting mechanism
-    - [ ] Sub-task: Design mock service for testing
+- [x] Task: Research FFmpeg integration options
+    - [x] Sub-task: Evaluate `ffmpeg-next` crate vs `ffmpeg` crate
+    - [x] Sub-task: Research command-line execution approach
+    - [x] Sub-task: Check cross-platform compatibility
+    - [x] Sub-task: Decide on primary approach (bindings) and fallback (command)
+- [x] Task: Set up FFmpeg development environment
+    - [x] Sub-task: Install FFmpeg on development machine
+    - [x] Sub-task: Verify FFmpeg version and capabilities
+    - [x] Sub-task: Add FFmpeg crate dependencies to Cargo.toml
+    - [x] Sub-task: Create basic FFmpeg test to verify linking works
+- [x] Task: Design service architecture
+    - [x] Sub-task: Define VideoService trait with core operations
+    - [x] Sub-task: Design error types for video processing
+    - [x] Sub-task: Plan progress reporting mechanism
+    - [x] Sub-task: Design mock service for testing
 
 ## Phase 2: Command Execution Fallback (Day 1)
-- [ ] Task: Implement command-based video service
-    - [ ] Sub-task: Create `src-tauri/src/services/ffmpeg_command.rs`
-    - [ ] Sub-task: Implement `extract_clip` using `ffmpeg` command
-    - [ ] Sub-task: Implement `create_title_segment` using `ffmpeg` command
-    - [ ] Sub-task: Implement `assemble_video` using `ffmpeg` concat
-    - [ ] Sub-task: Implement `create_image_segment` using `ffmpeg` command
-- [ ] Task: Add error handling and validation
-    - [ ] Sub-task: Validate input file existence and permissions
-    - [ ] Sub-task: Parse FFmpeg command output for errors
-    - [ ] Sub-task: Implement timeout for long-running operations
-    - [ ] Sub-task: Clean up temporary files on error
-- [ ] Task: Add progress reporting
-    - [ ] Sub-task: Parse FFmpeg progress output (if available)
-    - [ ] Sub-task: Implement callback-based progress reporting
-    - [ ] Sub-task: Add estimated time remaining calculation
-- [ ] Task: Test command-based implementation
-    - [ ] Sub-task: Create test video files for validation
-    - [ ] Sub-task: Test each operation with sample data
-    - [ ] Sub-task: Benchmark performance vs Node.js implementation
-    - [ ] Sub-task: Verify output quality meets requirements
+- [x] Task: Implement command-based video service
+    - [x] Sub-task: Create `src-tauri/src/services/ffmpeg_command.rs`
+    - [x] Sub-task: Implement `extract_clip` using `ffmpeg` command
+    - [x] Sub-task: Implement `create_title_segment` using `ffmpeg` command
+    - [x] Sub-task: Implement `assemble_video` using `ffmpeg` concat
+    - [x] Sub-task: Implement `create_image_segment` using `ffmpeg` command
+- [x] Task: Add error handling and validation
+    - [x] Sub-task: Validate input file existence and permissions
+    - [x] Sub-task: Parse FFmpeg command output for errors
+    - [x] Sub-task: Implement timeout for long-running operations
+    - [x] Sub-task: Clean up temporary files on error
+- [x] Task: Add progress reporting
+    - [x] Sub-task: Parse FFmpeg progress output (if available)
+    - [x] Sub-task: Implement callback-based progress reporting
+    - [x] Sub-task: Add estimated time remaining calculation
+- [x] Task: Test command-based implementation
+    - [x] Sub-task: Create test video files for validation
+    - [x] Sub-task: Test each operation with sample data
+    - [x] Sub-task: Benchmark performance vs Node.js implementation
+    - [x] Sub-task: Verify output quality meets requirements
 
-## Phase 3: FFmpeg Bindings Implementation (Day 2-3)
-- [ ] Task: Implement bindings-based video service
+## Phase 3: FFmpeg Bindings Implementation (Day 2-3) — DEFERRED
+- [ ] Task: Implement bindings-based video service (deferred - command implementation sufficient for now)
     - [ ] Sub-task: Create `src-tauri/src/services/ffmpeg_bindings.rs`
     - [ ] Sub-task: Set up FFmpeg context and codec initialization
     - [ ] Sub-task: Implement `extract_clip` using FFmpeg API
@@ -65,17 +65,17 @@
     - [ ] Sub-task: Add metadata preservation
 
 ## Phase 4: Service Integration & Tauri Commands (Day 3)
-- [ ] Task: Create unified video service interface
-    - [ ] Sub-task: Create `src-tauri/src/services/video_service.rs` with enum
-    - [ ] Sub-task: Implement factory to choose between bindings/command
-    - [ ] Sub-task: Add configuration option for service type
-    - [ ] Sub-task: Create service initialization function
-- [ ] Task: Expose video service via Tauri commands
-    - [ ] Sub-task: Create `src-tauri/src/commands/video.rs`
-    - [ ] Sub-task: Implement `extract_clip_command` with progress events
-    - [ ] Sub-task: Implement `create_title_segment_command`
-    - [ ] Sub-task: Implement `assemble_video_command`
-    - [ ] Sub-task: Implement `create_image_segment_command`
+- [x] Task: Create unified video service interface
+    - [x] Sub-task: Create `src-tauri/src/services/video_service.rs` with enum
+    - [x] Sub-task: Implement factory to choose between bindings/command
+    - [x] Sub-task: Add configuration option for service type
+    - [x] Sub-task: Create service initialization function
+- [x] Task: Expose video service via Tauri commands
+    - [x] Sub-task: Create `src-tauri/src/commands/video.rs`
+    - [x] Sub-task: Implement `extract_clip_command` with progress events
+    - [x] Sub-task: Implement `create_title_segment_command`
+    - [x] Sub-task: Implement `assemble_video_command`
+    - [x] Sub-task: Implement `create_image_segment_command`
 - [ ] Task: Add frontend service layer
     - [ ] Sub-task: Create `src/lib/video/service.ts` TypeScript interface
     - [ ] Sub-task: Implement client for Tauri video commands
@@ -83,16 +83,16 @@
     - [ ] Sub-task: Create React hooks for video operations
 
 ## Phase 5: Mock Service & Testing (Day 4)
-- [ ] Task: Create mock video service for testing
-    - [ ] Sub-task: Create `src-tauri/src/services/mock_video.rs`
-    - [ ] Sub-task: Implement mock versions of all video operations
-    - [ ] Sub-task: Simulate progress reporting with configurable delays
-    - [ ] Sub-task: Simulate errors for testing error handling
-- [ ] Task: Write comprehensive tests
-    - [ ] Sub-task: Unit tests for each video operation
-    - [ ] Sub-task: Integration tests with actual video files
-    - [ ] Sub-task: Error scenario tests (missing files, invalid timestamps)
-    - [ ] Sub-task: Performance benchmarks vs Node.js implementation
+- [x] Task: Create mock video service for testing
+    - [x] Sub-task: Create `src-tauri/src/services/mock_video.rs`
+    - [x] Sub-task: Implement mock versions of all video operations
+    - [x] Sub-task: Simulate progress reporting with configurable delays
+    - [x] Sub-task: Simulate errors for testing error handling
+- [x] Task: Write comprehensive tests
+    - [x] Sub-task: Unit tests for each video operation
+    - [x] Sub-task: Integration tests with actual video files
+    - [x] Sub-task: Error scenario tests (missing files, invalid timestamps)
+    - [x] Sub-task: Performance benchmarks vs Node.js implementation
 - [ ] Task: Create test utilities
     - [ ] Sub-task: Create test video generation utilities
     - [ ] Sub-task: Implement golden tests for output validation
@@ -100,16 +100,16 @@
     - [ ] Sub-task: Add memory leak detection tests
 
 ## Phase 6: Configuration Integration & Polish (Day 4)
-- [ ] Task: Integrate with configuration system
-    - [ ] Sub-task: Read video dimensions from config (Track 2)
-    - [ ] Sub-task: Configure temporary directory usage
-    - [ ] Sub-task: Add FFmpeg binary path configuration (command mode)
-    - [ ] Sub-task: Add service type configuration (bindings vs command)
-- [ ] Task: Add monitoring and logging
-    - [ ] Sub-task: Add detailed logging for video operations
-    - [ ] Sub-task: Implement performance metrics collection
-    - [ ] Sub-task: Add health checks for FFmpeg availability
-    - [ ] Sub-task: Create video service status reporting
+- [x] Task: Integrate with configuration system
+    - [x] Sub-task: Read video dimensions from config (Track 2)
+    - [x] Sub-task: Configure temporary directory usage
+    - [x] Sub-task: Add FFmpeg binary path configuration (command mode)
+    - [x] Sub-task: Add service type configuration (bindings vs command)
+- [x] Task: Add monitoring and logging
+    - [x] Sub-task: Add detailed logging for video operations
+    - [x] Sub-task: Implement performance metrics collection
+    - [x] Sub-task: Add health checks for FFmpeg availability
+    - [x] Sub-task: Create video service status reporting
 - [ ] Task: Conductor - User Manual Verification 'Rust FFmpeg Service'
     - [ ] Sub-task: Test clip extraction with sample video
     - [ ] Sub-task: Test title segment creation with image+audio
