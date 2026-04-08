@@ -1,5 +1,11 @@
 # Lessons Learned
 
+## 2026-04-09
+- **AI SDK imports**: Use named exports directly; `generateObject` from 'ai', `createVertex` from '@ai-sdk/google-vertex', `GoogleGenAI` from '@google/genai'
+- **Bun unavailable**: When bun is not available, fall back to npm; the project will still work correctly
+- **Config singleton**: Use module-level cached config with sync getter alongside async loadConfig for reactive UI updates
+- **TypeScript .js extensions**: Don't use .js extensions in imports when using TypeScript's default module resolution
+
 ## 2026-04-08
 - **Rust dead_code warnings**: Use `#[allow(dead_code)]` on methods/variants kept for future API extensibility, not just to suppress warnings but to document intent.
 - **Cross-platform FFmpeg detection**: Use `which` crate instead of Unix `which` command for cross-platform compatibility.

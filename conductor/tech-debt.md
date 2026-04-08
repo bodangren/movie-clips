@@ -16,3 +16,6 @@
 6. **`MetricsCollector.last_operations` always empty**: Only tracks counters, not individual ops. Needs ring-buffer for actual operation history.
 7. **`health_check.rs` uses Unix `which`**: Won't work on Windows — use `which::which()` crate or conditional compilation. **RESOLVED 2026-04-08**: Replaced with `which` crate (cross-platform).
 8. **4 Rust dead_code warnings**: `with_progress_callback`, `with_delay`, `with_errors`, `reload_config`, `metrics`, `config`, `inner`, `Timeout`, `Internal` — all public API for future use. Suppress with `#[allow(dead_code)]` at module level or gate behind feature flags. **RESOLVED 2026-04-08**
+
+## Review Findings (2026-04-09)
+9. **AI module uses Bun.write**: TTS generator uses `Bun.write` which is not available in Node.js. Should use `fs/promises` for cross-runtime compatibility. **FIXED**: Switched to `writeFile` from 'fs/promises'.
