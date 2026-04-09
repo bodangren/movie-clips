@@ -47,7 +47,7 @@ export class TtsGenerator {
 
   constructor() {
     const config = getConfig();
-    const apiKey = (config as any).google?.apiKey;
+    const apiKey = config.google.apiKey;
     
     this.clientMode = apiKey ? 'apiKey' : 'vertex';
     this.client = this.createClient(this.clientMode, apiKey);
@@ -150,7 +150,7 @@ export class TtsGenerator {
         
         if (this.clientMode === 'apiKey' && this.isModelNotFoundError(error)) {
           const config = getConfig();
-          if ((config as any).google?.projectId && (config as any).google?.location) {
+          if (config.google.projectId && config.google.location) {
             logger.warn(
               'Gemini TTS model not available with API key; retrying with Vertex AI.'
             );
@@ -282,8 +282,8 @@ export class TtsGenerator {
     const config = getConfig();
     return new GoogleGenAI({
       vertexai: true,
-      project: (config as any).google?.projectId || '',
-      location: (config as any).google?.location || 'global',
+      project: config.google.projectId || '',
+      location: config.google.location || 'global',
     });
   }
 

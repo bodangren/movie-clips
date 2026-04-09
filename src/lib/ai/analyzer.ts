@@ -77,8 +77,9 @@ export class LlmAnalyzer {
       }
 
       return object;
-    } catch (error: any) {
-      logger.error(`Error during Gemini analysis: ${error.message}`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      logger.error(`Error during Gemini analysis: ${message}`);
       return null;
     }
   }
