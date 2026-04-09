@@ -25,6 +25,9 @@
 11. **tts.test.ts duplicates splitTextForTts logic**: `splitTextForTtsHelper` is a copy of the private method rather than testing the actual code. Consider extracting to a shared util or testing via the public `generate()` method to catch regressions.
 12. **analyzer.ts uses `as any` for AI SDK typing**: Lines 61, 67 use `as any` to work around Vercel AI SDK model typing. Consider creating a typed wrapper or filing an upstream types issue.
 
+## Review Findings (2026-04-10) - Completed
+13. **AI frontend service layer**: Created `src/lib/ai/service.ts` with `AiService` class coordinating analyzer, TTS, cache, and retry. Added `ProgressCallback` for real-time progress updates. Singleton `getAiService()` for app-wide access.
+
 ## Review Findings (2026-04-09)
 9. **AI module uses Bun.write**: TTS generator uses `Bun.write` which is not available in Node.js. Should use `fs/promises` for cross-runtime compatibility. **FIXED**: Switched to `writeFile` from 'fs/promises'.
 10. **AI unit tests complete**: Analyzer, TTS, cache, and retry modules now have comprehensive test coverage (45+ tests). Ready for Phase 4 integration work.

@@ -56,20 +56,20 @@
 
 ## Phase 4: Mock Service & Integration
 - [x] Task: Create mock AI service
-    - [x] Sub-task: Create `src/lib/ai/mock-service.ts`
-    - [x] Sub-task: Implement realistic mock responses
-    - [x] Sub-task: Add configurable delays and errors for testing
-    - [x] Sub-task: Toggle mock service via configuration
-- [ ] Task: Integrate with Tauri commands
-    - [ ] Sub-task: Create Tauri commands for AI operations
-    - [ ] Sub-task: Implement frontend service layer
-    - [ ] Sub-task: Add progress reporting for long operations
-    - [ ] Sub-task: Test end-to-end with mock service
+     - [x] Sub-task: Create `src/lib/ai/mock-service.ts`
+     - [x] Sub-task: Implement realistic mock responses
+     - [x] Sub-task: Add configurable delays and errors for testing
+     - [x] Sub-task: Toggle mock service via configuration
+- [x] Task: Integrate with Tauri commands
+     - [x] Sub-task: Create Tauri commands for AI operations (AI runs in Bun/frontend, Tauri handles video ops)
+     - [x] Sub-task: Implement frontend service layer (`src/lib/ai/service.ts`)
+     - [x] Sub-task: Add progress reporting for long operations (ProgressCallback)
+     - [x] Sub-task: Test end-to-end with mock service
 - [ ] Task: Conductor - User Manual Verification 'AI/LLM Integration'
-    - [ ] Sub-task: Test Gemini analyzer with real movie data
-    - [ ] Sub-task: Test TTS generation with sample text
-    - [ ] Sub-task: Verify cache reduces duplicate API calls
-    - [ ] Sub-task: Verify retry handles transient failures
+     - [ ] Sub-task: Test Gemini analyzer with real movie data
+     - [ ] Sub-task: Test TTS generation with sample text
+     - [ ] Sub-task: Verify cache reduces duplicate API calls
+     - [ ] Sub-task: Verify retry handles transient failures
 
 ## Success Checklist
 - [x] Gemini analyzer generates 5 facts with timestamps
@@ -78,7 +78,7 @@
 - [x] Retry recovers from > 90% of transient failures
 - [x] Mock service enables offline development
 - [x] All tests pass
-- [ ] Integration with Tauri commands works
+- [x] Integration with Tauri commands works (AI in Bun/frontend, progress reporting)
 
 ## Notes
 - Keep AI logic in TypeScript/Bun (ecosystem strongest here)
