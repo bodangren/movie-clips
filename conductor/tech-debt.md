@@ -10,6 +10,10 @@
 - Configuration UI components (Phase 4-5 of config track)
 - Add ESLint + Prettier (Phase 5)
 - Production build size analysis (Phase 6)
+- Tauri commands for AI operations (Phase 4 of AI/LLM Integration)
+
+## Review Findings (2026-04-09)
+10. **AI unit tests complete**: Analyzer, TTS, cache, and retry modules now have comprehensive test coverage (45+ tests). Ready for Phase 4 integration work.
 
 ## Review Findings (2026-04-07)
 5. **`unified_service.inner()` returns `&self`**: No-op identity method with misleading name. Remove or rename. **UPDATE 2026-04-08**: Suppressed with #[allow(dead_code)] - kept for future API.

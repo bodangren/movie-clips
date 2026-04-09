@@ -1,6 +1,15 @@
 # Lessons Learned
 
 ## 2026-04-09
+- **Testing AI SDK mocks**: `GoogleGenAI` must be mocked as a constructor function, not an arrow function. Use `vi.fn().mockImplementation(function() {...})` or a function declaration for constructor mocks.
+- **Mocking `fs/promises`**: Use `vi.mock("fs/promises", async (importOriginal) => {...})` with spread operator to preserve other exports while mocking specific functions.
+- **Vitest fake timers**: `vi.useFakeTimers()` doesn't automatically fake `Date.now()`. Use `vi.setSystemTime()` to control time-based expiration in cache tests.
+- **AI SDK imports**: Use named exports directly; `generateObject` from 'ai', `createVertex` from '@ai-sdk/google-vertex', `GoogleGenAI` from '@google/genai'
+- **Bun unavailable**: When bun is not available, fall back to npm; the project will still work correctly
+- **Config singleton**: Use module-level cached config with sync getter alongside async loadConfig for reactive UI updates
+- **TypeScript .js extensions**: Don't use .js extensions in imports when using TypeScript's default module resolution
+
+## 2026-04-08
 - **AI SDK imports**: Use named exports directly; `generateObject` from 'ai', `createVertex` from '@ai-sdk/google-vertex', `GoogleGenAI` from '@google/genai'
 - **Bun unavailable**: When bun is not available, fall back to npm; the project will still work correctly
 - **Config singleton**: Use module-level cached config with sync getter alongside async loadConfig for reactive UI updates

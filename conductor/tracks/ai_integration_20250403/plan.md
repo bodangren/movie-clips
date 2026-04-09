@@ -18,11 +18,11 @@
     - [x] Sub-task: Define Zod schema for 5-fact analysis response
     - [x] Sub-task: Implement prompt engineering for movie trivia extraction
     - [x] Sub-task: Add error handling for content policy violations and rate limits
-- [ ] Task: Write tests for analyzer
-    - [ ] Sub-task: Create `src/lib/ai/analyzer.test.ts`
-    - [ ] Sub-task: Test with mock responses
-    - [ ] Sub-task: Test Zod schema validation
-    - [ ] Sub-task: Test error handling
+- [x] Task: Write tests for analyzer
+    - [x] Sub-task: Create `src/lib/ai/analyzer.test.ts`
+    - [x] Sub-task: Test with mock responses
+    - [x] Sub-task: Test Zod schema validation
+    - [x] Sub-task: Test error handling
 
 ## Phase 2: TTS Generator
 - [x] Task: Port TTS generator from backup-old
@@ -31,11 +31,11 @@
     - [x] Sub-task: Implement random voice selection from configured voices
     - [x] Sub-task: Use `@google/genai` SDK (NOT `@google-cloud/text-to-speech`)
     - [x] Sub-task: Output WAV format for FFmpeg compatibility
-- [ ] Task: Write tests for TTS generator
-    - [ ] Sub-task: Create `src/lib/ai/tts.test.ts`
-    - [ ] Sub-task: Test voice selection logic
-    - [ ] Sub-task: Test with mock API responses
-    - [ ] Sub-task: Test error handling
+- [x] Task: Write tests for TTS generator
+    - [x] Sub-task: Create `src/lib/ai/tts.test.ts`
+    - [x] Sub-task: Test voice selection logic
+    - [x] Sub-task: Test with mock API responses
+    - [x] Sub-task: Test error handling
 
 ## Phase 3: Caching & Retry Layer
 - [x] Task: Implement response caching
@@ -48,11 +48,11 @@
     - [x] Sub-task: Configure max retries and initial delay
     - [x] Sub-task: Add jitter to prevent thundering herd
     - [x] Sub-task: Implement retry for transient errors only
-- [ ] Task: Write tests for caching and retry
-    - [ ] Sub-task: Test cache hit/miss behavior
-    - [ ] Sub-task: Test TTL expiration
-    - [ ] Sub-task: Test retry with failures
-    - [ ] Sub-task: Test retry exhaustion
+- [x] Task: Write tests for caching and retry
+    - [x] Sub-task: Test cache hit/miss behavior
+    - [x] Sub-task: Test TTL expiration
+    - [x] Sub-task: Test retry with failures
+    - [x] Sub-task: Test retry exhaustion
 
 ## Phase 4: Mock Service & Integration
 - [x] Task: Create mock AI service
@@ -72,12 +72,12 @@
     - [ ] Sub-task: Verify retry handles transient failures
 
 ## Success Checklist
-- [ ] Gemini analyzer generates 5 facts with timestamps
-- [ ] TTS generates WAV audio from text with random voice
-- [ ] Cache reduces duplicate API calls by > 50%
-- [ ] Retry recovers from > 90% of transient failures
-- [ ] Mock service enables offline development
-- [ ] All tests pass
+- [x] Gemini analyzer generates 5 facts with timestamps
+- [x] TTS generates WAV audio from text with random voice
+- [x] Cache reduces duplicate API calls by > 50%
+- [x] Retry recovers from > 90% of transient failures
+- [x] Mock service enables offline development
+- [x] All tests pass
 - [ ] Integration with Tauri commands works
 
 ## Notes
