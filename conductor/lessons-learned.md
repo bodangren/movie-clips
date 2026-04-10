@@ -1,5 +1,12 @@
 # Lessons Learned
 
+## 2026-04-11
+- **Pipeline types organization**: Keep domain-specific types in the module that owns them. Pipeline imports `MediaItem` from `library/types` rather than redefining.
+- **ESM import paths**: From `src/lib/pipeline/stages/foo.ts`, import parent module types with `../types` (goes up one level to pipeline/, then types.ts).
+- **fs/promises in ESM**: Use `import { unlink } from "fs/promises"` directly rather than `import { promises as fs }` for named imports.
+- **Tauri plugin-store**: Not installed by default; use localStorage fallback for frontend-only checkpoint/history persistence.
+- **Pipeline stage rollback**: Define rollback as optional `rollback?(ctx)` method on PipelineStage interface for cleanup on failure.
+
 ## 2026-04-10
 - **Vitest class mocks**: Must use `vi.fn().mockImplementation(function() {...})` for class constructors, not arrow functions. Arrow functions don't work as constructors in `mockImplementation`.
 - **AI service architecture**: AI runs in Bun/TypeScript frontend; Tauri/Rust handles video operations. Service layer coordinates AI operations with progress reporting.

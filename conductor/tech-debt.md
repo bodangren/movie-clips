@@ -16,3 +16,6 @@
 13. **NFO parser regex issue**: Original regex `</${tag}>` didn't close properly. Fixed with `</${tag}>` (escaped slash).
 14. **Vitest fs/promises mocking**: `vi.mock` hoists factory; using `vi.mocked(readFile).mockResolvedValue()` after dynamic import works.
 15. **Library Scanner track complete**: Created types, NFO parser, subtitle parser, scanner, service. 96 tests pass.
+
+## Review Findings (2026-04-11)
+16. **Pipeline Orchestration track complete**: Created pipeline types, orchestrator with error recovery, 5 stages (select, analyze, generate, process, assemble), checkpoint manager, and history tracking. 127 tests pass.
