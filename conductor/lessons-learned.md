@@ -3,6 +3,8 @@
 ## 2026-04-10
 - **Vitest class mocks**: Must use `vi.fn().mockImplementation(function() {...})` for class constructors, not arrow functions. Arrow functions don't work as constructors in `mockImplementation`.
 - **AI service architecture**: AI runs in Bun/TypeScript frontend; Tauri/Rust handles video operations. Service layer coordinates AI operations with progress reporting.
+- **Vitest dynamic imports**: `vi.mocked(readFile)` requires dynamic `await import('fs/promises')` after the `vi.mock` call, not before. The mock must be established before importing the module under test.
+- **NFO regex closing tag**: When building regex patterns with template literals for XML parsing, ensure the closing tag is properly escaped: `</${tag}>` becomes `</${tag}>` in the string, but the `/` must be escaped as `\/` in the regex.
 
 ## 2026-04-09
 - **Testing AI SDK mocks**: `GoogleGenAI` must be mocked as a constructor function, not an arrow function. Use `vi.fn().mockImplementation(function() {...})` or a function declaration for constructor mocks.

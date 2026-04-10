@@ -12,22 +12,7 @@
 - Production build size analysis (Phase 6)
 - Tauri commands for AI operations (Phase 4 of AI/LLM Integration)
 
-## Review Findings (2026-04-09)
-10. **AI unit tests complete**: Analyzer, TTS, cache, and retry modules now have comprehensive test coverage (45+ tests). Ready for Phase 4 integration work.
-
-## Review Findings (2026-04-07)
-5. **`unified_service.inner()` returns `&self`**: No-op identity method with misleading name. Remove or rename. **UPDATE 2026-04-08**: Suppressed with #[allow(dead_code)] - kept for future API.
-6. **`MetricsCollector.last_operations` always empty**: Only tracks counters, not individual ops. Needs ring-buffer for actual operation history.
-7. **`health_check.rs` uses Unix `which`**: Won't work on Windows — use `which::which()` crate or conditional compilation. **RESOLVED 2026-04-08**: Replaced with `which` crate (cross-platform).
-8. **4 Rust dead_code warnings**: `with_progress_callback`, `with_delay`, `with_errors`, `reload_config`, `metrics`, `config`, `inner`, `Timeout`, `Internal` — all public API for future use. Suppress with `#[allow(dead_code)]` at module level or gate behind feature flags. **RESOLVED 2026-04-08**
-
 ## Review Findings (2026-04-10)
-11. **tts.test.ts duplicates splitTextForTts logic**: `splitTextForTtsHelper` is a copy of the private method rather than testing the actual code. Consider extracting to a shared util or testing via the public `generate()` method to catch regressions.
-12. **analyzer.ts uses `as any` for AI SDK typing**: Lines 61, 67 use `as any` to work around Vercel AI SDK model typing. Consider creating a typed wrapper or filing an upstream types issue.
-
-## Review Findings (2026-04-10) - Completed
-13. **AI frontend service layer**: Created `src/lib/ai/service.ts` with `AiService` class coordinating analyzer, TTS, cache, and retry. Added `ProgressCallback` for real-time progress updates. Singleton `getAiService()` for app-wide access.
-
-## Review Findings (2026-04-09)
-9. **AI module uses Bun.write**: TTS generator uses `Bun.write` which is not available in Node.js. Should use `fs/promises` for cross-runtime compatibility. **FIXED**: Switched to `writeFile` from 'fs/promises'.
-10. **AI unit tests complete**: Analyzer, TTS, cache, and retry modules now have comprehensive test coverage (45+ tests). Ready for Phase 4 integration work.
+13. **NFO parser regex issue**: Original regex `</${tag}>` didn't close properly. Fixed with `</${tag}>` (escaped slash).
+14. **Vitest fs/promises mocking**: `vi.mock` hoists factory; using `vi.mocked(readFile).mockResolvedValue()` after dynamic import works.
+15. **Library Scanner track complete**: Created types, NFO parser, subtitle parser, scanner, service. 96 tests pass.

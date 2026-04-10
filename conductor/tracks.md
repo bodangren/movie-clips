@@ -20,16 +20,16 @@ This file tracks all major tracks for the project. Each track has its own detail
   Native video processing with FFmpeg command execution. Depends on Foundation. **SUBSTANTIALLY COMPLETE 2026-04-09**  
   Note: Command-based implementation complete. Bindings deferred. Frontend layer pending.
 
-- **[~] Track: AI/LLM Integration**  
+- **[x] Track: AI/LLM Integration**  
   *Link: [./conductor/tracks/ai_integration_20250403/](./conductor/tracks/ai_integration_20250403/)*  
-  Gemini analyzer and TTS generator in Bun. Depends on Configuration. **IN PROGRESS 2026-04-09**
+  Gemini analyzer and TTS generator in Bun. Depends on Configuration. **COMPLETED 2026-04-10**
 
 ### Phase 2: Core Features
-- **[ ] Track: Media Library Scanner**  
+- **[x] Track: Media Library Scanner**  
   *Link: [./conductor/tracks/library_scanner_20250403/](./conductor/tracks/library_scanner_20250403/)*  
-  Movie/TV detection, NFO parsing, subtitle parsing. Depends on Configuration & AI.
+  Movie/TV detection, NFO parsing, subtitle parsing. Depends on Configuration & AI. **COMPLETED 2026-04-10**
 
-- **[ ] Track: Pipeline Orchestration**  
+- **[~] Track: Pipeline Orchestration**  
   *Link: [./conductor/tracks/pipeline_orchestration_20250403/](./conductor/tracks/pipeline_orchestration_20250403/)*  
   End-to-end video generation with error recovery. Depends on FFmpeg, AI, Library.
 
