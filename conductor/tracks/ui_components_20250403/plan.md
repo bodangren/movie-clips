@@ -50,20 +50,22 @@
 
 ### Tasks
 
-- [ ] 2.1 Sidebar navigation component
+- [x] 2.1 Sidebar navigation component
   - Create `src/components/layout/Sidebar.tsx`
   - Navigation links with icons
   - Collapsible state
-  - Active state highlighting
+  - Active state highlighting [checkpoint: 64457a0]
 
-- [ ] 2.2 Main layout wrapper
+- [x] 2.2 Main layout wrapper
   - Create `src/components/layout/MainLayout.tsx`
   - Sidebar + content area structure
-  - Responsive sidebar toggle
+  - Responsive sidebar toggle [checkpoint: 64457a0]
 
-- [ ] 2.3 Page header component
+- [x] 2.3 Page header component
   - Create `src/components/layout/PageHeader.tsx`
-  - Title, description, actions slot
+  - Title, description, actions slot [checkpoint: 64457a0]
+
+## Phase 3: Library Browser Components
 
 ## Phase 3: Library Browser Components
 
@@ -155,7 +157,7 @@
 
 ## Checkpoints
 - Phase 1: [checkpoint: 730b7b1]
-- Phase 2: [checkpoint: ]
+- Phase 2: [checkpoint: 64457a0]
 - Phase 3: [checkpoint: ]
 - Phase 4: [checkpoint: ]
 - Phase 5: [checkpoint: ]
