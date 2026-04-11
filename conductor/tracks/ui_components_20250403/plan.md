@@ -117,16 +117,16 @@
 
 ### Tasks
 
-- [ ] 5.1 Config section component
+- [x] 5.1 Config section component
   - Create `src/components/config/ConfigSection.tsx`
   - Collapsible sections
-  - Section title and description
+  - Section title and description [checkpoint: 5f96e58]
 
-- [ ] 5.2 Config form integration
+- [x] 5.2 Config form integration
   - Create `src/components/config/ConfigForm.tsx`
   - React Hook Form + Zod integration
   - Field components from design system
-  - Validation feedback
+  - Validation feedback [checkpoint: 5f96e58]
 
 ## Phase 6: Theme & Polish
 
@@ -160,5 +160,5 @@
 - Phase 2: [checkpoint: 64457a0]
 - Phase 3: [checkpoint: 5889d10]
 - Phase 4: [checkpoint: 27aac30]
-- Phase 5: [checkpoint: ]
+- Phase 5: [checkpoint: 5f96e58]
 - Phase 6: [checkpoint: ]
