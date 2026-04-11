@@ -19,3 +19,5 @@
 
 ## Review Findings (2026-04-11)
 16. **Pipeline Orchestration track complete**: Created pipeline types, orchestrator with error recovery, 5 stages (select, analyze, generate, process, assemble), checkpoint manager, and history tracking. 127 tests pass.
+17. **Core UI Components track complete**: Created full design system with 162 tests across 6 phases. Components: Button, Card, Input, Select, Textarea, Modal, Skeleton, Sidebar, MainLayout, PageHeader, MediaCard, MediaGrid, FilterBar, StatusIndicator, ProgressBar, LogViewer, PipelineMonitor, ConfigSection, ConfigForm, ThemeProvider, ErrorBoundary.
+18. **Pre-existing test failures**: subtitle-parser.test.ts and nfo-parser.test.ts have 5 failing tests - these are unrelated to UI Components track and existed before this work.
