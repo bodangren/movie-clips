@@ -1,5 +1,12 @@
 # Lessons Learned
 
+## 2026-04-11 (UI Components)
+- **Tailwind v4 @theme**: Use `@theme inline` block to define CSS custom properties for colors when using Tailwind v4 with Vite
+- **Vitest + React Testing Library**: Components need `vi.useFakeTimers()` for time-based features; tests for time display need fake timers
+- **React component forwardRef**: Use `forwardRef` for ref forwarding in components like Button, Input, etc. to maintain ref compatibility
+- **window.matchMedia**: Check if `window.matchMedia` exists before using it, as jsdom doesn't implement it
+- **TDD for UI**: Write failing tests first, then implement minimal code to pass - all 162 UI component tests follow this pattern
+
 ## 2026-04-11
 - **Pipeline types organization**: Keep domain-specific types in the module that owns them. Pipeline imports `MediaItem` from `library/types` rather than redefining.
 - **ESM import paths**: From `src/lib/pipeline/stages/foo.ts`, import parent module types with `../types` (goes up one level to pipeline/, then types.ts).
