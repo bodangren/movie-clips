@@ -23,7 +23,9 @@
   - Variants: primary, secondary, ghost, destructive
   - Sizes: sm, md, lg
   - Support loading state
-  - Write tests first (TDD) [checkpoint: a1b2c3d]
+  - Write tests first (TDD) [checkpoint: 730b7b1]
+
+## Phase 2: Layout & Navigation
 
 - [ ] 1.3 Card component
   - Create `src/components/ui/Card.tsx`
@@ -152,7 +154,7 @@
 - [ ] Manual verification successful
 
 ## Checkpoints
-- Phase 1: [checkpoint: ]
+- Phase 1: [checkpoint: 730b7b1]
 - Phase 2: [checkpoint: ]
 - Phase 3: [checkpoint: ]
 - Phase 4: [checkpoint: ]
