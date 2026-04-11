@@ -71,21 +71,21 @@
 
 ### Tasks
 
-- [ ] 3.1 Media card component
+- [x] 3.1 Media card component
   - Create `src/components/library/MediaCard.tsx`
   - Poster image, title, year, metadata
-  - Hover state with actions
+  - Hover state with actions [checkpoint: 5889d10]
 
-- [ ] 3.2 Media grid component
+- [x] 3.2 Media grid component
   - Create `src/components/library/MediaGrid.tsx`
   - Responsive grid layout
-  - Loading skeleton state
+  - Loading skeleton state [checkpoint: 5889d10]
 
-- [ ] 3.3 Filter bar component
+- [x] 3.3 Filter bar component
   - Create `src/components/library/FilterBar.tsx`
   - Search input
   - Genre/year filters
-  - Sort options
+  - Sort options [checkpoint: 5889d10]
 
 ## Phase 4: Pipeline Monitor Components
 
@@ -158,7 +158,7 @@
 ## Checkpoints
 - Phase 1: [checkpoint: 730b7b1]
 - Phase 2: [checkpoint: 64457a0]
-- Phase 3: [checkpoint: ]
+- Phase 3: [checkpoint: 5889d10]
 - Phase 4: [checkpoint: ]
 - Phase 5: [checkpoint: ]
 - Phase 6: [checkpoint: ]
