@@ -1,5 +1,10 @@
 # Lessons Learned
 
+## 2026-04-12 (Testing & Quality)
+- **ESLint 10 compatibility**: eslint-plugin-react and eslint-plugin-jsx-a11y have issues with ESLint 10's new API; use simplified config without React plugins for now.
+- **ESLint argsIgnorePattern**: Use `"argsIgnorePattern": "^_"` in no-unused-vars rule to allow underscore-prefixed unused function parameters.
+- **ESLint test file config**: Separate ESLint config blocks for test files with `no-explicit-any: off` since tests often use `any` for mocks.
+
 ## 2026-04-11 (UI Components)
 - **Tailwind v4 @theme**: Use `@theme inline` block to define CSS custom properties for colors when using Tailwind v4 with Vite
 - **Vitest + React Testing Library**: Components need `vi.useFakeTimers()` for time-based features; tests for time display need fake timers
