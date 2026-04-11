@@ -33,7 +33,7 @@ This file tracks all major tracks for the project. Each track has its own detail
   *Link: [./conductor/tracks/pipeline_orchestration_20250403/](./conductor/tracks/pipeline_orchestration_20250403/)*  
   End-to-end video generation with error recovery. Depends on FFmpeg, AI, Library. **COMPLETED 2026-04-11**
 
-- **[ ] Track: Core UI Components**  
+- **[~] Track: Core UI Components**  
   *Link: [./conductor/tracks/ui_components_20250403/](./conductor/tracks/ui_components_20250403/)*  
   React UI with dashboard, library browser, pipeline monitor. Depends on Configuration & Pipeline.
 
