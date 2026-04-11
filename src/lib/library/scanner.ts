@@ -1,6 +1,6 @@
 import { readdir, stat } from 'fs/promises';
 import { join, extname, basename, dirname } from 'path';
-import type { MediaItem, Movie, TvShow, Episode, LibraryScanResult, MediaFile } from './types';
+import type { Movie, TvShow, LibraryScanResult, MediaFile } from './types';
 import { nfoParser } from './nfo-parser';
 import { subtitleParser } from './subtitle-parser';
 import { logger } from '../utils/logger';

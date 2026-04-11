@@ -1,4 +1,4 @@
-import { useRef, useEffect, type ReactNode } from "react";
+import { useRef, useEffect } from "react";
 
 export type LogLevel = "info" | "warn" | "error";
 

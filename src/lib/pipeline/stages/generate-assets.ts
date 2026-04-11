@@ -89,11 +89,13 @@ export function createGenerateAssetsStage(
         for (const audioPath of ctx.assets.audioFiles.values()) {
           try {
             await unlink(audioPath);
+            // eslint-disable-next-line no-empty
           } catch {}
         }
         for (const imagePath of ctx.assets.imageFiles.values()) {
           try {
             await unlink(imagePath);
+            // eslint-disable-next-line no-empty
           } catch {}
         }
       }

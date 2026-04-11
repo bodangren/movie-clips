@@ -6,7 +6,6 @@ import { Cache, generateCacheKey } from './cache';
 import { withRetry } from './retry';
 import { mockAiService, type MockServiceConfig } from './mock-service';
 import { logger } from '../utils/logger';
-import { getConfig } from '../config/service';
 
 export interface AiServiceConfig {
   useMock: boolean;
@@ -28,9 +27,6 @@ const DEFAULT_AI_SERVICE_CONFIG: AiServiceConfig = {
   enableCache: true,
   enableRetry: true,
 };
-
-const TTS_TIMEOUT_MS = 120000;
-const ANALYZE_TIMEOUT_MS = 300000;
 
 export class AiService {
   private analyzer: LlmAnalyzer;

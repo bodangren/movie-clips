@@ -58,12 +58,14 @@ export class LlmAnalyzer {
     try {
       const result = await this.withTimeout(
         generateObject({
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           model: this.vertexProvider(LLM_MODEL) as any,
           schema: analysisSchema,
           prompt,
           temperature: 0.4,
           topP: 0.9,
           maxTokens: MAX_OUTPUT_TOKENS,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any),
         config.pipeline.timeoutMs || LLM_REQUEST_TIMEOUT_MS
       );

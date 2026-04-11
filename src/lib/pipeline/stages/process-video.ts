@@ -140,6 +140,7 @@ export function createProcessVideoStage(
         for (const segment of ctx.videoSegments) {
           try {
             await unlink(segment.outputPath);
+            // eslint-disable-next-line no-empty
           } catch {}
         }
       }

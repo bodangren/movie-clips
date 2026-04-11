@@ -27,24 +27,24 @@
 
 ## Phase 2: Layout & Navigation
 
-- [ ] 1.3 Card component
+- [x] 1.3 Card component
   - Create `src/components/ui/Card.tsx`
   - Header, content, footer slots
   - Hover state support
-  - Write tests first (TDD)
+  - Write tests first (TDD) [checkpoint: 8a7b3c1]
 
-- [ ] 1.4 Form input components
+- [x] 1.4 Form input components
   - Create `src/components/ui/Input.tsx`
   - Create `src/components/ui/Select.tsx`
   - Create `src/components/ui/Textarea.tsx`
   - Label and error message support
-  - Write tests first (TDD)
+  - Write tests first (TDD) [checkpoint: 8a7b3c1]
 
-- [ ] 1.5 Modal/Dialog component
+- [x] 1.5 Modal/Dialog component
   - Create `src/components/ui/Modal.tsx`
   - Overlay, close button, escape key
   - Portal rendering
-  - Write tests first (TDD)
+  - Write tests first (TDD) [checkpoint: 8a7b3c1]
 
 ## Phase 2: Layout & Navigation
 

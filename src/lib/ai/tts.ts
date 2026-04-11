@@ -174,6 +174,7 @@ export class TtsGenerator {
   }
 
   private extractAudio(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     response: { data?: string; candidates?: any[] }
   ): { data: string; mimeType?: string } | null {
     if (response?.data) {
