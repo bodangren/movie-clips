@@ -91,27 +91,27 @@
 
 ### Tasks
 
-- [ ] 4.1 Pipeline status indicator
+- [x] 4.1 Pipeline status indicator
   - Create `src/components/pipeline/StatusIndicator.tsx`
   - States: idle, running, completed, failed, paused
-  - Animated running state
+  - Animated running state [checkpoint: 27aac30]
 
-- [ ] 4.2 Progress bar component
+- [x] 4.2 Progress bar component
   - Create `src/components/pipeline/ProgressBar.tsx`
   - Percentage display
   - Step label
-  - Animated progress
+  - Animated progress [checkpoint: 27aac30]
 
-- [ ] 4.3 Pipeline log viewer
+- [x] 4.3 Pipeline log viewer
   - Create `src/components/pipeline/LogViewer.tsx`
   - Scrollable log display
   - Timestamp and level (info, warn, error)
-  - Auto-scroll to bottom
+  - Auto-scroll to bottom [checkpoint: 27aac30]
 
-- [ ] 4.4 Pipeline monitor dashboard
+- [x] 4.4 Pipeline monitor dashboard
   - Create `src/components/pipeline/PipelineMonitor.tsx`
   - Integrates StatusIndicator, ProgressBar, LogViewer
-  - Connect to pipeline store
+  - Connect to pipeline store [checkpoint: 27aac30]
 
 ## Phase 5: Configuration Panel Components
 
@@ -159,6 +159,6 @@
 - Phase 1: [checkpoint: 730b7b1]
 - Phase 2: [checkpoint: 64457a0]
 - Phase 3: [checkpoint: 5889d10]
-- Phase 4: [checkpoint: ]
+- Phase 4: [checkpoint: 27aac30]
 - Phase 5: [checkpoint: ]
 - Phase 6: [checkpoint: ]
