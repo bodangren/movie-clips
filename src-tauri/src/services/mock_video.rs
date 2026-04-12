@@ -72,62 +72,6 @@ impl VideoService for MockVideoService {
         }
         Ok(())
     }
-
-    async fn create_title_segment(
-        &self,
-        image: &str,
-        audio: &str,
-        output: &str,
-        _dimensions: Option<VideoDimensions>,
-    ) -> Result<(), VideoError> {
-        self.validate_inputs(&[image, audio]).await?;
-        self.check_error()?;
-        self.simulate_progress().await;
-
-        if !self.simulate_errors {
-            fs::write(output, b"mock title segment").await?;
-        }
-        Ok(())
-    }
-
-    async fn assemble_video(
-        &self,
-        segments: &[String],
-        output: &str,
-    ) -> Result<(), VideoError> {
-        if segments.is_empty() {
-            return Err(VideoError::InvalidInput(
-                "No segments provided".to_string(),
-            ));
-        }
-
-        let paths: Vec<&str> = segments.iter().map(|s| s.as_str()).collect();
-        self.validate_inputs(&paths).await?;
-        self.check_error()?;
-        self.simulate_progress().await;
-
-        if !self.simulate_errors {
-            fs::write(output, b"mock assembled video").await?;
-        }
-        Ok(())
-    }
-
-    async fn create_image_segment(
-        &self,
-        image: &str,
-        _duration: f32,
-        output: &str,
-        _dimensions: Option<VideoDimensions>,
-    ) -> Result<(), VideoError> {
-        self.validate_inputs(&[image]).await?;
-        self.check_error()?;
-        self.simulate_progress().await;
-
-        if !self.simulate_errors {
-            fs::write(output, b"mock image segment").await?;
-        }
-        Ok(())
-    }
 }
 
 #[cfg(test)]
@@ -181,58 +125,5 @@ mod tests {
             VideoError::FFmpegError(msg) => assert_eq!(msg, "Simulated error"),
             _ => panic!("Expected FFmpegError"),
         }
-    }
-
-    #[tokio::test]
-    async fn mock_assemble_video_empty_segments() {
-        let service = MockVideoService::default();
-        let result = service.assemble_video(&[], "output.mp4").await;
-
-        assert!(result.is_err());
-        match result.unwrap_err() {
-            VideoError::InvalidInput(msg) => assert!(msg.contains("No segments")),
-            _ => panic!("Expected InvalidInput"),
-        }
-    }
-
-    #[tokio::test]
-    async fn mock_create_title_segment_valid() {
-        let service = MockVideoService::default();
-        let temp_dir = tempfile::tempdir().unwrap();
-        let image = temp_dir.path().join("image.png");
-        let audio = temp_dir.path().join("audio.mp3");
-        let output = temp_dir.path().join("output.mp4");
-
-        fs::write(&image, b"image").await.unwrap();
-        fs::write(&audio, b"audio").await.unwrap();
-
-        let result = service
-            .create_title_segment(
-                image.to_str().unwrap(),
-                audio.to_str().unwrap(),
-                output.to_str().unwrap(),
-                None,
-            )
-            .await;
-
-        assert!(result.is_ok());
-        assert!(output.exists());
-    }
-
-    #[tokio::test]
-    async fn mock_create_image_segment_valid() {
-        let service = MockVideoService::default();
-        let temp_dir = tempfile::tempdir().unwrap();
-        let image = temp_dir.path().join("image.png");
-        let output = temp_dir.path().join("output.mp4");
-
-        fs::write(&image, b"image").await.unwrap();
-
-        let result = service
-            .create_image_segment(image.to_str().unwrap(), 5.0, output.to_str().unwrap(), None)
-            .await;
-
-        assert!(result.is_ok());
-        assert!(output.exists());
     }
 }

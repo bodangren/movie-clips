@@ -1,0 +1,8 @@
+{
+  "id": "revideo_migration_20260412",
+  "name": "Revideo Migration",
+  "description": "Migrate from procedural Rust/FFmpeg video composition to declarative TypeScript composition using Revideo.",
+  "status": "pending",
+  "created_at": "2026-04-12T00:00:00.000Z",
+  "dependencies": ["foundation_20250403", "config_state_20250403", "ai_integration_20250403"]
+}

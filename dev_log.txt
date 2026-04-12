@@ -1,0 +1,9 @@
+$ vite
+9:53:21 AM [vite] warning: `esbuild` option was specified by "revideo:project" plugin. This option is deprecated, please use `oxc` instead.
+Both esbuild and oxc options were set. oxc options will be used and esbuild options will be ignored. The following esbuild options were set: `{ jsx: 'automatic', jsxImportSource: '@revideo/2d/lib' }`
+9:53:21 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+
+  VITE v8.0.3  ready in 2773 ms
+
+  ➜  Local:   http://localhost:1420/
+error: script "dev" was terminated by signal SIGKILL (Forced quit)

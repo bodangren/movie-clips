@@ -25,6 +25,9 @@ This file tracks all major tracks for the project. Each track has its own detail
   Gemini analyzer and TTS generator in Bun. Depends on Configuration. **COMPLETED 2026-04-10**
 
 ### Phase 2: Core Features
+- **[x] Track: Revideo Migration**  
+  *Link: [./conductor/archive/revideo_migration_20260412/](./conductor/archive/revideo_migration_20260412/)*  
+  Replace complex FFmpeg commands with Revideo composition. Supersedes FFmpeg track. **COMPLETED 2026-04-12** (ARCHIVED)
 - **[x] Track: Media Library Scanner**  
   *Link: [./conductor/tracks/library_scanner_20250403/](./conductor/tracks/library_scanner_20250403/)*  
   Movie/TV detection, NFO parsing, subtitle parsing. Depends on Configuration & AI. **COMPLETED 2026-04-10**

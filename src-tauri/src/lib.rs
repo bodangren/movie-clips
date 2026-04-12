@@ -101,9 +101,7 @@ pub fn run() {
             commands::config::save_config,
             commands::config::reset_config,
             commands::video::extract_clip,
-            commands::video::create_title_segment,
-            commands::video::assemble_video,
-            commands::video::create_image_segment,
+            commands::video::render_video,
             commands::video::get_video_status,
         ])
         .run(tauri::generate_context!())

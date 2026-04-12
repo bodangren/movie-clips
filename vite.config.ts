@@ -1,12 +1,23 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import revideo from "@revideo/vite-plugin";
 import path from "path";
 
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // @ts-ignore
+    (revideo.default || revideo)({
+      project: "./src/lib/video/revideo/project.ts",
+    }).filter((p) => p.name !== "revideo:editor"),
+  ],
+
+  optimizeDeps: {
+    exclude: ["@revideo/core", "@revideo/2d"],
+  },
 
   resolve: {
     alias: {

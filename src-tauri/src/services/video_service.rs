@@ -26,28 +26,6 @@ pub trait VideoService: Send + Sync {
         output: &str,
         dimensions: Option<VideoDimensions>,
     ) -> Result<(), VideoError>;
-
-    async fn create_title_segment(
-        &self,
-        image: &str,
-        audio: &str,
-        output: &str,
-        dimensions: Option<VideoDimensions>,
-    ) -> Result<(), VideoError>;
-
-    async fn assemble_video(
-        &self,
-        segments: &[String],
-        output: &str,
-    ) -> Result<(), VideoError>;
-
-    async fn create_image_segment(
-        &self,
-        image: &str,
-        duration: f32,
-        output: &str,
-        dimensions: Option<VideoDimensions>,
-    ) -> Result<(), VideoError>;
 }
 
 #[derive(Debug, thiserror::Error)]

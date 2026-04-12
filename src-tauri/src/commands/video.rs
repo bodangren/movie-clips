@@ -12,25 +12,9 @@ pub struct ExtractClipRequest {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct TitleSegmentRequest {
-    pub image: String,
-    pub audio: String,
+pub struct RenderVideoRequest {
+    pub metadata_json: String,
     pub output: String,
-    pub dimensions: Option<VideoDimensions>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct AssembleVideoRequest {
-    pub segments: Vec<String>,
-    pub output: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct ImageSegmentRequest {
-    pub image: String,
-    pub duration: f32,
-    pub output: String,
-    pub dimensions: Option<VideoDimensions>,
 }
 
 #[tauri::command]
@@ -50,43 +34,68 @@ pub async fn extract_clip(
 }
 
 #[tauri::command]
-pub async fn create_title_segment(
-    request: TitleSegmentRequest,
-    state: tauri::State<'_, UnifiedVideoService>,
+pub async fn render_video(
+    request: RenderVideoRequest,
+    _app: tauri::AppHandle,
 ) -> Result<(), VideoError> {
-    state
-        .create_title_segment(
-            &request.image,
-            &request.audio,
-            &request.output,
-            request.dimensions,
-        )
-        .await
-}
+    use tokio::io::{AsyncBufReadExt, BufReader};
+    use tokio::process::Command;
+    use tauri::Emitter;
 
-#[tauri::command]
-pub async fn assemble_video(
-    request: AssembleVideoRequest,
-    state: tauri::State<'_, UnifiedVideoService>,
-) -> Result<(), VideoError> {
-    state
-        .assemble_video(&request.segments, &request.output)
-        .await
-}
-
-#[tauri::command]
-pub async fn create_image_segment(
-    request: ImageSegmentRequest,
-    state: tauri::State<'_, UnifiedVideoService>,
-) -> Result<(), VideoError> {
-    state
-        .create_image_segment(
-            &request.image,
-            request.duration,
+    let mut child = Command::new("bun")
+        .args([
+            "run",
+            "src/lib/video/render.ts",
+            &request.metadata_json,
             &request.output,
-            request.dimensions,
-        )
+        ])
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::piped())
+        .spawn()
+        .map_err(|e| VideoError::Internal(e.to_string()))?;
+
+    let stdout = child.stdout.take().unwrap();
+    let stderr = child.stderr.take().unwrap();
+    let mut stdout_reader = BufReader::new(stdout).lines();
+    let mut stderr_reader = BufReader::new(stderr).lines();
+
+    let app_handle = _app.clone();
+    
+    // Task to handle stdout (progress reporting)
+    let _stdout_task = tokio::spawn(async move {
+        while let Ok(Some(line)) = stdout_reader.next_line().await {
+            if line.starts_with("PROGRESS:") {
+                if let Ok(progress) = line[9..].parse::<f32>() {
+                    // Emit progress event to the frontend
+                    let _ = app_handle.emit("video-render-progress", progress);
+                }
+            } else if line == "RENDER_COMPLETE" {
+                let _ = app_handle.emit("video-render-status", "complete");
+            }
+            println!("render-stdout: {}", line);
+        }
+    });
+
+    // Task to handle stderr
+    let _stderr_task = tokio::spawn(async move {
+        while let Ok(Some(line)) = stderr_reader.next_line().await {
+            eprintln!("render-stderr: {}", line);
+        }
+    });
+
+    let status = child
+        .wait()
         .await
+        .map_err(|e| VideoError::Internal(e.to_string()))?;
+
+    if status.success() {
+        Ok(())
+    } else {
+        Err(VideoError::Internal(format!(
+            "Bun render process failed with status: {}",
+            status
+        )))
+    }
 }
 
 #[tauri::command]
@@ -116,15 +125,5 @@ mod tests {
         let json = serde_json::to_string(&request).unwrap();
         assert!(json.contains("input.mp4"));
         assert!(json.contains("1080"));
-    }
-
-    #[test]
-    fn test_assemble_video_request_empty_segments() {
-        let request = AssembleVideoRequest {
-            segments: vec![],
-            output: "output.mp4".to_string(),
-        };
-
-        assert!(request.segments.is_empty());
     }
 }
