@@ -13,23 +13,9 @@ export interface ExtractClipRequest {
   dimensions?: VideoDimensions;
 }
 
-export interface TitleSegmentRequest {
-  image: string;
-  audio: string;
+export interface RenderVideoRequest {
+  metadata_json: string;
   output: string;
-  dimensions?: VideoDimensions;
-}
-
-export interface AssembleVideoRequest {
-  segments: string[];
-  output: string;
-}
-
-export interface ImageSegmentRequest {
-  image: string;
-  duration: number;
-  output: string;
-  dimensions?: VideoDimensions;
 }
 
 export interface VideoServiceStatus {
@@ -71,22 +57,8 @@ export async function extractClip(request: ExtractClipRequest): Promise<void> {
   await invoke("extract_clip", { request });
 }
 
-export async function createTitleSegment(
-  request: TitleSegmentRequest,
-): Promise<void> {
-  await invoke("create_title_segment", { request });
-}
-
-export async function assembleVideo(
-  request: AssembleVideoRequest,
-): Promise<void> {
-  await invoke("assemble_video", { request });
-}
-
-export async function createImageSegment(
-  request: ImageSegmentRequest,
-): Promise<void> {
-  await invoke("create_image_segment", { request });
+export async function renderVideo(request: RenderVideoRequest): Promise<void> {
+  await invoke("render_video", { request });
 }
 
 export async function getVideoStatus(): Promise<VideoServiceStatus> {

@@ -27,9 +27,9 @@
 - [x] Task: Implement command-based video service
     - [x] Sub-task: Create `src-tauri/src/services/ffmpeg_command.rs`
     - [x] Sub-task: Implement `extract_clip` using `ffmpeg` command
-    - [x] Sub-task: Implement `create_title_segment` using `ffmpeg` command
-    - [x] Sub-task: Implement `assemble_video` using `ffmpeg` concat
-    - [x] Sub-task: Implement `create_image_segment` using `ffmpeg` command
+    - [x] Sub-task: [SUPERSEDED] Implement `create_title_segment` (Handled by Revideo)
+    - [x] Sub-task: [SUPERSEDED] Implement `assemble_video` (Handled by Revideo)
+    - [x] Sub-task: [SUPERSEDED] Implement `create_image_segment` (Handled by Revideo)
 - [x] Task: Add error handling and validation
     - [x] Sub-task: Validate input file existence and permissions
     - [x] Sub-task: Parse FFmpeg command output for errors
@@ -50,9 +50,9 @@
     - [ ] Sub-task: Create `src-tauri/src/services/ffmpeg_bindings.rs`
     - [ ] Sub-task: Set up FFmpeg context and codec initialization
     - [ ] Sub-task: Implement `extract_clip` using FFmpeg API
-    - [ ] Sub-task: Implement `create_title_segment` using FFmpeg API
-    - [ ] Sub-task: Implement `assemble_video` using FFmpeg API
-    - [ ] Sub-task: Implement `create_image_segment` using FFmpeg API
+    - [ ] Sub-task: [SUPERSEDED] Implement `create_title_segment` (Revideo)
+    - [ ] Sub-task: [SUPERSEDED] Implement `assemble_video` (Revideo)
+    - [ ] Sub-task: [SUPERSEDED] Implement `create_image_segment` (Revideo)
 - [ ] Task: Optimize bindings implementation
     - [ ] Sub-task: Implement parallel processing where possible
     - [ ] Sub-task: Optimize memory usage and buffer management
@@ -73,9 +73,9 @@
 - [x] Task: Expose video service via Tauri commands
     - [x] Sub-task: Create `src-tauri/src/commands/video.rs`
     - [x] Sub-task: Implement `extract_clip_command` with progress events
-    - [x] Sub-task: Implement `create_title_segment_command`
-    - [x] Sub-task: Implement `assemble_video_command`
-    - [x] Sub-task: Implement `create_image_segment_command`
+    - [x] Sub-task: [REMOVED] Implement `create_title_segment_command`
+    - [x] Sub-task: [REMOVED] Implement `assemble_video_command`
+    - [x] Sub-task: [REMOVED] Implement `create_image_segment_command`
 - [ ] Task: Add frontend service layer
     - [ ] Sub-task: Create `src/lib/video/service.ts` TypeScript interface
     - [ ] Sub-task: Implement client for Tauri video commands

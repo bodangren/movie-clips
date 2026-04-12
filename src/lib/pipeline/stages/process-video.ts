@@ -8,11 +8,7 @@ import type {
 } from "../types";
 import {
   extractClip,
-  createTitleSegment,
-  createImageSegment,
-  ImageSegmentRequest,
   ExtractClipRequest,
-  TitleSegmentRequest,
 } from "../../video/service";
 import { getConfig } from "../../config/service";
 import { unlink } from "fs/promises";
@@ -71,54 +67,6 @@ export function createProcessVideoStage(
             endTime: suggestion.endTime,
             outputPath: clipRequest.output,
           });
-        }
-
-        const titleCardPath = `${outputDir}/title_card.mp4`;
-        if (ctx.assets.audioFiles.size > 0) {
-          const firstFactId = ctx.analysis.facts[0]?.id;
-          const firstAudio = firstFactId ? ctx.assets.audioFiles.get(firstFactId) : null;
-
-          if (firstAudio) {
-            const firstImage = ctx.assets.imageFiles.get(firstFactId ?? "") ?? "";
-
-            if (firstImage) {
-              const titleRequest: TitleSegmentRequest = {
-                image: firstImage,
-                audio: firstAudio,
-                output: titleCardPath,
-                dimensions,
-              };
-              await createTitleSegment(titleRequest);
-              segments.unshift({
-                id: "title",
-                type: "title",
-                source: firstImage,
-                outputPath: titleCardPath,
-              });
-            }
-          }
-        }
-
-        for (const [factId] of ctx.assets.audioFiles) {
-          if (!segments.find((s) => s.id === factId)) {
-            const imagePath = ctx.assets?.imageFiles.get(factId);
-            if (imagePath) {
-              const imageRequest: ImageSegmentRequest = {
-                image: imagePath,
-                duration: 5,
-                output: `${outputDir}/image_${factId}.mp4`,
-                dimensions,
-              };
-              await createImageSegment(imageRequest);
-              segments.push({
-                id: factId,
-                type: "image",
-                source: imagePath,
-                duration: 5,
-                outputPath: imageRequest.output,
-              });
-            }
-          }
         }
 
         ctx.videoSegments = segments;

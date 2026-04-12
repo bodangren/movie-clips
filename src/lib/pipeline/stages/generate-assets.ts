@@ -67,7 +67,6 @@ export function createGenerateAssetsStage(
         const assets: GeneratedAssets = {
           audioFiles,
           imageFiles,
-          titleCard: null,
         };
 
         ctx.assets = assets;

@@ -36,12 +36,11 @@ export interface ClipSuggestion {
 export interface GeneratedAssets {
   audioFiles: Map<string, string>;
   imageFiles: Map<string, string>;
-  titleCard: string | null;
 }
 
 export interface VideoSegment {
   id: string;
-  type: "clip" | "title" | "image";
+  type: "clip" | "render";
   source: string;
   startTime?: string;
   endTime?: string;

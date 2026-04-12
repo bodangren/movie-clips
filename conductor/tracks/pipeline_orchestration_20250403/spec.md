@@ -11,7 +11,7 @@ Design and implement the end-to-end video generation pipeline with error recover
 5. Pipeline history and logging
 
 ## Acceptance Criteria
-- [ ] Pipeline stages: select content → analyze → generate assets → process video → assemble
+- [ ] Pipeline stages: select content → analyze → generate assets → extract clips → render with Revideo
 - [ ] Error recovery with configurable retries and fallbacks
 - [ ] Progress reporting with percentage and current stage
 - [ ] Checkpoint system saves state for resumption

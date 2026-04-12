@@ -1,9 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   extractClip,
-  createTitleSegment,
-  assembleVideo,
-  createImageSegment,
+  renderVideo,
   getVideoStatus,
 } from "./service";
 
@@ -47,55 +45,16 @@ describe("video service", () => {
     });
   });
 
-  describe("createTitleSegment", () => {
-    it("calls create_title_segment command with request", async () => {
+  describe("renderVideo", () => {
+    it("calls render_video command with request", async () => {
       const request = {
-        image: "/path/to/image.png",
-        audio: "/path/to/audio.mp3",
+        metadata_json: JSON.stringify({ title: "Test Movie" }),
         output: "/path/to/output.mp4",
       };
 
-      await createTitleSegment(request);
+      await renderVideo(request);
 
-      expect(invoke).toHaveBeenCalledWith("create_title_segment", { request });
-    });
-  });
-
-  describe("assembleVideo", () => {
-    it("calls assemble_video command with segments", async () => {
-      const request = {
-        segments: ["/path/to/seg1.mp4", "/path/to/seg2.mp4"],
-        output: "/path/to/final.mp4",
-      };
-
-      await assembleVideo(request);
-
-      expect(invoke).toHaveBeenCalledWith("assemble_video", { request });
-    });
-
-    it("handles empty segments array", async () => {
-      const request = {
-        segments: [],
-        output: "/path/to/final.mp4",
-      };
-
-      await assembleVideo(request);
-
-      expect(invoke).toHaveBeenCalledWith("assemble_video", { request });
-    });
-  });
-
-  describe("createImageSegment", () => {
-    it("calls create_image_segment command with request", async () => {
-      const request = {
-        image: "/path/to/image.png",
-        duration: 5.0,
-        output: "/path/to/output.mp4",
-      };
-
-      await createImageSegment(request);
-
-      expect(invoke).toHaveBeenCalledWith("create_image_segment", { request });
+      expect(invoke).toHaveBeenCalledWith("render_video", { request });
     });
   });
 
@@ -123,7 +82,7 @@ describe("video service", () => {
         },
       };
 
-      vi.mocked(invoke).mockResolvedValue(mockStatus);
+      (invoke as any).mockResolvedValue(mockStatus);
 
       const result = await getVideoStatus();
 

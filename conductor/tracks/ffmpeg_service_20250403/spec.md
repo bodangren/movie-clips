@@ -37,19 +37,18 @@ Implement native video processing capabilities using Rust FFmpeg bindings or com
 
 ## Technical Decisions
 ### FFmpeg Integration Approach
-**Primary:** Rust FFmpeg bindings (`ffmpeg-next` crate) for maximum performance and control
-**Fallback:** Command-line execution via `std::process::Command` if bindings problematic
+**Primary:** Revideo Migration (Phase 2 & 4) for composition and rendering.
+**Secondary:** Rust FFmpeg command execution for basic clip extraction (`extract_clip`).
+**Deprecated:** Rust-based title card generation, image segments, and assembly (superseded by Revideo).
 
 ### Service Architecture
 ```rust
 // Core service interface
 trait VideoService {
     async fn extract_clip(&self, input: &str, start: &str, end: &str, output: &str) -> Result<()>;
-    async fn create_title_segment(&self, image: &str, audio: &str, output: &str) -> Result<()>;
-    async fn assemble_video(&self, segments: &[String], output: &str) -> Result<()>;
-    async fn create_image_segment(&self, image: &str, duration: f32, output: &str) -> Result<()>;
+    // DEPRECATED: create_title_segment, assemble_video, create_image_segment
 }
-
+```
 // With progress reporting
 trait VideoServiceWithProgress: VideoService {
     fn on_progress(&self, callback: Box<dyn Fn(f32) + Send + Sync>);
