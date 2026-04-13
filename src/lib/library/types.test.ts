@@ -1,9 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type {
   MediaItem,
-  Movie,
-  TvShow,
-  Episode,
   SubtitleEntry,
   MovieMetadata,
   NfoMetadata,
@@ -66,6 +63,7 @@ describe('library/types', () => {
   describe('SubtitleEntry', () => {
     it('should accept valid subtitle entry', () => {
       const entry: SubtitleEntry = {
+        id: '1',
         startTime: '00:01:30,500',
         endTime: '00:01:35,000',
         text: 'Hello, world!',

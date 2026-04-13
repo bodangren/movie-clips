@@ -41,3 +41,7 @@ conductor/output.log
 *.njsproj
 *.sln
 *.sw?
+
+# Debug/temporary files
+main.js
+test-jsdom.ts

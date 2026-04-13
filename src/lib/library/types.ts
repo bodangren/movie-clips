@@ -1,4 +1,5 @@
 export interface SubtitleEntry {
+  id: string;
   startTime: string;
   endTime: string;
   text: string;

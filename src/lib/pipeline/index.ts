@@ -6,4 +6,4 @@ export { createSelectContentStage } from "./stages/select-content";
 export { createAnalyzeStage } from "./stages/analyze";
 export { createGenerateAssetsStage } from "./stages/generate-assets";
 export { createProcessVideoStage } from "./stages/process-video";
-export { createAssembleVideoStage } from "./stages/assemble-video";
+export { createRenderVideoStage } from "./stages/render-video";

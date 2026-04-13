@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Component, type ErrorInfo, type ReactNode } from "react";
+import { Component, type ReactNode } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
 
 class ErrorThrower extends Component<{ shouldThrow: boolean }> {

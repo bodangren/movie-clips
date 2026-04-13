@@ -25,3 +25,12 @@
 ## Review Findings (2026-04-12)
 19. **Testing & Quality track started**: Added ESLint with TypeScript-ESLint, configured rules for React/Vite project, fixed linting errors in source files. 287 tests pass, 5 pre-existing failures in subtitle-parser/nfo-parser.
 20. **ESLint config patterns**: Use `argsIgnorePattern: "^_"` to allow underscore-prefixed unused function parameters; test files get `no-explicit-any: off` since they often use `any` for mocks.
+
+## Review Findings (2026-04-14)
+21. **Uncommitted work in progress**: App integration work (App.tsx, Sidebar, SettingsPanel, library store, chroma wrapper, index.css redesign) is uncommitted. 13 modified files, 6 new files.
+22. **Broken pipeline/index.ts export**: `createAssembleVideoStage` referenced deleted `./stages/assemble-video` module (leftover from Revideo migration refactor). Fixed to use `createRenderVideoStage` from `./stages/render-video`.
+23. **Missing `id` in SubtitleEntry type**: `subtitle-parser.ts` sets `entry.id` but `SubtitleEntry` interface lacked the field. Fixed type and test.
+24. **SettingsPanel zodResolver type mismatch**: `zodResolver(configSchema)` produces incompatible resolver types with `react-hook-form` `useForm<AppConfig>`. Root cause: Zod v4 schema inference differs from `@hookform/resolvers` expectations. Needs `@hookform/resolvers` update or type cast workaround.
+25. **Pre-existing test failures persist**: 5 tests in `subtitle-parser.test.ts` (3) and `nfo-parser.test.ts` (2) still fail. Root cause: `vi.mock('fs/promises')` with async factory + dynamic `await import()` inside tests produces stale mock references. Mock pattern needs rework (use `vi.fn()` at top level instead of `importOriginal`).
+26. **Debug artifacts in repo**: `main.js` (Vite compiled output) and `test-jsdom.ts` (debug utility) found in repo root. Added to `.gitignore`.
+27. **chroma-js type declaration**: Added declaration file for `chroma-js` (transitive dependency from `@revideo/core`) to fix TS7016. Wrapper module re-exports all chroma-js functions via Vite alias.
