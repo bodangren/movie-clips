@@ -13,15 +13,20 @@ export default defineConfig(async () => ({
     (revideo.default || revideo)({
       project: "./src/lib/video/revideo/project.ts",
     }).filter((p) => p.name !== "revideo:editor"),
+    {
+      name: "fix-rolldown-target",
+      config(config) {
+        if (config.build?.target === "modules") {
+          config.build.target = "esnext";
+        }
+      }
+    }
   ],
-
-  optimizeDeps: {
-    exclude: ["@revideo/core", "@revideo/2d"],
-  },
 
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "chroma-js": path.resolve(__dirname, "./src/chroma-wrapper.ts"),
     },
   },
 

@@ -1,9 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import App from "./App";
 
+// Mock Tauri API
 vi.mock("@tauri-apps/api/core", () => ({
-  invoke: vi.fn((cmd: string) => {
+  invoke: vi.fn((cmd) => {
     if (cmd === "get_app_info") {
       return Promise.resolve({
         name: "movie-clips",
@@ -12,14 +13,15 @@ vi.mock("@tauri-apps/api/core", () => ({
         arch: "x86_64",
       });
     }
-    if (cmd === "greet") {
-      return Promise.resolve("Hello, World! You've been greeted from Rust!");
-    }
-    if (cmd === "scan_directory") {
-      return Promise.resolve(["file1.txt", "file2.txt"]);
-    }
-    return Promise.reject(new Error(`Unknown command: ${cmd}`));
+    return Promise.resolve();
   }),
+}));
+
+// Mock resize observer
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
 }));
 
 describe("App", () => {
@@ -27,31 +29,27 @@ describe("App", () => {
     vi.clearAllMocks();
   });
 
-  it("renders the welcome heading", async () => {
+  it("renders the dashboard heading", async () => {
     render(<App />);
-    const heading = await screen.findByText(/Welcome to movie-clips/i);
+    const main = screen.getByRole("main");
+    const heading = await within(main).findByText(/Director's Dashboard/i);
     expect(heading).toBeInTheDocument();
   });
 
-  it("displays app info after loading", async () => {
+  it("renders the navigation sidebar", () => {
     render(<App />);
-    const appInfo = await screen.findByText(/movie-clips v0\.1\.0 on linux\/x86_64/i);
-    expect(appInfo).toBeInTheDocument();
+    const aside = screen.getByRole("complementary");
+    expect(within(aside).getByText(/MOVIE CLIPS/i)).toBeInTheDocument();
+    expect(within(aside).getByText(/Dashboard/i)).toBeInTheDocument();
+    expect(within(aside).getByText(/Media Library/i)).toBeInTheDocument();
   });
 
-  it("has a greet form with input and button", () => {
+  it("displays dashboard cards", async () => {
     render(<App />);
-    const input = screen.getByPlaceholderText(/Enter a name/i);
-    const button = screen.getByRole("button", { name: /Greet/i });
-    expect(input).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
-  });
-
-  it("has a directory scanner section", () => {
-    render(<App />);
-    const scannerHeading = screen.getByRole("heading", { name: /Directory Scanner/i });
-    expect(scannerHeading).toBeInTheDocument();
-    const pathInput = screen.getByPlaceholderText(/\/path\/to\/directory/i);
-    expect(pathInput).toBeInTheDocument();
+    const main = screen.getByRole("main");
+    expect(await within(main).findByText(/Active Pipeline/i)).toBeInTheDocument();
+    expect(within(main).getByText(/Library Status/i)).toBeInTheDocument();
+    // System card title is a heading
+    expect(within(main).getByRole("heading", { name: /System/i })).toBeInTheDocument();
   });
 });

@@ -5,6 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>movie-clips</title>
+    <script>
+      window.addEventListener('error', function(e) {
+        document.body.innerHTML += '<div style="color:red; background:white; position:fixed; top:0; left:0; z-index:9999; padding: 20px; width: 100%; word-break: break-all;"><b>Caught Error:</b> ' + e.message + '<br/>' + (e.error ? e.error.stack : '') + '<br/>File: ' + e.filename + ':' + e.lineno + '</div>';
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        document.body.innerHTML += '<div style="color:red; background:white; position:fixed; top:50%; left:0; z-index:9999; padding: 20px; width: 100%; word-break: break-all;"><b>Unhandled Rejection:</b> ' + e.reason + '</div>';
+      });
+    </script>
   </head>
 
   <body>
