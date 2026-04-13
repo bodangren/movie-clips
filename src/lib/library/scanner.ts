@@ -46,13 +46,10 @@ export class LibraryScanner {
     return result;
   }
 
-  private async processMovieFile(
-    filePath: string,
-    parentDir: string
-  ): Promise<Movie | null> {
+  private async processMovieFile(filePath: string, parentDir: string): Promise<Movie | null> {
     const ext = extname(filePath).toLowerCase();
     const videoExtensions = ['.mp4', '.mkv', '.avi', '.mov', '.wmv', '.flv'];
-    
+
     if (!videoExtensions.includes(ext)) {
       return null;
     }
@@ -88,15 +85,12 @@ export class LibraryScanner {
     };
   }
 
-  private async processTvShowDirectory(
-    dirPath: string,
-    showName: string
-  ): Promise<TvShow | null> {
+  private async processTvShowDirectory(dirPath: string, showName: string): Promise<TvShow | null> {
     const nfoPath = join(dirPath, 'tvshow.nfo');
-    
+
     try {
       const nfoMetadata = await nfoParser.parse(nfoPath);
-      
+
       const mediaFile: MediaFile = {
         path: dirPath,
         type: 'tvshow',
@@ -124,20 +118,20 @@ export class LibraryScanner {
   async detectMediaType(filePath: string): Promise<'movie' | 'tvshow' | 'episode' | null> {
     const ext = extname(filePath).toLowerCase();
     const videoExtensions = ['.mp4', '.mkv', '.avi', '.mov', '.wmv', '.flv'];
-    
+
     if (!videoExtensions.includes(ext)) {
       return null;
     }
 
     const baseName = basename(filePath, ext);
-    
+
     if (baseName.match(/^s\d{2}e\d{2}/i)) {
       return 'episode';
     }
 
     const parentDir = basename(dirname(filePath));
     const parentNfoPath = join(dirname(filePath), `${parentDir}.nfo`);
-    
+
     try {
       await stat(parentNfoPath);
       return 'tvshow';

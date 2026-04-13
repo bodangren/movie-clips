@@ -24,15 +24,15 @@ export class SubtitleParser {
       const id = lines[0].trim();
       const timeLine = lines[1].trim();
       const textLines = lines.slice(2);
-      
+
       const timeMatch = timeLine.match(
         /(\d{2}):(\d{2}):(\d{2}),(\d{3})\s*-->\s*(\d{2}):(\d{2}):(\d{2}),(\d{3})/
       );
-      
+
       if (!timeMatch) continue;
 
       const [, startH, startM, startS, startMs, endH, endM, endS, endMs] = timeMatch;
-      
+
       const entry: SubtitleEntry = {
         id,
         startTime: `${startH}:${startM}:${startS},${startMs}`,

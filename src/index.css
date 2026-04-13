@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @theme inline {
@@ -19,13 +19,13 @@
   --color-input: #1a1a1a;
   --color-ring: #a57800;
 
-  --font-sans: "Lexend", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: 'Lexend', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 :root {
   font-family: var(--font-sans);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -68,8 +68,14 @@ body {
 
 /* Animations */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {

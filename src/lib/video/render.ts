@@ -1,10 +1,10 @@
-import { renderVideo } from "@revideo/renderer";
-import path from "path";
+import { renderVideo } from '@revideo/renderer';
+import path from 'path';
 
 async function main() {
   const args = process.argv.slice(2);
   if (args.length < 2) {
-    console.error("Usage: bun src/lib/video/render.ts <metadata_json> <output_path>");
+    console.error('Usage: bun src/lib/video/render.ts <metadata_json> <output_path>');
     process.exit(1);
   }
 
@@ -16,16 +16,16 @@ async function main() {
 
   try {
     await renderVideo({
-      projectFile: path.resolve("src/lib/video/revideo/project.ts"),
+      projectFile: path.resolve('src/lib/video/revideo/project.ts'),
       variables: metadata,
-      onProgress: (progress) => {
+      onProgress: progress => {
         // Output progress to stdout for the parent process to capture
         console.log(`PROGRESS:${(progress * 100).toFixed(2)}`);
       },
     });
-    console.log("RENDER_COMPLETE");
+    console.log('RENDER_COMPLETE');
   } catch (error) {
-    console.error("RENDER_ERROR:", error);
+    console.error('RENDER_ERROR:', error);
     process.exit(1);
   }
 }

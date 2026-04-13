@@ -73,8 +73,6 @@ class Logger {
   }
 }
 
-export const logger = new Logger(
-  (import.meta.env.DEV ? 'debug' : 'warn') as LogLevel
-);
+export const logger = new Logger((import.meta.env.DEV ? 'debug' : 'warn') as LogLevel);
 
 export type { LogLevel, LogEntry };

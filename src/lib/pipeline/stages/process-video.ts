@@ -5,35 +5,27 @@ import type {
   PipelineStageResult,
   PipelineError,
   VideoSegment,
-} from "../types";
-import {
-  extractClip,
-  ExtractClipRequest,
-} from "../../video/service";
-import { getConfig } from "../../config/service";
-import { unlink } from "fs/promises";
+} from '../types';
+import { extractClip, ExtractClipRequest } from '../../video/service';
+import { getConfig } from '../../config/service';
+import { unlink } from 'fs/promises';
 
 export interface ProcessVideoStageOptions {
   outputDir?: string;
   dimensions?: { width: number; height: number };
 }
 
-export function createProcessVideoStage(
-  options: ProcessVideoStageOptions = {},
-): PipelineStage {
+export function createProcessVideoStage(options: ProcessVideoStageOptions = {}): PipelineStage {
   return {
-    name: "process_video",
-    async execute(
-      ctx: PipelineContext,
-      config: PipelineConfig,
-    ): Promise<PipelineStageResult> {
+    name: 'process_video',
+    async execute(ctx: PipelineContext, config: PipelineConfig): Promise<PipelineStageResult> {
       try {
         if (!ctx.mediaItem || !ctx.analysis || !ctx.assets) {
           return {
             success: false,
             error: {
-              stage: "process_video",
-              message: "Missing context: need mediaItem, analysis, and assets",
+              stage: 'process_video',
+              message: 'Missing context: need mediaItem, analysis, and assets',
               timestamp: Date.now(),
               retryable: false,
             },
@@ -61,7 +53,7 @@ export function createProcessVideoStage(
           await extractClip(clipRequest);
           segments.push({
             id: suggestion.factId,
-            type: "clip",
+            type: 'clip',
             source: ctx.mediaItem.path,
             startTime: suggestion.startTime,
             endTime: suggestion.endTime,
@@ -73,7 +65,7 @@ export function createProcessVideoStage(
         return { success: true, data: segments };
       } catch (error) {
         const pipelineError: PipelineError = {
-          stage: "process_video",
+          stage: 'process_video',
           message: error instanceof Error ? error.message : String(error),
           timestamp: Date.now(),
           retryable: true,

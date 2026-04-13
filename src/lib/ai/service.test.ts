@@ -109,7 +109,7 @@ describe('AiService', () => {
       const progressUpdates: any[] = [];
       const service = new AiService({ useMock: false, enableCache: false, enableRetry: false });
 
-      await service.analyze(mockMetadata, mockSubtitles, (progress) => {
+      await service.analyze(mockMetadata, mockSubtitles, progress => {
         progressUpdates.push(progress);
       });
 

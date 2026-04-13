@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import type { AppConfig } from "@/lib/config/schema";
-import { getDefaultConfig } from "@/lib/config/defaults";
-import { loadConfig, saveConfig, resetConfig } from "@/lib/config/service";
+import { create } from 'zustand';
+import type { AppConfig } from '@/lib/config/schema';
+import { getDefaultConfig } from '@/lib/config/defaults';
+import { loadConfig, saveConfig, resetConfig } from '@/lib/config/service';
 
 interface ConfigState {
   config: AppConfig;
@@ -15,7 +15,7 @@ interface ConfigState {
   update: (updates: Partial<AppConfig>) => void;
 }
 
-export const useConfigStore = create<ConfigState>((set) => ({
+export const useConfigStore = create<ConfigState>(set => ({
   config: getDefaultConfig(),
   loading: false,
   error: null,
@@ -52,8 +52,8 @@ export const useConfigStore = create<ConfigState>((set) => ({
     }
   },
 
-  update: (updates) => {
-    set((state) => ({
+  update: updates => {
+    set(state => ({
       config: { ...state.config, ...updates },
       unsavedChanges: true,
     }));

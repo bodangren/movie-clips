@@ -90,15 +90,11 @@ export class LibraryService {
 
   async findMediaItem(title: string): Promise<MediaItem | null> {
     const result = await this.scanLibrary();
-    
-    const movie = result.movies.find(
-      (m) => m.metadata.title.toLowerCase() === title.toLowerCase()
-    );
+
+    const movie = result.movies.find(m => m.metadata.title.toLowerCase() === title.toLowerCase());
     if (movie) return movie;
 
-    const tvShow = result.tvShows.find(
-      (t) => t.metadata.title.toLowerCase() === title.toLowerCase()
-    );
+    const tvShow = result.tvShows.find(t => t.metadata.title.toLowerCase() === title.toLowerCase());
     if (tvShow) return tvShow;
 
     return null;

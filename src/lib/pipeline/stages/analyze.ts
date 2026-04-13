@@ -5,10 +5,10 @@ import type {
   PipelineStageResult,
   PipelineError,
   AnalysisResult,
-} from "../types";
-import { subtitleParser } from "../../library/subtitle-parser";
-import type { MovieMetadata, SubtitleEntry } from "../../library/types";
-import { LlmAnalyzer } from "../../ai/analyzer";
+} from '../types';
+import { subtitleParser } from '../../library/subtitle-parser';
+import type { MovieMetadata, SubtitleEntry } from '../../library/types';
+import { LlmAnalyzer } from '../../ai/analyzer';
 
 export interface AnalyzeStageOptions {
   customPrompt?: string;
@@ -16,18 +16,15 @@ export interface AnalyzeStageOptions {
 
 export function createAnalyzeStage(_options: AnalyzeStageOptions = {}): PipelineStage {
   return {
-    name: "analyze",
-    async execute(
-      ctx: PipelineContext,
-      _config: PipelineConfig,
-    ): Promise<PipelineStageResult> {
+    name: 'analyze',
+    async execute(ctx: PipelineContext, _config: PipelineConfig): Promise<PipelineStageResult> {
       try {
         if (!ctx.mediaItem) {
           return {
             success: false,
             error: {
-              stage: "analyze",
-              message: "No media item selected",
+              stage: 'analyze',
+              message: 'No media item selected',
               timestamp: Date.now(),
               retryable: false,
             },
@@ -39,7 +36,7 @@ export function createAnalyzeStage(_options: AnalyzeStageOptions = {}): Pipeline
         let metadata: MovieMetadata;
         let subtitles: SubtitleEntry[] = [];
 
-        if (ctx.mediaItem.type === "movie") {
+        if (ctx.mediaItem.type === 'movie') {
           metadata = {
             title: ctx.mediaItem.metadata.title,
             year: ctx.mediaItem.metadata.year,
@@ -56,8 +53,8 @@ export function createAnalyzeStage(_options: AnalyzeStageOptions = {}): Pipeline
           return {
             success: false,
             error: {
-              stage: "analyze",
-              message: "TV shows not yet supported",
+              stage: 'analyze',
+              message: 'TV shows not yet supported',
               timestamp: Date.now(),
               retryable: false,
             },
@@ -70,8 +67,8 @@ export function createAnalyzeStage(_options: AnalyzeStageOptions = {}): Pipeline
           return {
             success: false,
             error: {
-              stage: "analyze",
-              message: "Analysis failed",
+              stage: 'analyze',
+              message: 'Analysis failed',
               timestamp: Date.now(),
               retryable: true,
             },
@@ -79,26 +76,35 @@ export function createAnalyzeStage(_options: AnalyzeStageOptions = {}): Pipeline
         }
 
         const result: AnalysisResult = {
-          facts: analysis.facts.map((f: { number: number; trivia_text: string; clip_start: string; clip_end: string }) => ({
-            id: `fact_${f.number}`,
-            text: f.trivia_text,
-            importance: 1,
-            timestamp: f.clip_start,
-          })),
+          facts: analysis.facts.map(
+            (f: { number: number; trivia_text: string; clip_start: string; clip_end: string }) => ({
+              id: `fact_${f.number}`,
+              text: f.trivia_text,
+              importance: 1,
+              timestamp: f.clip_start,
+            })
+          ),
           summary: analysis.video_description,
-          suggestedClips: analysis.facts.map((f: { number: number; clip_start: string; clip_end: string; scene_context: string }) => ({
-            startTime: f.clip_start,
-            endTime: f.clip_end,
-            reason: f.scene_context,
-            factId: `fact_${f.number}`,
-          })),
+          suggestedClips: analysis.facts.map(
+            (f: {
+              number: number;
+              clip_start: string;
+              clip_end: string;
+              scene_context: string;
+            }) => ({
+              startTime: f.clip_start,
+              endTime: f.clip_end,
+              reason: f.scene_context,
+              factId: `fact_${f.number}`,
+            })
+          ),
         };
 
         ctx.analysis = result;
         return { success: true, data: result };
       } catch (error) {
         const pipelineError: PipelineError = {
-          stage: "analyze",
+          stage: 'analyze',
           message: error instanceof Error ? error.message : String(error),
           timestamp: Date.now(),
           retryable: true,

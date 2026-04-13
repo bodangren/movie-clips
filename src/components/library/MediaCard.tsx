@@ -1,4 +1,4 @@
-import { type MediaItem } from "@/lib/library/types";
+import { type MediaItem } from '@/lib/library/types';
 
 export interface MediaCardProps {
   item: MediaItem;
@@ -9,7 +9,7 @@ export interface MediaCardProps {
 }
 
 function formatRuntime(minutes?: number): string {
-  if (!minutes) return "";
+  if (!minutes) return '';
   return `${minutes} min`;
 }
 
@@ -18,18 +18,18 @@ export function MediaCard({
   showGenres = false,
   showRuntime = false,
   onClick,
-  className = "",
+  className = '',
 }: MediaCardProps) {
   const title = item.metadata.title;
   const year = item.metadata.year;
   const genres = item.metadata.genres;
 
   const cardClasses = [
-    "group relative rounded-lg overflow-hidden bg-card border transition-all hover:shadow-lg cursor-pointer",
+    'group relative rounded-lg overflow-hidden bg-card border transition-all hover:shadow-lg cursor-pointer',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <div
@@ -38,14 +38,14 @@ export function MediaCard({
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
           onClick?.();
         }
       }}
     >
       <div className="aspect-[2/3] relative bg-muted">
-        {item.type === "movie" && "posterPath" in item && item.posterPath ? (
+        {item.type === 'movie' && 'posterPath' in item && item.posterPath ? (
           <img
             src={`file://${item.posterPath}`}
             alt={`${title} poster`}
@@ -83,14 +83,10 @@ export function MediaCard({
           {title}
         </h3>
         {showGenres && genres && genres.length > 0 && (
-          <p className="text-sm text-muted-foreground truncate">
-            {genres.slice(0, 2).join(", ")}
-          </p>
+          <p className="text-sm text-muted-foreground truncate">{genres.slice(0, 2).join(', ')}</p>
         )}
-        {showRuntime && item.type === "movie" && item.metadata.runtime && (
-          <p className="text-sm text-muted-foreground">
-            {formatRuntime(item.metadata.runtime)}
-          </p>
+        {showRuntime && item.type === 'movie' && item.metadata.runtime && (
+          <p className="text-sm text-muted-foreground">{formatRuntime(item.metadata.runtime)}</p>
         )}
       </div>
     </div>

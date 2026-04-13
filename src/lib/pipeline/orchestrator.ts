@@ -5,8 +5,8 @@ import type {
   PipelineRunResult,
   PipelineStageResult,
   PipelineError,
-} from "./types";
-import { DEFAULT_PIPELINE_CONFIG } from "./types";
+} from './types';
+import { DEFAULT_PIPELINE_CONFIG } from './types';
 
 export class PipelineOrchestrator {
   private stages: PipelineStage[];
@@ -17,7 +17,7 @@ export class PipelineOrchestrator {
   constructor(
     stages: PipelineStage[],
     config: Partial<PipelineConfig> = {},
-    onProgress?: (stage: string, progress: number) => void,
+    onProgress?: (stage: string, progress: number) => void
   ) {
     this.stages = stages;
     this.config = { ...DEFAULT_PIPELINE_CONFIG, ...config };
@@ -113,14 +113,14 @@ export class PipelineOrchestrator {
       new Promise<PipelineStageResult>((_, reject) =>
         setTimeout(
           () => reject(new Error(`Stage ${stage.name} timed out after ${this.config.timeoutMs}ms`)),
-          this.config.timeoutMs,
-        ),
+          this.config.timeoutMs
+        )
       ),
     ]);
   }
 
   private delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   private reportProgress(stage: string, progress: number): void {
@@ -141,7 +141,7 @@ export class PipelineOrchestrator {
 export function createOrchestrator(
   stages: PipelineStage[],
   config?: Partial<PipelineConfig>,
-  onProgress?: (stage: string, progress: number) => void,
+  onProgress?: (stage: string, progress: number) => void
 ): PipelineOrchestrator {
   return new PipelineOrchestrator(stages, config, onProgress);
 }

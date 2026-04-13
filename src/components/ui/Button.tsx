@@ -1,7 +1,7 @@
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "destructive";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
+export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -13,27 +13,27 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-  ghost: "bg-transparent hover:bg-accent",
-  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+  primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
+  secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  ghost: 'bg-transparent hover:bg-accent',
+  destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "text-sm px-3 py-1",
-  md: "text-base px-4 py-2",
-  lg: "text-lg px-6 py-3",
+  sm: 'text-sm px-3 py-1',
+  md: 'text-base px-4 py-2',
+  lg: 'text-lg px-6 py-3',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      variant = "primary",
-      size = "md",
+      variant = 'primary',
+      size = 'md',
       loading = false,
       fullWidth = false,
       disabled,
-      className = "",
+      className = '',
       children,
       ...props
     },
@@ -42,17 +42,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isDisabled = disabled || loading;
 
     const baseClasses =
-      "inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+      'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
     const classes = [
       baseClasses,
       variantClasses[variant],
       sizeClasses[size],
-      fullWidth ? "w-full" : "",
+      fullWidth ? 'w-full' : '',
       className,
     ]
       .filter(Boolean)
-      .join(" ");
+      .join(' ');
 
     if (loading) {
       return (
@@ -61,7 +61,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           disabled={isDisabled}
           className={classes}
           aria-busy={loading}
-          type={props.type ?? "button"}
+          type={props.type ?? 'button'}
           {...props}
         >
           <svg
@@ -96,7 +96,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isDisabled}
         className={classes}
-        type={props.type ?? "button"}
+        type={props.type ?? 'button'}
         {...props}
       >
         {children}
@@ -105,4 +105,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';

@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import revideo from "@revideo/vite-plugin";
-import path from "path";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import revideo from '@revideo/vite-plugin';
+import path from 'path';
 
 const host = process.env.TAURI_DEV_HOST;
 
@@ -11,22 +11,22 @@ export default defineConfig(async () => ({
     react(),
     // @ts-ignore
     (revideo.default || revideo)({
-      project: "./src/lib/video/revideo/project.ts",
-    }).filter((p) => p.name !== "revideo:editor"),
+      project: './src/lib/video/revideo/project.ts',
+    }).filter(p => p.name !== 'revideo:editor'),
     {
-      name: "fix-rolldown-target",
+      name: 'fix-rolldown-target',
       config(config) {
-        if (config.build?.target === "modules") {
-          config.build.target = "esnext";
+        if (config.build?.target === 'modules') {
+          config.build.target = 'esnext';
         }
-      }
-    }
+      },
+    },
   ],
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "chroma-js": path.resolve(__dirname, "./src/chroma-wrapper.ts"),
+      '@': path.resolve(__dirname, './src'),
+      'chroma-js': path.resolve(__dirname, './src/chroma-wrapper.ts'),
     },
   },
 
@@ -38,13 +38,13 @@ export default defineConfig(async () => ({
     host: host || false,
     hmr: host
       ? {
-          protocol: "ws",
+          protocol: 'ws',
           host,
           port: 1421,
         }
       : undefined,
     watch: {
-      ignored: ["**/src-tauri/**"],
+      ignored: ['**/src-tauri/**'],
     },
   },
 }));

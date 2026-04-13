@@ -48,7 +48,7 @@ export class TtsGenerator {
   constructor() {
     const config = getConfig();
     const apiKey = config.google.apiKey;
-    
+
     this.clientMode = apiKey ? 'apiKey' : 'vertex';
     this.client = this.createClient(this.clientMode, apiKey);
     this.voiceName = this.pickVoice(new Set());
@@ -87,7 +87,8 @@ export class TtsGenerator {
 
   private pickVoice(exclude: Set<string>): string | null {
     const config = getConfig();
-    const voices = config.google.ttsVoices.length > 0 ? config.google.ttsVoices : DEFAULT_TTS_VOICES;
+    const voices =
+      config.google.ttsVoices.length > 0 ? config.google.ttsVoices : DEFAULT_TTS_VOICES;
 
     const available = voices.filter((voice: string) => !exclude.has(voice));
     const pool = available.length > 0 ? available : voices;
@@ -147,13 +148,11 @@ export class TtsGenerator {
         return this.normalizeToWav(audioBuffer, audio.mimeType);
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
-        
+
         if (this.clientMode === 'apiKey' && this.isModelNotFoundError(error)) {
           const config = getConfig();
           if (config.google.projectId && config.google.location) {
-            logger.warn(
-              'Gemini TTS model not available with API key; retrying with Vertex AI.'
-            );
+            logger.warn('Gemini TTS model not available with API key; retrying with Vertex AI.');
             this.clientMode = 'vertex';
             this.client = this.createClient('vertex');
             continue;
@@ -215,7 +214,7 @@ export class TtsGenerator {
       return buffers[0];
     }
 
-    const pcmChunks = buffers.map((buffer) => this.extractPcmData(Buffer.from(buffer)));
+    const pcmChunks = buffers.map(buffer => this.extractPcmData(Buffer.from(buffer)));
     const combinedPcm = Buffer.concat(pcmChunks);
     return this.wrapPcmInWav(combinedPcm, 24000, 1, 16);
   }

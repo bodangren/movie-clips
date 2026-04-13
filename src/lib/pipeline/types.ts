@@ -1,6 +1,6 @@
-import type { MediaItem, Movie, TvShow, Episode } from "../library/types";
+import type { MediaItem, Movie, TvShow, Episode } from '../library/types';
 
-export type PipelineStageStatus = "pending" | "running" | "completed" | "failed" | "skipped";
+export type PipelineStageStatus = 'pending' | 'running' | 'completed' | 'failed' | 'skipped';
 
 export interface PipelineContext {
   mediaItem: MediaItem | null;
@@ -40,7 +40,7 @@ export interface GeneratedAssets {
 
 export interface VideoSegment {
   id: string;
-  type: "clip" | "render";
+  type: 'clip' | 'render';
   source: string;
   startTime?: string;
   endTime?: string;
@@ -77,7 +77,7 @@ export const DEFAULT_PIPELINE_CONFIG: PipelineConfig = {
   timeoutMs: 300000,
   parallelProcessing: true,
   checkpointEnabled: true,
-  outputDir: "",
+  outputDir: '',
 };
 
 export interface PipelineStage {
@@ -95,4 +95,4 @@ export interface PipelineRunResult {
 }
 
 export type { MediaItem, Movie, TvShow, Episode };
-export { isMovie, isTvShow, isEpisode } from "../library/types";
+export { isMovie, isTvShow, isEpisode } from '../library/types';

@@ -11,9 +11,7 @@ const MAX_OUTPUT_TOKENS = 4096;
 
 const factSchema = z.object({
   number: z.number().int(),
-  trivia_text: z
-    .string()
-    .describe('Voiceover text, 20-25 words preferred, never exceed 45 words.'),
+  trivia_text: z.string().describe('Voiceover text, 20-25 words preferred, never exceed 45 words.'),
   clip_start: z.string(),
   clip_end: z.string(),
   scene_context: z.string(),
@@ -118,9 +116,7 @@ ${subtitleSample}
   }
 
   private serializeSubtitles(subtitles: SubtitleEntry[]): string {
-    return subtitles
-      .map((subtitle) => `${subtitle.startTime} | ${subtitle.text}`)
-      .join('\n');
+    return subtitles.map(subtitle => `${subtitle.startTime} | ${subtitle.text}`).join('\n');
   }
 
   private withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
@@ -130,11 +126,11 @@ ${subtitleSample}
       }, timeoutMs);
 
       promise
-        .then((value) => {
+        .then(value => {
           clearTimeout(timer);
           resolve(value);
         })
-        .catch((error) => {
+        .catch(error => {
           clearTimeout(timer);
           reject(error);
         });

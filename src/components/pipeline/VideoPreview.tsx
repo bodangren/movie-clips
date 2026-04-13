@@ -1,8 +1,8 @@
-import React from "react";
-import { Player } from "@revideo/player-react";
-import { usePipelineStore } from "@/stores/pipeline.store";
-import project from "@/lib/video/revideo/project";
-import { Card } from "@/components/ui/Card";
+import React from 'react';
+import { Player } from '@revideo/player-react';
+import { usePipelineStore } from '@/stores/pipeline.store';
+import project from '@/lib/video/revideo/project';
+import { Card } from '@/components/ui/Card';
 
 export const VideoPreview: React.FC = () => {
   const { title, posterPath, sourceVideoPath, facts, outroText } = usePipelineStore();
@@ -22,7 +22,7 @@ export const VideoPreview: React.FC = () => {
           project={project}
           variables={videoMetadata}
           controls={true}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: '100%', height: '100%' }}
         />
       ) : (
         <div className="text-gray-500 text-center p-8">

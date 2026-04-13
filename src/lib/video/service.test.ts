@@ -1,71 +1,67 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import {
-  extractClip,
-  renderVideo,
-  getVideoStatus,
-} from "./service";
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { extractClip, renderVideo, getVideoStatus } from './service';
 
-vi.mock("@tauri-apps/api/core", () => ({
+vi.mock('@tauri-apps/api/core', () => ({
   invoke: vi.fn(),
 }));
 
-const { invoke } = await import("@tauri-apps/api/core");
+const { invoke } = await import('@tauri-apps/api/core');
 
 beforeEach(() => {
   vi.clearAllMocks();
 });
 
-describe("video service", () => {
-  describe("extractClip", () => {
-    it("calls extract_clip command with request", async () => {
+describe('video service', () => {
+  describe('extractClip', () => {
+    it('calls extract_clip command with request', async () => {
       const request = {
-        input: "/path/to/input.mp4",
-        start: "00:00:10",
-        end: "00:01:00",
-        output: "/path/to/output.mp4",
+        input: '/path/to/input.mp4',
+        start: '00:00:10',
+        end: '00:01:00',
+        output: '/path/to/output.mp4',
         dimensions: { width: 1080, height: 1920 },
       };
 
       await extractClip(request);
 
-      expect(invoke).toHaveBeenCalledWith("extract_clip", { request });
+      expect(invoke).toHaveBeenCalledWith('extract_clip', { request });
     });
 
-    it("calls extract_clip without dimensions", async () => {
+    it('calls extract_clip without dimensions', async () => {
       const request = {
-        input: "/path/to/input.mp4",
-        start: "00:00:00",
-        end: "00:00:30",
-        output: "/path/to/output.mp4",
+        input: '/path/to/input.mp4',
+        start: '00:00:00',
+        end: '00:00:30',
+        output: '/path/to/output.mp4',
       };
 
       await extractClip(request);
 
-      expect(invoke).toHaveBeenCalledWith("extract_clip", { request });
+      expect(invoke).toHaveBeenCalledWith('extract_clip', { request });
     });
   });
 
-  describe("renderVideo", () => {
-    it("calls render_video command with request", async () => {
+  describe('renderVideo', () => {
+    it('calls render_video command with request', async () => {
       const request = {
-        metadata_json: JSON.stringify({ title: "Test Movie" }),
-        output: "/path/to/output.mp4",
+        metadata_json: JSON.stringify({ title: 'Test Movie' }),
+        output: '/path/to/output.mp4',
       };
 
       await renderVideo(request);
 
-      expect(invoke).toHaveBeenCalledWith("render_video", { request });
+      expect(invoke).toHaveBeenCalledWith('render_video', { request });
     });
   });
 
-  describe("getVideoStatus", () => {
-    it("calls get_video_status command", async () => {
+  describe('getVideoStatus', () => {
+    it('calls get_video_status command', async () => {
       const mockStatus = {
-        service_type: "Command",
+        service_type: 'Command',
         ffmpeg_health: {
           available: true,
-          version: "ffmpeg version 6.1.1",
-          path: "ffmpeg",
+          version: 'ffmpeg version 6.1.1',
+          path: 'ffmpeg',
           error: null,
         },
         metrics: {
@@ -76,7 +72,7 @@ describe("video service", () => {
           total_duration_ms: 0,
         },
         config: {
-          ffmpeg_path: "ffmpeg",
+          ffmpeg_path: 'ffmpeg',
           temp_dir: null,
           dimensions: { width: 1080, height: 1920 },
         },
@@ -86,7 +82,7 @@ describe("video service", () => {
 
       const result = await getVideoStatus();
 
-      expect(invoke).toHaveBeenCalledWith("get_video_status");
+      expect(invoke).toHaveBeenCalledWith('get_video_status');
       expect(result).toEqual(mockStatus);
     });
   });

@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api/core";
+import { invoke } from '@tauri-apps/api/core';
 
 export interface VideoDimensions {
   width: number;
@@ -54,13 +54,13 @@ export interface VideoConfigSummary {
 }
 
 export async function extractClip(request: ExtractClipRequest): Promise<void> {
-  await invoke("extract_clip", { request });
+  await invoke('extract_clip', { request });
 }
 
 export async function renderVideo(request: RenderVideoRequest): Promise<void> {
-  await invoke("render_video", { request });
+  await invoke('render_video', { request });
 }
 
 export async function getVideoStatus(): Promise<VideoServiceStatus> {
-  return invoke("get_video_status");
+  return invoke('get_video_status');
 }

@@ -2,7 +2,7 @@ export interface PipelineHistoryEntry {
   id: string;
   mediaItemId: string | null;
   mediaTitle: string;
-  status: "success" | "failed" | "cancelled";
+  status: 'success' | 'failed' | 'cancelled';
   completedStages: string[];
   startedAt: number;
   completedAt: number;
@@ -15,12 +15,12 @@ export class PipelineHistory {
   private storageKey: string;
   private maxEntries: number;
 
-  constructor(storageKey: string = "pipeline_history", maxEntries: number = 50) {
+  constructor(storageKey: string = 'pipeline_history', maxEntries: number = 50) {
     this.storageKey = storageKey;
     this.maxEntries = maxEntries;
   }
 
-  async addEntry(entry: Omit<PipelineHistoryEntry, "id">): Promise<PipelineHistoryEntry> {
+  async addEntry(entry: Omit<PipelineHistoryEntry, 'id'>): Promise<PipelineHistoryEntry> {
     const fullEntry: PipelineHistoryEntry = {
       ...entry,
       id: `run_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`,
@@ -45,14 +45,14 @@ export class PipelineHistory {
         return data ? JSON.parse(data) : [];
       }
     } catch (error) {
-      console.error("Failed to get pipeline history:", error);
+      console.error('Failed to get pipeline history:', error);
     }
     return [];
   }
 
   async getEntry(id: string): Promise<PipelineHistoryEntry | null> {
     const history = await this.getHistory();
-    return history.find((entry) => entry.id === id) ?? null;
+    return history.find(entry => entry.id === id) ?? null;
   }
 
   async clearHistory(): Promise<void> {
@@ -66,7 +66,7 @@ export class PipelineHistory {
         localStorage.setItem(this.storageKey, JSON.stringify(history));
       }
     } catch (error) {
-      console.error("Failed to save pipeline history:", error);
+      console.error('Failed to save pipeline history:', error);
     }
   }
 }

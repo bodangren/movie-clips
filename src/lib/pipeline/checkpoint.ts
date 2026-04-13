@@ -1,4 +1,4 @@
-import type { PipelineContext } from "./types";
+import type { PipelineContext } from './types';
 
 const CHECKPOINT_VERSION = 1;
 
@@ -13,14 +13,14 @@ export interface PipelineCheckpoint {
 export class CheckpointManager {
   private storageKey: string;
 
-  constructor(storageKey: string = "pipeline_checkpoint") {
+  constructor(storageKey: string = 'pipeline_checkpoint') {
     this.storageKey = storageKey;
   }
 
   async save(
     context: PipelineContext,
     completedStages: string[],
-    currentStage: string | null,
+    currentStage: string | null
   ): Promise<void> {
     const checkpoint: PipelineCheckpoint = {
       version: CHECKPOINT_VERSION,
@@ -36,7 +36,7 @@ export class CheckpointManager {
         localStorage.setItem(this.storageKey, JSON.stringify(checkpoint));
       }
     } catch (error) {
-      console.error("Failed to save checkpoint:", error);
+      console.error('Failed to save checkpoint:', error);
     }
   }
 
@@ -53,7 +53,7 @@ export class CheckpointManager {
         }
       }
     } catch (error) {
-      console.error("Failed to load checkpoint:", error);
+      console.error('Failed to load checkpoint:', error);
     }
     return null;
   }
@@ -65,7 +65,7 @@ export class CheckpointManager {
         localStorage.removeItem(this.storageKey);
       }
     } catch (error) {
-      console.error("Failed to clear checkpoint:", error);
+      console.error('Failed to clear checkpoint:', error);
     }
   }
 

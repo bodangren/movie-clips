@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { MediaItem } from "@/lib/library/types";
+import { create } from 'zustand';
+import { MediaItem } from '@/lib/library/types';
 
 interface LibraryState {
   items: MediaItem[];
@@ -13,15 +13,15 @@ interface LibraryState {
   scan: () => Promise<void>;
 }
 
-export const useLibraryStore = create<LibraryState>((set) => ({
+export const useLibraryStore = create<LibraryState>(set => ({
   items: [],
   loading: false,
   error: null,
   lastScanned: null,
 
-  setItems: (items) => set({ items }),
-  setLoading: (loading) => set({ loading }),
-  setError: (error) => set({ error }),
+  setItems: items => set({ items }),
+  setLoading: loading => set({ loading }),
+  setError: error => set({ error }),
   scan: async () => {
     set({ loading: true, error: null });
     // In a real implementation, this would call a Tauri command or service

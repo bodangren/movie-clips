@@ -1,8 +1,8 @@
-import { type MediaItem } from "@/lib/library/types";
-import { MediaCard } from "./MediaCard";
-import { Skeleton } from "@/components/ui";
+import { type MediaItem } from '@/lib/library/types';
+import { MediaCard } from './MediaCard';
+import { Skeleton } from '@/components/ui';
 
-export type MediaGridColumns = "sm" | "md" | "lg";
+export type MediaGridColumns = 'sm' | 'md' | 'lg';
 
 export interface MediaGridProps {
   items: MediaItem[];
@@ -14,26 +14,20 @@ export interface MediaGridProps {
 }
 
 const columnClasses: Record<MediaGridColumns, string> = {
-  sm: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
-  md: "grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6",
-  lg: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+  sm: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+  md: 'grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
+  lg: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
 };
 
 export function MediaGrid({
   items,
   loading = false,
   count = 12,
-  columns = "md",
+  columns = 'md',
   onItemClick,
-  className = "",
+  className = '',
 }: MediaGridProps) {
-  const classes = [
-    "grid gap-4",
-    columnClasses[columns],
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const classes = ['grid gap-4', columnClasses[columns], className].filter(Boolean).join(' ');
 
   if (loading) {
     return (
@@ -76,12 +70,8 @@ export function MediaGrid({
 
   return (
     <div data-testid="media-grid" className={classes}>
-      {items.map((item) => (
-        <MediaCard
-          key={item.path}
-          item={item}
-          onClick={() => onItemClick?.(item)}
-        />
+      {items.map(item => (
+        <MediaCard key={item.path} item={item} onClick={() => onItemClick?.(item)} />
       ))}
     </div>
   );

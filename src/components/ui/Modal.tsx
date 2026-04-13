@@ -1,5 +1,5 @@
-import { useEffect, type ReactNode, type MouseEvent } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, type ReactNode, type MouseEvent } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -18,10 +18,10 @@ export interface ModalFooterProps {
   className?: string;
 }
 
-function ModalContent({ children, className = "" }: ModalContentProps) {
-  const classes = ["relative rounded-lg bg-background p-6 shadow-lg", className]
+function ModalContent({ children, className = '' }: ModalContentProps) {
+  const classes = ['relative rounded-lg bg-background p-6 shadow-lg', className]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <div
@@ -35,45 +35,41 @@ function ModalContent({ children, className = "" }: ModalContentProps) {
   );
 }
 
-function ModalFooter({ children, className = "" }: ModalFooterProps) {
-  const classes = ["flex justify-end gap-2 pt-4", className].filter(Boolean).join(" ");
+function ModalFooter({ children, className = '' }: ModalFooterProps) {
+  const classes = ['flex justify-end gap-2 pt-4', className].filter(Boolean).join(' ');
   return <div className={classes}>{children}</div>;
 }
 
 export function Modal({ isOpen, onClose, title, children }: ModalProps) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (e.key === 'Escape' && isOpen) {
         onClose();
       }
     };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const overlayClasses = [
-    "fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4",
-  ].join(" ");
+    'fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4',
+  ].join(' ');
 
   const modalContent = (
-    <div
-      className={overlayClasses}
-      onClick={onClose}
-      data-testid="modal-overlay"
-    >
+    <div className={overlayClasses} onClick={onClose} data-testid="modal-overlay">
       <ModalContent>
         {title && (
           <div className="flex items-center justify-between mb-4">

@@ -1,6 +1,6 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-export type Theme = "light" | "dark" | "system";
+export type Theme = 'light' | 'dark' | 'system';
 
 interface UIState {
   sidebarOpen: boolean;
@@ -14,14 +14,14 @@ interface UIState {
   setSettingsTab: (tab: string) => void;
 }
 
-export const useUIStore = create<UIState>((set) => ({
+export const useUIStore = create<UIState>(set => ({
   sidebarOpen: true,
-  currentPage: "dashboard",
-  theme: "system",
-  settingsTab: "paths",
+  currentPage: 'dashboard',
+  theme: 'system',
+  settingsTab: 'paths',
 
-  toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
-  navigate: (page) => set({ currentPage: page }),
-  setTheme: (theme) => set({ theme }),
-  setSettingsTab: (tab) => set({ settingsTab: tab }),
+  toggleSidebar: () => set(state => ({ sidebarOpen: !state.sidebarOpen })),
+  navigate: page => set({ currentPage: page }),
+  setTheme: theme => set({ theme }),
+  setSettingsTab: tab => set({ settingsTab: tab }),
 }));

@@ -1,4 +1,4 @@
-import type { AppConfig } from "./schema";
+import type { AppConfig } from './schema';
 
 export function getDefaultConfig(): AppConfig {
   const isDev = import.meta.env.DEV;
@@ -6,13 +6,13 @@ export function getDefaultConfig(): AppConfig {
   return {
     version: 1,
     paths: {
-      movies: isDev ? "./Movies" : "",
-      tv: isDev ? "./tv-clips" : "",
-      output: isDev ? "./output" : "",
-      temp: isDev ? "./temp" : "",
+      movies: isDev ? './Movies' : '',
+      tv: isDev ? './tv-clips' : '',
+      output: isDev ? './output' : '',
+      temp: isDev ? './temp' : '',
     },
     google: {
-      location: "global",
+      location: 'global',
       ttsVoices: [],
     },
     video: {
@@ -25,8 +25,8 @@ export function getDefaultConfig(): AppConfig {
       timeoutMs: 300000,
     },
     ui: {
-      theme: "system",
-      language: "en",
+      theme: 'system',
+      language: 'en',
     },
   };
 }

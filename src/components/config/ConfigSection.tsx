@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode } from 'react';
 
 export interface ConfigSectionProps {
   title: string;
@@ -15,20 +15,20 @@ export function ConfigSection({
   defaultCollapsed = false,
   collapsible = true,
   children,
-  className = "",
+  className = '',
 }: ConfigSectionProps) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const toggleCollapse = (): void => {
     if (collapsible) {
-      setCollapsed((prev) => !prev);
+      setCollapsed(prev => !prev);
     }
   };
 
   return (
     <div
       data-testid="config-section"
-      className={["rounded-lg border bg-card", className].filter(Boolean).join(" ")}
+      className={['rounded-lg border bg-card', className].filter(Boolean).join(' ')}
     >
       <button
         type="button"
@@ -38,9 +38,7 @@ export function ConfigSection({
       >
         <div>
           <h3 className="font-semibold">{title}</h3>
-          {description && (
-            <p className="text-sm text-muted-foreground mt-1">{description}</p>
-          )}
+          {description && <p className="text-sm text-muted-foreground mt-1">{description}</p>}
         </div>
         {collapsible && (
           <span data-testid="collapse-indicator" className="text-muted-foreground">

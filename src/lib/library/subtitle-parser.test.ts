@@ -10,7 +10,7 @@ vi.mock('@/lib/utils/logger', () => ({
   },
 }));
 
-vi.mock('fs/promises', async (importOriginal) => {
+vi.mock('fs/promises', async importOriginal => {
   const actual = await importOriginal<typeof import('fs/promises')>();
   return {
     default: { ...actual },
@@ -30,7 +30,7 @@ describe('SubtitleParser', () => {
   describe('parse', () => {
     it('should parse standard SRT format', async () => {
       const { readFile } = await import('fs/promises');
-      
+
       const srtContent = `1
 00:00:01,000 --> 00:00:04,000
 Hello, world!
@@ -54,7 +54,7 @@ This is a test subtitle.
 
     it('should handle multi-line subtitles', async () => {
       const { readFile } = await import('fs/promises');
-      
+
       const srtContent = `1
 00:00:01,000 --> 00:00:04,000
 Line 1
@@ -72,7 +72,7 @@ Line 3
 
     it('should strip HTML tags from subtitles', async () => {
       const { readFile } = await import('fs/promises');
-      
+
       const srtContent = `1
 00:00:01,000 --> 00:00:04,000
 <i>Italic text</i> and <b>bold</b>

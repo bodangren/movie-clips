@@ -1,11 +1,11 @@
-import {makeScene2D} from '@revideo/2d';
-import {Txt, Rect, Video, Audio} from '@revideo/2d';
-import {useScene, createRef} from '@revideo/core';
-import {VideoMetadata} from '../types';
+import { makeScene2D } from '@revideo/2d';
+import { Txt, Rect, Video, Audio } from '@revideo/2d';
+import { useScene, createRef } from '@revideo/core';
+import { VideoMetadata } from '../types';
 
 export default makeScene2D(function* (view) {
   const vars = useScene().variables as unknown as VideoMetadata;
-  
+
   const videoRef = createRef<Video>();
   const textRef = createRef<Txt>();
   const audioRef = createRef<Audio>();
@@ -22,7 +22,7 @@ export default makeScene2D(function* (view) {
       />
       <Audio
         ref={audioRef}
-        src={""} // Will update dynamically
+        src={''} // Will update dynamically
         play={false}
       />
       <Rect
@@ -36,7 +36,7 @@ export default makeScene2D(function* (view) {
       >
         <Txt
           ref={textRef}
-          text={""} // Will update dynamically
+          text={''} // Will update dynamically
           fill={'white'}
           fontSize={32}
           width={'90%'}
@@ -55,23 +55,23 @@ export default makeScene2D(function* (view) {
     textRef().text(fact.text);
     audioRef().src(fact.ttsAudioPath);
     videoRef().time(fact.startTime);
-    
+
     // Animate in
     yield* videoRef().opacity(1, 0.5);
     yield* textBox.opacity(1, 0.5);
-    
+
     // Start playback
     videoRef().play(true);
     audioRef().play(true);
-    
+
     // Wait for fact duration
     const duration = fact.endTime - fact.startTime;
     yield* view.get().wait(duration);
-    
+
     // Pause playback for transition
     videoRef().play(false);
     audioRef().play(false);
-    
+
     // Animate out (optional, or just cross-fade)
     // yield* videoRef().opacity(0, 0.5);
     // yield* textBox.opacity(0, 0.5);

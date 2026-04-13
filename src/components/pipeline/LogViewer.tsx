@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 
-export type LogLevel = "info" | "warn" | "error";
+export type LogLevel = 'info' | 'warn' | 'error';
 
 export interface LogEntry {
   timestamp: Date;
@@ -18,27 +18,21 @@ export interface LogViewerProps {
 }
 
 const levelColors: Record<LogLevel, string> = {
-  info: "border-l-blue-500",
-  warn: "border-l-yellow-500",
-  error: "border-l-red-500",
+  info: 'border-l-blue-500',
+  warn: 'border-l-yellow-500',
+  error: 'border-l-red-500',
 };
 
 function formatTimestamp(date: Date): string {
-  return date.toLocaleTimeString("en-US", {
+  return date.toLocaleTimeString('en-US', {
     hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
   });
 }
 
-function LogEntryComponent({
-  entry,
-  showTimestamp,
-}: {
-  entry: LogEntry;
-  showTimestamp: boolean;
-}) {
+function LogEntryComponent({ entry, showTimestamp }: { entry: LogEntry; showTimestamp: boolean }) {
   const levelColor = levelColors[entry.level];
   return (
     <div className={`log-entry border-l-4 pl-3 py-1 ${levelColor}`}>
@@ -48,9 +42,7 @@ function LogEntryComponent({
             {formatTimestamp(entry.timestamp)}
           </span>
         )}
-        <span className="text-xs uppercase font-semibold text-muted-foreground">
-          {entry.level}
-        </span>
+        <span className="text-xs uppercase font-semibold text-muted-foreground">{entry.level}</span>
       </div>
       <p className="text-sm break-words">{entry.message}</p>
     </div>
@@ -63,11 +55,11 @@ export function LogViewer({
   showTimestamp = false,
   autoScroll = false,
   onClear,
-  className = "",
+  className = '',
 }: LogViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const filteredLogs = filter ? logs.filter((log) => log.level === filter) : logs;
+  const filteredLogs = filter ? logs.filter(log => log.level === filter) : logs;
 
   useEffect(() => {
     if (autoScroll && containerRef.current) {
@@ -82,9 +74,8 @@ export function LogViewer({
   };
 
   return (
-    <div className={["flex flex-col bg-card rounded-lg border", className]
-      .filter(Boolean)
-      .join(" ")}
+    <div
+      className={['flex flex-col bg-card rounded-lg border', className].filter(Boolean).join(' ')}
     >
       <div className="flex items-center justify-between p-3 border-b">
         <h3 className="font-semibold text-sm">Logs</h3>
@@ -118,11 +109,7 @@ export function LogViewer({
           <p className="text-sm text-muted-foreground text-center py-4">No logs yet</p>
         ) : (
           filteredLogs.map((log, index) => (
-            <LogEntryComponent
-              key={index}
-              entry={log}
-              showTimestamp={showTimestamp}
-            />
+            <LogEntryComponent key={index} entry={log} showTimestamp={showTimestamp} />
           ))
         )}
       </div>

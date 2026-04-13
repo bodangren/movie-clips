@@ -1,6 +1,7 @@
-import chroma from "chroma-js";
+import chroma from 'chroma-js';
 
 export default chroma;
+export const Color = chroma.Color;
 export const mix = chroma.mix;
 export const version = chroma.version;
 export const cmyk = chroma.cmyk;

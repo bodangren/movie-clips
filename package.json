@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@ai-sdk/google-vertex": "^4.0.105",
@@ -44,8 +45,12 @@
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
     "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
     "jsdom": "^29.0.1",
+    "lint-staged": "^16.4.0",
     "postcss": "^8.5.8",
+    "prettier": "^3.8.2",
     "tailwindcss": "^4.2.2",
     "typescript-eslint": "^8.58.1",
     "vite": "^8.0.3",

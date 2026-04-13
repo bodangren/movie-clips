@@ -20,7 +20,10 @@ export class MockAiService {
     this.config = { ...DEFAULT_MOCK_CONFIG, ...config };
   }
 
-  async analyze(metadata: MovieMetadata, _subtitles: SubtitleEntry[]): Promise<AnalysisResult | null> {
+  async analyze(
+    metadata: MovieMetadata,
+    _subtitles: SubtitleEntry[]
+  ): Promise<AnalysisResult | null> {
     await this.simulateDelay();
 
     if (this.config.simulateErrors) {
@@ -32,7 +35,8 @@ export class MockAiService {
     return {
       movie_title: metadata.title,
       video_title: `5 Things You Didn't Know About ${metadata.title.split(' ')[0]}`,
-      video_description: 'Discover the fascinating secrets behind this incredible film! Like and subscribe for more mind-blowing movie facts!',
+      video_description:
+        'Discover the fascinating secrets behind this incredible film! Like and subscribe for more mind-blowing movie facts!',
       facts: [
         {
           number: 1,
@@ -64,7 +68,7 @@ export class MockAiService {
         },
         {
           number: 5,
-          trivia_text: 'The final line was improvised and became the movie\'s signature moment.',
+          trivia_text: "The final line was improvised and became the movie's signature moment.",
           clip_start: '01:25:00',
           clip_end: '01:25:18',
           scene_context: 'The actor felt so strongly about it that he insisted on keeping it.',
@@ -90,7 +94,7 @@ export class MockAiService {
 
   private async simulateDelay(): Promise<void> {
     if (this.config.delayMs > 0) {
-      await new Promise((resolve) => setTimeout(resolve, this.config.delayMs));
+      await new Promise(resolve => setTimeout(resolve, this.config.delayMs));
     }
   }
 }

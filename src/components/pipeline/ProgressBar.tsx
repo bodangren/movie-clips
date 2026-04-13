@@ -11,22 +11,22 @@ export function ProgressBar({
   showValue = false,
   label,
   animate = true,
-  className = "",
+  className = '',
 }: ProgressBarProps) {
   const clampedValue = Math.min(100, Math.max(0, value));
   const isComplete = clampedValue === 100;
-  const fillColor = isComplete ? "bg-green-500" : "bg-primary";
+  const fillColor = isComplete ? 'bg-green-500' : 'bg-primary';
 
   const fillClasses = [
     fillColor,
-    "h-full rounded-full transition-all",
-    animate ? "duration-300" : "",
+    'h-full rounded-full transition-all',
+    animate ? 'duration-300' : '',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
-    <div className={["w-full", className].filter(Boolean).join(" ")}>
+    <div className={['w-full', className].filter(Boolean).join(' ')}>
       {(label || showValue) && (
         <div className="flex justify-between mb-1 text-sm">
           {label && <span className="text-muted-foreground">{label}</span>}

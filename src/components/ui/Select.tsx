@@ -1,4 +1,4 @@
-import { forwardRef, type SelectHTMLAttributes } from "react";
+import { forwardRef, type SelectHTMLAttributes } from 'react';
 
 export interface SelectOption {
   value: string;
@@ -14,19 +14,19 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, options, placeholder, className = "", id, ...props }, ref) => {
+  ({ label, error, options, placeholder, className = '', id, ...props }, ref) => {
     const selectId = id || `select-${Math.random().toString(36).slice(2, 9)}`;
     const errorId = error ? `${selectId}-error` : undefined;
 
     const selectClasses = [
-      "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm",
-      "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      error ? "border-destructive focus:ring-destructive" : "border-input",
+      'flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm',
+      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+      error ? 'border-destructive focus:ring-destructive' : 'border-input',
       className,
     ]
       .filter(Boolean)
-      .join(" ");
+      .join(' ');
 
     return (
       <div className="space-y-2">
@@ -39,7 +39,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={selectId}
           className={selectClasses}
-          aria-invalid={error ? "true" : undefined}
+          aria-invalid={error ? 'true' : undefined}
           aria-describedby={errorId}
           {...props}
         >
@@ -48,7 +48,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               {placeholder}
             </option>
           )}
-          {options.map((option) => (
+          {options.map(option => (
             <option key={option.value} value={option.value} disabled={option.disabled}>
               {option.label}
             </option>
@@ -64,4 +64,4 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   }
 );
 
-Select.displayName = "Select";
+Select.displayName = 'Select';

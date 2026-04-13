@@ -10,7 +10,7 @@ vi.mock('@/lib/utils/logger', () => ({
   },
 }));
 
-vi.mock('fs/promises', async (importOriginal) => {
+vi.mock('fs/promises', async importOriginal => {
   const actual = await importOriginal<typeof import('fs/promises')>();
   return {
     default: { ...actual },
@@ -26,7 +26,7 @@ describe('NfoParser', () => {
 
   it('should parse valid movie NFO', async () => {
     const { readFile } = await import('fs/promises');
-    
+
     const sampleNfo = `<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <movie>
   <title>Bad Boys</title>

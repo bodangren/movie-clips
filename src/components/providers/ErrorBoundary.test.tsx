@@ -1,24 +1,24 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Component, type ReactNode } from "react";
-import { ErrorBoundary } from "./ErrorBoundary";
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Component, type ReactNode } from 'react';
+import { ErrorBoundary } from './ErrorBoundary';
 
 class ErrorThrower extends Component<{ shouldThrow: boolean }> {
   componentDidUpdate(prevProps: { shouldThrow: boolean }): void {
     if (this.props.shouldThrow && !prevProps.shouldThrow) {
-      throw new Error("Test error");
+      throw new Error('Test error');
     }
   }
 
   render(): ReactNode {
     if (this.props.shouldThrow) {
-      throw new Error("Test error");
+      throw new Error('Test error');
     }
     return <div>Content rendered successfully</div>;
   }
 }
 
-describe("ErrorBoundary", () => {
+describe('ErrorBoundary', () => {
   const FallbackComponent = ({ error, resetError }: { error: Error; resetError: () => void }) => (
     <div>
       <p data-testid="error-message">{error.message}</p>
@@ -26,26 +26,26 @@ describe("ErrorBoundary", () => {
     </div>
   );
 
-  it("renders children when no error", () => {
+  it('renders children when no error', () => {
     render(
       <ErrorBoundary fallback={FallbackComponent}>
         <div>Child content</div>
       </ErrorBoundary>
     );
-    expect(screen.getByText("Child content")).toBeInTheDocument();
+    expect(screen.getByText('Child content')).toBeInTheDocument();
   });
 
-  it("renders fallback when error occurs", () => {
+  it('renders fallback when error occurs', () => {
     render(
       <ErrorBoundary fallback={FallbackComponent}>
         <ErrorThrower shouldThrow={true} />
       </ErrorBoundary>
     );
-    expect(screen.getByTestId("error-message")).toBeInTheDocument();
-    expect(screen.getByText("Test error")).toBeInTheDocument();
+    expect(screen.getByTestId('error-message')).toBeInTheDocument();
+    expect(screen.getByText('Test error')).toBeInTheDocument();
   });
 
-  it("calls resetError when retry button is clicked", () => {
+  it('calls resetError when retry button is clicked', () => {
     const handleReset = vi.fn();
     const ResetFallback = ({ resetError }: { error: Error; resetError: () => void }) => (
       <div>
@@ -59,12 +59,12 @@ describe("ErrorBoundary", () => {
         <ErrorThrower shouldThrow={true} />
       </ErrorBoundary>
     );
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole('button'));
     expect(handleReset).toHaveBeenCalled();
   });
 
-  it("logs errors to console", () => {
-    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  it('logs errors to console', () => {
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     render(
       <ErrorBoundary fallback={FallbackComponent}>
         <ErrorThrower shouldThrow={true} />

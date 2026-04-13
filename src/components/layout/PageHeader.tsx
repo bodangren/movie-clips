@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode } from 'react';
 
 export interface PageHeaderProps {
   title: string;
@@ -7,8 +7,8 @@ export interface PageHeaderProps {
   className?: string;
 }
 
-export function PageHeader({ title, description, actions, className = "" }: PageHeaderProps) {
-  const classes = ["flex flex-col gap-2 mb-6", className].filter(Boolean).join(" ");
+export function PageHeader({ title, description, actions, className = '' }: PageHeaderProps) {
+  const classes = ['flex flex-col gap-2 mb-6', className].filter(Boolean).join(' ');
 
   return (
     <div className={classes}>
@@ -16,9 +16,7 @@ export function PageHeader({ title, description, actions, className = "" }: Page
         <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
         {actions && <div>{actions}</div>}
       </div>
-      {description && (
-        <p className="text-muted-foreground">{description}</p>
-      )}
+      {description && <p className="text-muted-foreground">{description}</p>}
     </div>
   );
 }

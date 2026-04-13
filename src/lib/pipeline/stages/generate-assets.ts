@@ -6,32 +6,27 @@ import type {
   PipelineError,
   GeneratedAssets,
   Fact,
-} from "../types";
-import { TtsGenerator } from "../../ai/tts";
-import { getConfig } from "../../config/service";
-import { unlink } from "fs/promises";
-import { join } from "path";
+} from '../types';
+import { TtsGenerator } from '../../ai/tts';
+import { getConfig } from '../../config/service';
+import { unlink } from 'fs/promises';
+import { join } from 'path';
 
 export interface GenerateAssetsStageOptions {
   outputDir?: string;
 }
 
-export function createGenerateAssetsStage(
-  options: GenerateAssetsStageOptions = {},
-): PipelineStage {
+export function createGenerateAssetsStage(options: GenerateAssetsStageOptions = {}): PipelineStage {
   return {
-    name: "generate_assets",
-    async execute(
-      ctx: PipelineContext,
-      config: PipelineConfig,
-    ): Promise<PipelineStageResult> {
+    name: 'generate_assets',
+    async execute(ctx: PipelineContext, config: PipelineConfig): Promise<PipelineStageResult> {
       try {
         if (!ctx.analysis || !ctx.analysis.facts.length) {
           return {
             success: false,
             error: {
-              stage: "generate_assets",
-              message: "No analysis results available",
+              stage: 'generate_assets',
+              message: 'No analysis results available',
               timestamp: Date.now(),
               retryable: false,
             },
@@ -73,7 +68,7 @@ export function createGenerateAssetsStage(
         return { success: true, data: assets };
       } catch (error) {
         const pipelineError: PipelineError = {
-          stage: "generate_assets",
+          stage: 'generate_assets',
           message: error instanceof Error ? error.message : String(error),
           timestamp: Date.now(),
           retryable: true,

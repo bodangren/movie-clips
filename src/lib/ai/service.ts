@@ -176,7 +176,7 @@ export class AiService {
   }
 
   private hashSubtitles(subtitles: SubtitleEntry[]): string {
-    const str = subtitles.map((s) => `${s.startTime}-${s.endTime}-${s.text}`).join('|');
+    const str = subtitles.map(s => `${s.startTime}-${s.endTime}-${s.text}`).join('|');
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       const char = str.charCodeAt(i);

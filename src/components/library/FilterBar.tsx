@@ -1,5 +1,5 @@
-import { useState, type ChangeEvent } from "react";
-import { Input, Select } from "@/components/ui";
+import { useState, type ChangeEvent } from 'react';
+import { Input, Select } from '@/components/ui';
 
 export interface SortOption {
   value: string;
@@ -26,7 +26,7 @@ export function FilterBar({
   genres = [],
   years = [],
   sortOptions = [],
-  searchQuery = "",
+  searchQuery = '',
   activeGenre,
   activeYear,
   activeSort,
@@ -35,7 +35,7 @@ export function FilterBar({
   onYearChange,
   onSortChange,
   onClearFilters,
-  className = "",
+  className = '',
 }: FilterBarProps) {
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
@@ -47,24 +47,25 @@ export function FilterBar({
   const filterCount = [activeGenre, activeYear, activeSort].filter(Boolean).length;
 
   const genreOptions = [
-    { value: "", label: "All Genres" },
-    ...genres.map((g) => ({ value: g, label: g })),
+    { value: '', label: 'All Genres' },
+    ...genres.map(g => ({ value: g, label: g })),
   ];
 
   const yearOptions = [
-    { value: "", label: "All Years" },
-    ...years.map((y) => ({ value: String(y), label: String(y) })),
+    { value: '', label: 'All Years' },
+    ...years.map(y => ({ value: String(y), label: String(y) })),
   ];
 
-  const sortSelectOptions = sortOptions.map((s) => ({
+  const sortSelectOptions = sortOptions.map(s => ({
     value: s.value,
     label: s.label,
   }));
 
   return (
-    <div className={["flex flex-wrap items-center gap-4 p-4 bg-card rounded-lg", className]
-      .filter(Boolean)
-      .join(" ")}
+    <div
+      className={['flex flex-wrap items-center gap-4 p-4 bg-card rounded-lg', className]
+        .filter(Boolean)
+        .join(' ')}
     >
       <div className="flex-1 min-w-[200px]">
         <Input
@@ -79,8 +80,8 @@ export function FilterBar({
       {genres.length > 0 && (
         <Select
           options={genreOptions}
-          value={activeGenre || ""}
-          onChange={(e) => onGenreChange?.(e.target.value)}
+          value={activeGenre || ''}
+          onChange={e => onGenreChange?.(e.target.value)}
           aria-label="Genre filter"
           className="w-40"
         />
@@ -89,8 +90,8 @@ export function FilterBar({
       {years.length > 0 && (
         <Select
           options={yearOptions}
-          value={activeYear || ""}
-          onChange={(e) => onYearChange?.(e.target.value)}
+          value={activeYear || ''}
+          onChange={e => onYearChange?.(e.target.value)}
           aria-label="Year filter"
           className="w-32"
         />
@@ -99,8 +100,8 @@ export function FilterBar({
       {sortOptions.length > 0 && (
         <Select
           options={sortSelectOptions}
-          value={activeSort || ""}
-          onChange={(e) => onSortChange?.(e.target.value)}
+          value={activeSort || ''}
+          onChange={e => onSortChange?.(e.target.value)}
           aria-label="Sort"
           className="w-32"
         />
@@ -118,7 +119,7 @@ export function FilterBar({
 
       {filterCount > 0 && (
         <span className="text-sm text-muted-foreground">
-          {filterCount} filter{filterCount > 1 ? "s" : ""} active
+          {filterCount} filter{filterCount > 1 ? 's' : ''} active
         </span>
       )}
     </div>

@@ -27,10 +27,7 @@ export class RetryError extends Error {
   }
 }
 
-function calculateDelay(
-  attempt: number,
-  config: RetryConfig
-): number {
+function calculateDelay(attempt: number, config: RetryConfig): number {
   const exponentialDelay = config.initialDelayMs * Math.pow(config.backoffFactor, attempt);
   const cappedDelay = Math.min(exponentialDelay, config.maxDelayMs);
 
@@ -69,7 +66,7 @@ export async function withRetry<T>(
           );
         }
 
-        await new Promise((resolve) => setTimeout(resolve, delay));
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
   }
@@ -96,5 +93,5 @@ export function isRetryableError(error: Error): boolean {
     '504',
   ];
 
-  return retryablePatterns.some((pattern) => message.includes(pattern));
+  return retryablePatterns.some(pattern => message.includes(pattern));
 }
