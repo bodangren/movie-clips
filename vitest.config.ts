@@ -14,5 +14,18 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'json'],
+      reportsDirectory: './coverage',
+      reportOnFailure: true,
+      exclude: ['node_modules/', 'src/test/', '**/*.d.ts', '**/*.config.*', '**/vendor/**'],
+      thresholds: {
+        lines: 75,
+        functions: 75,
+        branches: 70,
+        statements: 75,
+      },
+    },
   },
 });

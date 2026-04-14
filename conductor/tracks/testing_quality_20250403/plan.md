@@ -3,11 +3,11 @@
 ## Status Notes
 
 - **Created:** 2025-04-03
-- **Updated:** 2026-04-12
+- **Updated:** 2026-04-14
 - **Priority:** Medium
 - **Estimated Duration:** 3 days
 - **Dependencies:** All previous tracks
-- **Status:** Phase 1 in progress
+- **Status:** Phase 2 in progress
 
 ## Implementation Overview
 
@@ -39,6 +39,29 @@ This track will be implemented following TDD methodology with detailed tasks cre
   - Add lint-staged or similar
   - Run ESLint + Prettier on commit
   - Run tests before push
+
+## Phase 2: Coverage & Integration Tests
+
+### Tasks
+
+- [x] 2.1 Add Vitest coverage configuration
+  - Configure Vitest coverage reporter (v8)
+  - Add coverage thresholds to package.json
+  - Generate HTML coverage reports
+
+- [x] 2.2 Fix pre-existing test failures
+  - Fix subtitle-parser.test.ts mock pattern
+  - Fix nfo-parser.test.ts mock pattern
+  - Root cause: vi.mock with async factory + dynamic import
+
+- [x] 2.3 Add Playwright E2E test setup
+  - Install Playwright
+  - Configure playwright.config.ts
+  - Add basic browser navigation tests
+
+- [ ] 2.4 Add pipeline integration tests
+  - Test pipeline orchestrator with mock services
+  - Test error recovery and rollback scenarios
 
 ## Success Checklist
 

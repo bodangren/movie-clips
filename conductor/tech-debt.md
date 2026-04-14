@@ -45,3 +45,9 @@
 
 28. **Prettier configured**: Installed prettier, eslint-config-prettier, lint-staged, husky. Added .prettierrc with standard config, .lintstagedrc for pre-commit linting, updated .husky/pre-commit to run lint-staged. Formatted all source files.
 29. **chroma-wrapper Color export missing**: Build failed because `@revideo/core` imports `Color` from `chroma-js` but the alias to `src/chroma-wrapper.ts` didn't export `Color`. Added `export const Color = chroma.Color` to fix.
+
+## Review Findings (2026-04-14 Evening)
+
+30. **Vitest coverage configured**: Added `@vitest/coverage-v8` package, configured coverage in vitest.config.ts with thresholds (lines 75%, functions 75%, branches 70%, statements 75%), `reportOnFailure: true` flag. Coverage report: ~80% lines, ~80% functions, ~75% branches, ~80% statements.
+31. **Pre-existing test failures FIXED**: Fixed subtitle-parser.test.ts and nfo-parser.test.ts mock patterns. Root cause was `vi.mock('fs/promises')` with async factory + dynamic import producing stale mock references. Fixed by using `vi.mock('fs/promises', () => { const mockReadFile = vi.fn(); return { default: { readFile: mockReadFile }, readFile: mockReadFile }; })` pattern. All 288 tests now pass.
+32. **Playwright E2E setup**: Installed @playwright/test, created playwright.config.ts with Chromium configuration, added e2e/app.spec.ts with basic navigation tests, added test:e2e and test:e2e:ui scripts to package.json.

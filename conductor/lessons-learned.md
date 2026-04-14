@@ -1,5 +1,11 @@
 # Lessons Learned
 
+## 2026-04-14 Evening (Testing & Quality)
+
+- **Vitest coverage v8**: Use `reportOnFailure: true` in coverage config to generate coverage reports even when tests fail. Coverage thresholds can be set to current levels (lines 75%, functions 75%, branches 70%, statements 75%) and adjusted over time.
+- **Vitest fs/promises mock pattern**: The pattern `vi.mock('fs/promises')` with async factory + dynamic `await import()` produces stale mock references. Correct pattern is `vi.mock('fs/promises', () => { const mock = vi.fn(); return { default: { readFile: mock }, readFile: mock }; })`. Include both `default` export and named export pointing to same mock.
+- **Playwright config**: Create `playwright.config.ts` with webServer configuration to auto-start dev server during E2E tests. Add `playwright-report/` and `test-results/` to `.gitignore`.
+
 ## 2026-04-12 (Testing & Quality)
 
 - **ESLint 10 compatibility**: eslint-plugin-react and eslint-plugin-jsx-a11y have issues with ESLint 10's new API; use simplified config without React plugins for now.

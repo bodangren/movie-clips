@@ -45,3 +45,8 @@ conductor/output.log
 # Debug/temporary files
 main.js
 test-jsdom.ts
+
+# Playwright
+playwright-report/
+test-results/
+coverage/

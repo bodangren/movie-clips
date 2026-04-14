@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { NfoParser } from './nfo-parser';
 
 vi.mock('@/lib/utils/logger', () => ({
   logger: {
@@ -10,23 +9,23 @@ vi.mock('@/lib/utils/logger', () => ({
   },
 }));
 
-vi.mock('fs/promises', async importOriginal => {
-  const actual = await importOriginal<typeof import('fs/promises')>();
+vi.mock('fs/promises', () => {
+  const mockReadFile = vi.fn().mockResolvedValue('');
   return {
-    default: { ...actual },
-    ...actual,
-    readFile: vi.fn().mockResolvedValue(''),
+    default: { readFile: mockReadFile },
+    readFile: mockReadFile,
   };
 });
 
+import { NfoParser } from './nfo-parser';
+import { readFile } from 'fs/promises';
+
 describe('NfoParser', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    vi.mocked(readFile).mockReset();
   });
 
   it('should parse valid movie NFO', async () => {
-    const { readFile } = await import('fs/promises');
-
     const sampleNfo = `<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <movie>
   <title>Bad Boys</title>
@@ -50,7 +49,6 @@ describe('NfoParser', () => {
   });
 
   it('should return null on invalid XML', async () => {
-    const { readFile } = await import('fs/promises');
     vi.mocked(readFile).mockResolvedValue('invalid xml');
 
     const parser = new NfoParser();
@@ -60,7 +58,6 @@ describe('NfoParser', () => {
   });
 
   it('should handle missing title', async () => {
-    const { readFile } = await import('fs/promises');
     vi.mocked(readFile).mockResolvedValue('<movie><year>1995</year></movie>');
 
     const parser = new NfoParser();
@@ -70,7 +67,6 @@ describe('NfoParser', () => {
   });
 
   it('should handle minimal NFO', async () => {
-    const { readFile } = await import('fs/promises');
     vi.mocked(readFile).mockResolvedValue('<movie><title>Minimal</title></movie>');
 
     const parser = new NfoParser();
