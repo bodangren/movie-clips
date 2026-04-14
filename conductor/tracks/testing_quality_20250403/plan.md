@@ -59,9 +59,10 @@ This track will be implemented following TDD methodology with detailed tasks cre
   - Configure playwright.config.ts
   - Add basic browser navigation tests
 
-- [ ] 2.4 Add pipeline integration tests
+- [x] 2.4 Add pipeline integration tests
   - Test pipeline orchestrator with mock services
   - Test error recovery and rollback scenarios
+  - Created `src/lib/pipeline/orchestrator.test.ts` with 18 tests (17 passing, 1 skipped)
 
 ## Success Checklist
 

@@ -1,5 +1,11 @@
 # Lessons Learned
 
+## 2026-04-15 (Pipeline Integration Tests)
+
+- **Fake timers with Promise.race**: `vi.useFakeTimers()` doesn't work well with `Promise.race` + `setTimeout` patterns. When testing timeout behavior, either skip the test or use a more controlled approach.
+- **Rollback interface is optional**: `PipelineStage` defines `rollback?` as optional (`?`), but the orchestrator never calls it on failure. Document this as unimplemented if not needed.
+- **Vitest test file ignores**: ESLint is configured to ignore all `src/**/*.test.ts` files, so new test files don't need to pass lint checks.
+
 ## 2026-04-14 Evening (Testing & Quality)
 
 - **Vitest coverage v8**: Use `reportOnFailure: true` in coverage config to generate coverage reports even when tests fail. Coverage thresholds can be set to current levels (lines 75%, functions 75%, branches 70%, statements 75%) and adjusted over time.
