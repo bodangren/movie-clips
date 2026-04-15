@@ -62,3 +62,8 @@
 
 36. **Polish & Deployment Phase 1 complete**: Updated tauri.conf.json with improved window config (1200x800 default, 800x600 min, centered, resizable). Enhanced README with features section, architecture diagram, and expanded troubleshooting.
 37. **Window title and metadata**: Changed productName from "movie-clips" to "Movie Clips" for proper display.
+
+## Review Findings (2026-04-16)
+
+38. **Polish & Deployment Phase 2 complete**: Bundle size analysis shows Revideo chunk is 793KB/228KB gzipped - inherent to library. Increased chunkSizeWarningLimit to 1000KB. Added GitHub Actions CI workflow with test, build, and tauri jobs.
+39. **GitHub Actions CI created**: Created `.github/workflows/ci.yml` with jobs for test, build, and tauri build. Uses concurrency to cancel in-progress runs on new pushes.

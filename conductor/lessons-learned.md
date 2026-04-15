@@ -1,5 +1,10 @@
 # Lessons Learned
 
+## 2026-04-16 (Polish & Deployment Phase 2)
+
+- **Revideo bundle size**: The Revideo library creates a large bundle (793KB/228KB gzipped) due to its comprehensive video processing features. This is inherent to the library and not a problem when gzipped size is reasonable.
+- **GitHub Actions CI**: Create `.github/workflows/` directory with `ci.yml` for automated testing and builds. Use `concurrency` to cancel in-progress runs on new pushes to same branch.
+
 ## 2026-04-15 (Pipeline Integration Tests)
 
 - **Fake timers with Promise.race**: `vi.useFakeTimers()` doesn't work well with `Promise.race` + `setTimeout` patterns. When testing timeout behavior, either skip the test or use a more controlled approach.
