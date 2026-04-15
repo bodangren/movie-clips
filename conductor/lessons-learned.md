@@ -6,6 +6,11 @@
 - **Rollback interface is optional**: `PipelineStage` defines `rollback?` as optional (`?`), but the orchestrator never calls it on failure. Document this as unimplemented if not needed.
 - **Vitest test file ignores**: ESLint is configured to ignore all `src/**/*.test.ts` files, so new test files don't need to pass lint checks.
 
+## 2026-04-15 PM (Polish & Deployment)
+
+- **Tauri window config**: Window properties (width, height, minWidth, minHeight, resizable, center) are set directly in tauri.conf.json `app.windows[0]` object.
+- **ProductName vs window title**: `productName` affects app metadata and window title unless explicitly set in `windows[].title`. Setting both ensures consistent naming.
+
 ## 2026-04-14 Evening (Testing & Quality)
 
 - **Vitest coverage v8**: Use `reportOnFailure: true` in coverage config to generate coverage reports even when tests fail. Coverage thresholds can be set to current levels (lines 75%, functions 75%, branches 70%, statements 75%) and adjusted over time.

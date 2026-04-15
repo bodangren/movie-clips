@@ -57,3 +57,8 @@
 33. **Pipeline integration tests added**: Created `src/lib/pipeline/orchestrator.test.ts` with 18 tests covering orchestrator run, retry logic, rollback behavior, config, context, and factory. 17 pass, 1 skipped (timeout test needs proper fake timer setup). Total tests now 306.
 34. **Rollback not implemented**: Pipeline orchestrator does not call rollback on stage failure. The `rollback?` method is defined on `PipelineStage` interface but never invoked. This is unimplemented behavior, not a bug.
 35. **Timeout test skipped**: The `rejects if stage exceeds timeout` test is skipped because Vitest's fake timer handling doesn't work correctly with `Promise.race` + `setTimeout` pattern used in orchestrator.
+
+## Review Findings (2026-04-15 PM)
+
+36. **Polish & Deployment Phase 1 complete**: Updated tauri.conf.json with improved window config (1200x800 default, 800x600 min, centered, resizable). Enhanced README with features section, architecture diagram, and expanded troubleshooting.
+37. **Window title and metadata**: Changed productName from "movie-clips" to "Movie Clips" for proper display.

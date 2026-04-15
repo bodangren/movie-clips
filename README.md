@@ -1,6 +1,15 @@
-# movie-clips
+# Movie Clips
 
 Tauri 2.x desktop app with React 19 frontend for generating movie/TV clips with AI analysis and TTS.
+
+## Features
+
+- **Media Library Scanner** - Automatically detect and index movies/TV shows from your collection
+- **AI-Powered Analysis** - Gemini-powered scene detection and clip selection
+- **Text-to-Speech Generation** - Custom TTS voices for narration using Gemini TTS
+- **Revideo Composition** - Professional video composition with smooth transitions
+- **Pipeline Monitoring** - Real-time progress tracking through the generation pipeline
+- **Configurable Settings** - Customize AI providers, TTS voices, and processing options
 
 ## Tech Stack
 
@@ -10,6 +19,8 @@ Tauri 2.x desktop app with React 19 frontend for generating movie/TV clips with 
 - **Build:** Vite 8
 - **Backend:** Rust (Tauri 2.x)
 - **Testing:** Vitest (TypeScript) + cargo test (Rust)
+- **AI:** Google Gemini via Vercel AI SDK + Vertex AI
+- **Video:** Revideo (FFmpeg-based composition)
 
 ## Getting Started
 
@@ -50,6 +61,9 @@ npm run test:watch
 
 # Run Rust tests
 cd src-tauri && cargo test
+
+# E2E tests (requires dev server)
+npm run test:e2e
 ```
 
 ### Building
@@ -70,7 +84,14 @@ npm run tauri build
 │   ├── main.tsx            # Entry point
 │   ├── index.css           # Tailwind CSS import
 │   ├── App.css             # Component styles
-│   └── test/               # Test utilities
+│   ├── components/         # UI components
+│   │   ├── layout/         # Layout components (MainLayout, Sidebar)
+│   │   ├── library/        # Media library components
+│   │   ├── pipeline/       # Pipeline monitor components
+│   │   └── config/         # Settings components
+│   ├── stores/             # Zustand state stores
+│   ├── lib/                # Core libraries (pipeline, AI, scanner)
+│   └── types/              # TypeScript type definitions
 ├── src-tauri/              # Rust backend
 │   ├── src/
 │   │   ├── lib.rs          # Tauri commands and app logic
@@ -79,27 +100,31 @@ npm run tauri build
 │   └── tauri.conf.json     # Tauri configuration
 ├── conductor/              # Project management (Conductor)
 │   └── tracks/             # Track plans and specs
+├── e2e/                    # Playwright E2E tests
 └── package.json            # Project configuration
 ```
 
-## Tauri Commands
+## Application Pages
 
-| Command | Description | Returns |
-|---------|-------------|---------|
-| `greet` | Returns greeting message | `String` |
-| `get_app_info` | Returns app metadata | `AppInfo` |
-| `scan_directory` | Lists directory contents | `Vec<String>` |
+1. **Dashboard** - Overview of pipeline status and library stats
+2. **Media Library** - Browse and filter indexed movies/TV shows
+3. **Pipeline** - Monitor active video generation tasks
+4. **Live Preview** - Real-time preview of video composition
+5. **Settings** - Configure AI providers, TTS voices, and app preferences
 
 ## Architecture
 
 ```
-Foundation → Config → AI
-    ↓           ↓
-  FFmpeg    → Library
-      ↘       ↙
-      Pipeline → UI
-          ↓
-      Testing → Polish
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Library    │────▶│    AI       │────▶│  Pipeline   │
+│  Scanner    │     │  Analyzer   │     │  Orchestrator│
+└─────────────┘     │  + TTS Gen  │     └──────┬──────┘
+                    └─────────────┘            │
+                         │                     ▼
+                         ▼              ┌─────────────┐
+                   ┌─────────────┐      │   Revideo   │
+                   │   Config    │      │  Renderer   │
+                   └─────────────┘      └─────────────┘
 ```
 
 ## Troubleshooting
@@ -107,3 +132,5 @@ Foundation → Config → AI
 - **Tauri dev fails:** Install `librsvg2-dev` (Linux) or equivalent system dependency
 - **Bun unavailable:** Use `npm install` as fallback (bun.sh may be unreachable)
 - **Tailwind warnings:** LightningCSS `@theme` warnings are non-blocking upstream issues
+- **Tests fail:** Ensure all dependencies are installed with `npm install`
+- **E2E tests timeout:** Start dev server with `npm run dev` before running E2E tests
