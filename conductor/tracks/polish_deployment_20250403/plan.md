@@ -7,7 +7,7 @@
 - **Priority:** Medium
 - **Estimated Duration:** 2 days
 - **Dependencies:** All previous tracks
-- **Status:** Phase 1 in progress
+- **Status:** Phase 2 in progress
 
 ## Implementation Overview
 
@@ -33,6 +33,29 @@ Final polish, optimization, documentation, and deployment preparation for produc
   - Add features section
   - Add architecture diagram
   - Expand troubleshooting section
+
+## Phase 2: Performance Optimization & Stability
+
+### Tasks
+
+- [x] 2.1 Bundle size analysis
+  - Analyze Vite build output for large chunks
+  - Identify opportunities for code splitting
+  - Optimize chunk size (793KB chunk from Revideo is inherent to library; increased warning limit to 1000KB; gzipped size is 228KB which is reasonable)
+
+- [ ] 2.2 Runtime performance check
+  - Verify app startup time is reasonable
+  - Check for memory leaks in long-running sessions
+  - Profile React component re-renders
+
+- [ ] 2.3 Stability verification
+  - Run full test suite to confirm no regressions
+  - Manual smoke test of core features
+  - Verify Tauri app launches without errors
+
+- [x] 2.4 GitHub Actions CI setup
+  - Create basic CI workflow for tests and build
+  - Configure GitHub Actions secrets for deployment
 
 ## Success Checklist
 
