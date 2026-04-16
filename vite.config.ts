@@ -9,7 +9,7 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(async () => ({
   plugins: [
     react(),
-    // @ts-ignore
+    // @ts-expect-error revideo plugin types are incompatible with Vite 8 Plugin type
     (revideo.default || revideo)({
       project: './src/lib/video/revideo/project.ts',
     }).filter(p => p.name !== 'revideo:editor'),

@@ -20,7 +20,15 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['dist/**', 'node_modules/**', '*.config.js', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      '*.config.js',
+      'tv-clips/**',
+      'backup-old/**',
+      'src/**/*.test.ts',
+      'src/**/*.test.tsx',
+    ],
   },
   eslintConfigPrettier
 );

@@ -63,6 +63,12 @@
 36. **Polish & Deployment Phase 1 complete**: Updated tauri.conf.json with improved window config (1200x800 default, 800x600 min, centered, resizable). Enhanced README with features section, architecture diagram, and expanded troubleshooting.
 37. **Window title and metadata**: Changed productName from "movie-clips" to "Movie Clips" for proper display.
 
+## Review Findings (2026-04-17)
+
+41. **CI workflow had wrong Rust action**: Used `dtolnay/rust-action@stable` (doesn't exist) instead of `dtolnay/rust-toolchain@stable`. Also had invalid `with: version: stable` parameter and `npm run tauri install` (not a valid Tauri CLI command). Fixed with correct action and explicit `apt-get install` of Tauri system deps.
+42. **tv-clips/ not excluded from ESLint**: Old archived `tv-clips/` directory had 49 ESLint errors polluting the lint output. Added `tv-clips/**` and `backup-old/**` to ESLint ignores.
+43. **63 TypeScript errors pre-existing**: Most are in Revideo integration (`src/lib/video/revideo/`) due to third-party typing issues, and in service files (`cache.ts`, `retry.ts` API mismatches). These don't affect runtime or tests.
+
 ## Review Findings (2026-04-16)
 
 38. **Polish & Deployment Phase 2 complete**: Bundle size analysis shows Revideo chunk is 793KB/228KB gzipped - inherent to library. Increased chunkSizeWarningLimit to 1000KB. Added GitHub Actions CI workflow with test, build, and tauri jobs.

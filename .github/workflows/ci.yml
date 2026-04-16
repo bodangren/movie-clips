@@ -71,14 +71,12 @@ jobs:
         run: npm ci
 
       - name: Setup Rust
-        uses: dtolnay/rust-action@stable
-        with:
-          version: stable
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: Install Tauri dependencies
-        run: npm run tauri install
-        env:
-          CI: true
+      - name: Install Tauri system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev
 
       - name: Build Tauri app
         run: npm run tauri build
