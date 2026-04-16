@@ -4,6 +4,7 @@
 
 - **Revideo bundle size**: The Revideo library creates a large bundle (793KB/228KB gzipped) due to its comprehensive video processing features. This is inherent to the library and not a problem when gzipped size is reasonable.
 - **GitHub Actions CI**: Create `.github/workflows/` directory with `ci.yml` for automated testing and builds. Use `concurrency` to cancel in-progress runs on new pushes to same branch.
+- **Manual verification tasks**: Some tasks (memory profiling, smoke tests, Tauri launch) require manual testing and cannot be automated in CI.
 
 ## 2026-04-15 (Pipeline Integration Tests)
 
