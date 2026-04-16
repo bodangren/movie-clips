@@ -1,5 +1,10 @@
 # Lessons Learned
 
+## 2026-04-17 (Autonomous Verification)
+
+- **Pre-existing state check**: Always run test suite and build before autonomous session to verify nothing broke since last commit
+- **Git push needed**: `git status` showed "branch ahead by 1 commit" - remembered to push before finalizing
+
 ## 2026-04-16 (Polish & Deployment Phase 2)
 
 - **Revideo bundle size**: The Revideo library creates a large bundle (793KB/228KB gzipped) due to its comprehensive video processing features. This is inherent to the library and not a problem when gzipped size is reasonable.
