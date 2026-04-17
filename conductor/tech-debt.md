@@ -79,3 +79,9 @@
 
 44. **Autonomous verification complete**: Tests pass (305 passed, 1 skipped), production build succeeds (2.26s). Polish & Deployment Phase 2 automated tasks verified; manual verification (memory profiling, Tauri smoke test) still pending.
 45. **Branch ahead of origin**: 1 commit not pushed. Pushed checkpoint after verification.
+
+## Review Findings (2026-04-17 Afternoon)
+
+46. **TypeScript fixes applied**: Fixed MediaCard metadata null check (Episode can have undefined metadata), render-video.ts metadata access, added missing `vi` import in MediaCard.test.tsx. All tests still pass (305 passed, 1 skipped), build succeeds.
+47. **chroma-wrapper Color export**: chroma-js exports `Color` at runtime but TypeScript types don't declare it. Used `@ts-expect-error` to bypass type check since runtime behavior is correct.
+48. **Remaining TypeScript errors**: ~113 errors remain, mostly in Revideo integration (third-party type incompatibilities), test files (vi imports, beforeEach), and known issues (zodResolver, Cache/RetryConfig API mismatches). None affect runtime or tests.

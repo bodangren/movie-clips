@@ -1,6 +1,7 @@
 import chroma from 'chroma-js';
 
 export default chroma;
+// @ts-expect-error - chroma-js types don't include Color but it exists at runtime
 export const Color = chroma.Color;
 export const mix = chroma.mix;
 export const version = chroma.version;

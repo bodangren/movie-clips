@@ -18,7 +18,7 @@ export function createRenderVideoStage(options: RenderVideoStageOptions = {}): P
     name: 'render_video',
     async execute(ctx: PipelineContext, config: PipelineConfig): Promise<PipelineStageResult> {
       try {
-        if (!ctx.analysis || !ctx.mediaItem || !ctx.assets) {
+        if (!ctx.analysis || !ctx.mediaItem || !ctx.assets || !ctx.mediaItem.metadata) {
           return {
             success: false,
             error: {
@@ -36,8 +36,8 @@ export function createRenderVideoStage(options: RenderVideoStageOptions = {}): P
 
         // Construct Revideo metadata
         const metadata = {
-          title: ctx.mediaItem.title,
-          posterPath: ctx.mediaItem.posterPath,
+          title: ctx.mediaItem.metadata.title,
+          posterPath: ctx.mediaItem.type === 'movie' ? ctx.mediaItem.posterPath : undefined,
           sourceVideoPath: ctx.mediaItem.path,
           facts: ctx.analysis.facts.map(fact => {
             const clip = ctx.analysis?.suggestedClips?.find(c => c.factId === fact.id);

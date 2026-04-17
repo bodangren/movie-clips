@@ -5,6 +5,13 @@
 - **Pre-existing state check**: Always run test suite and build before autonomous session to verify nothing broke since last commit
 - **Git push needed**: `git status` showed "branch ahead by 1 commit" - remembered to push before finalizing
 
+## 2026-04-17 Afternoon (TypeScript Fixes)
+
+- **Episode metadata undefined**: `Episode` type has optional `metadata?: TvShowMetadata`, but `Movie` and `TvShow` have required metadata. Always check `metadata` exists before accessing properties.
+- **MediaItem.title vs metadata.title**: `MediaItem` union types don't have `title` directly - `title` is in `metadata.title` for all types.posterPath only exists on `Movie` type.
+- **chroma-js Color export**: Library exports `Color` at runtime but TypeScript types don't declare it. Use `@ts-expect-error` when runtime behavior is correct but types are incomplete.
+- **Test file vi imports**: When using `vi.fn()` in JSX test files, ensure `vi` is imported: `import { ..., vi } from 'vitest'`.
+
 ## 2026-04-16 (Polish & Deployment Phase 2)
 
 - **Revideo bundle size**: The Revideo library creates a large bundle (793KB/228KB gzipped) due to its comprehensive video processing features. This is inherent to the library and not a problem when gzipped size is reasonable.

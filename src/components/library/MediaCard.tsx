@@ -20,9 +20,13 @@ export function MediaCard({
   onClick,
   className = '',
 }: MediaCardProps) {
-  const title = item.metadata.title;
-  const year = item.metadata.year;
-  const genres = item.metadata.genres;
+  const metadata = item.metadata;
+  if (!metadata) {
+    return null;
+  }
+  const title = metadata.title;
+  const year = metadata.year;
+  const genres = item.type === 'movie' ? (metadata as { genres?: string[] }).genres : undefined;
 
   const cardClasses = [
     'group relative rounded-lg overflow-hidden bg-card border transition-all hover:shadow-lg cursor-pointer',
