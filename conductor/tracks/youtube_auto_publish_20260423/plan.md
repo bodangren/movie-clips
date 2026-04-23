@@ -9,12 +9,12 @@
 
 ## Phase 1: YouTube API Authentication (Day 1)
 
-- [ ] Write tests for OAuth2 token storage, retrieval, and refresh
-- [ ] Implement OAuth2 client module with client ID/secret configuration
-- [ ] Implement token storage via Tauri `fs` plugin (JSON file in app data dir)
-- [ ] Implement token refresh flow with automatic retry on 401
-- [ ] Implement OAuth2 consent redirect using Tauri shell open (system browser)
-- [ ] Add `youtube.upload` and `youtube.force-ssl` scopes
+- [x] Write tests for OAuth2 token storage, retrieval, and refresh
+- [x] Implement OAuth2 client module with client ID/secret configuration
+- [x] Implement token storage via Tauri `fs` plugin (JSON file in app data dir)
+- [x] Implement token refresh flow with automatic retry on 401
+- [x] Implement OAuth2 consent redirect using Tauri shell open (system browser)
+- [x] Add `youtube.upload` and `youtube.force-ssl` scopes
 - [ ] Manual verification: authenticate with a test Google account
 
 ## Phase 2: Video Upload Pipeline (Day 2)

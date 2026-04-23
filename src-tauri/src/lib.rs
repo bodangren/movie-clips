@@ -103,6 +103,9 @@ pub fn run() {
             commands::video::extract_clip,
             commands::video::render_video,
             commands::video::get_video_status,
+            commands::youtube::get_youtube_tokens,
+            commands::youtube::save_youtube_tokens,
+            commands::youtube::clear_youtube_tokens,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -16,6 +16,7 @@ fn default_config() -> serde_json::Value {
         "google": {},
         "video": {},
         "pipeline": {},
+        "youtube": {},
         "ui": {}
     })
 }

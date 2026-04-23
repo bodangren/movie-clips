@@ -36,12 +36,27 @@ const uiSchema = z.object({
   language: z.string().default('en'),
 });
 
+const defaultYouTube = {
+  enabled: false,
+  clientId: '',
+  clientSecret: '',
+  redirectUri: 'http://localhost:8080/callback',
+};
+
+const youtubeSchema = z.object({
+  enabled: z.boolean().default(false),
+  clientId: z.string().default(''),
+  clientSecret: z.string().default(''),
+  redirectUri: z.string().default('http://localhost:8080/callback'),
+});
+
 export const configSchema = z.object({
   version: z.number().default(1),
   paths: z.preprocess(val => val ?? {}, pathsSchema).default(defaultPaths),
   google: z.preprocess(val => val ?? {}, googleSchema).default(defaultGoogle),
   video: z.preprocess(val => val ?? {}, videoSchema).default(defaultVideo),
   pipeline: z.preprocess(val => val ?? {}, pipelineSchema).default(defaultPipeline),
+  youtube: z.preprocess(val => val ?? {}, youtubeSchema).default(defaultYouTube),
   ui: z.preprocess(val => val ?? {}, uiSchema).default(defaultUi),
 });
 
