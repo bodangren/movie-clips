@@ -38,7 +38,7 @@ describe('Application Icons', () => {
       'icon.png': 512,
     };
 
-    for (const [filename, expectedSize] of Object.entries(sizeMap)) {
+    for (const [filename] of Object.entries(sizeMap)) {
       const filePath = resolve(ICONS_DIR, filename);
       const buffer = fs.readFileSync(filePath);
       // PNG files start with specific signature and contain width/height in IHDR chunk
