@@ -58,6 +58,16 @@ This file tracks all major tracks for the project. Each track has its own detail
   _Link: [./conductor/tracks/advanced_features_20250403/](./conductor/tracks/advanced_features_20250403/)_  
   Batch processing, GPU acceleration, scheduling. Depends on Pipeline & UI.
 
+### Phase 5: Automation & Performance (2026-04-23)
+
+- **[ ] Track: YouTube Auto-Publish Integration**  
+  _Link: [./conductor/tracks/youtube_auto_publish_20260423/](./conductor/tracks/youtube_auto_publish_20260423/)_  
+  YouTube Data API v3 OAuth2, resumable upload, metadata/thumbnail generation, scheduled publishing, upload queue with retry. Enables twice-daily zero-touch publishing. Depends on Pipeline & AI.
+
+- **[ ] Track: GPU-Accelerated Video Encoding**  
+  _Link: [./conductor/tracks/gpu_video_encoding_20260423/](./conductor/tracks/gpu_video_encoding_20260423/)_  
+  GPU detection (NVENC, VAAPI, VideoToolbox), FFmpeg hardware encoder selection, quality presets, benchmarking, automatic software fallback. Depends on FFmpeg Service & Pipeline.
+
 ---
 
 ## Previous Tracks

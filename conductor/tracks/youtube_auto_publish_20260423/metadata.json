@@ -1,0 +1,12 @@
+{
+  "track_id": "youtube_auto_publish_20260423",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-23T12:00:00Z",
+  "updated_at": "2026-04-23T12:00:00Z",
+  "description": "YouTube Auto-Publish Integration",
+  "priority": "high",
+  "estimated_days": "5",
+  "dependencies": ["pipeline_orchestration_20250403", "ai_integration_20250403"],
+  "tags": ["youtube", "api", "upload", "scheduling", "publishing", "oauth2"]
+}
