@@ -93,3 +93,10 @@
 46. **TypeScript fixes applied**: Fixed MediaCard metadata null check (Episode can have undefined metadata), render-video.ts metadata access, added missing `vi` import in MediaCard.test.tsx. All tests still pass (305 passed, 1 skipped), build succeeds.
 47. **chroma-wrapper Color export**: chroma-js exports `Color` at runtime but TypeScript types don't declare it. Used `@ts-expect-error` to bypass type check since runtime behavior is correct.
 48. **Remaining TypeScript errors**: ~113 errors remain, mostly in Revideo integration (third-party type incompatibilities), test files (vi imports, beforeEach), and known issues (zodResolver, Cache/RetryConfig API mismatches). None affect runtime or tests.
+
+## Review Findings (2026-04-23)
+
+49. **Polish & Deployment Phases 4-5 complete**: Added documentation (ARCHITECTURE.md, CONTRIBUTING.md), release workflow, application icons, and CHANGELOG.md.
+50. **Release workflow issues fixed**: Original workflow used deprecated `actions/create-release@v1` and didn't output release ID. Fixed to use `softprops/action-gh-release@v2` with proper outputs.
+51. **Icons test unused variable**: `expectedSize` variable in icons.test.ts was declared but never used. Fixed by removing variable from destructuring.
+52. **TypeScript errors**: 56 errors remain (down from 113), mostly in Revideo integration and known issues. Tests pass (333 passed, 1 skipped).
