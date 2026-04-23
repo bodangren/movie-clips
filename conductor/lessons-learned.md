@@ -1,5 +1,12 @@
 # Lessons Learned
 
+## 2026-04-24 (YouTube Auto-Publish Phase 1)
+
+- **Tauri store plugin for OAuth tokens**: Use separate store file (`youtube.json`) for sensitive tokens, not the main config. Rust commands `get_youtube_tokens`, `save_youtube_tokens`, `clear_youtube_tokens` wrap the store plugin.
+- **OAuth2 token refresh pattern**: Store `expires_at` (Unix timestamp ms) and check against `Date.now() + buffer`. On expiry, call Google's token endpoint with `refresh_token` and `grant_type=refresh_token`.
+- **Vitest `vi.mocked` availability**: Some pre-existing tests use `vi.mocked()` which may not be available in all vitest versions. New tests should use direct mock function references instead.
+- **Config schema versioning**: Adding new sections (like `youtube`) to Zod config schema requires updating both TypeScript schema and Rust default config to prevent runtime errors.
+
 ## 2026-04-23 (Autonomous Polish & Deployment)
 
 - **ImageMagick icon generation**: Use `convert -background none icon.svg -resize {size}x{size} output.png` to generate platform icons from SVG. Works for PNG, ICO, ICNS formats.
