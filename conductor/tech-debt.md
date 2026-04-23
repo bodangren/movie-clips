@@ -2,10 +2,18 @@
 
 ## Known Issues
 
-1. **Tailwind CSS v4 warnings**: LightningCSS minifier shows `@theme` and `@tailwind` warnings (non-blocking, upstream issue)
-2. **No Bun runtime**: Using npm fallback due to network restrictions (bun.sh unreachable)
-3. **Missing `@tailwindcss/vite` plugin**: Tailwind v4 works via `@import` but Vite plugin not installed
+1. **Tauri updater not activated**: Updater config in tauri.conf.json has `active: false` and placeholder pubkey. Requires `tauri signer generate` and update server setup.
+2. **Tailwind CSS v4 warnings**: LightningCSS minifier shows `@theme` and `@tailwind` warnings (non-blocking, upstream issue)
+3. **No Bun runtime**: Using npm fallback due to network restrictions (bun.sh unreachable)
 4. **Disk space low**: ~5.8GB available; monitor during builds
+
+## Autonomous Session (2026-04-23)
+
+49. **Polish & Deployment automated tasks complete**: Phases 3-5 implemented (icons, docs, release pipeline). Manual verification (memory profiling, Tauri smoke test) still pending.
+50. **Metadata.json syntax**: Phase 5 track metadata files had arrays wrapped in quotes (`"[...]"` instead of `[...]`). Fixed with proper JSON array syntax.
+51. **Icon generation**: Used ImageMagick `convert` to generate all platform icon sizes from SVG source. All 17 icon sizes + tests created.
+52. **Release workflow**: Created multi-platform GitHub Actions release workflow (Windows, macOS Intel/ARM, Linux). Uses `tauri-apps/tauri-action` for builds.
+53. **Polish track spec acceptance criteria**: Application icons, installer packages, performance optimizations, and release pipeline partially addressed. Full completion requires manual testing and code signing certificates.
 
 ## Planned Improvements
 

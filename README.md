@@ -127,6 +127,11 @@ npm run tauri build
                    └─────────────┘      └─────────────┘
 ```
 
+## Documentation
+
+- [Architecture Overview](docs/ARCHITECTURE.md) - System design and component relationships
+- [Contributing Guide](docs/CONTRIBUTING.md) - Development setup, code style, and PR process
+
 ## Troubleshooting
 
 - **Tauri dev fails:** Install `librsvg2-dev` (Linux) or equivalent system dependency

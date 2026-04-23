@@ -55,5 +55,13 @@
         "depends": []
       }
     }
+  },
+  "plugins": {
+    "updater": {
+      "active": false,
+      "endpoints": ["https://releases.movieclips.app/{{target}}/{{arch}}/{{current_version}}"],
+      "dialog": true,
+      "pubkey": "PASTE_YOUR_PUBLIC_KEY_HERE"
+    }
   }
 }

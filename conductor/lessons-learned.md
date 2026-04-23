@@ -1,5 +1,13 @@
 # Lessons Learned
 
+## 2026-04-23 (Autonomous Polish & Deployment)
+
+- **ImageMagick icon generation**: Use `convert -background none icon.svg -resize {size}x{size} output.png` to generate platform icons from SVG. Works for PNG, ICO, ICNS formats.
+- **Tauri bundle metadata**: `category`, `copyright`, `publisher` fields go in `bundle` object in tauri.conf.json. `identifier` should be reverse-DNS format (com.movieclips.app).
+- **GitHub Actions release workflow**: Use `tauri-apps/tauri-action` for cross-platform Tauri builds. Matrix strategy covers macOS (Intel + Apple Silicon), Ubuntu, Windows. Generate changelog with `git log` in a separate job.
+- **Tauri updater template**: Set `active: false` initially with placeholder pubkey. Document manual activation steps (`tauri signer generate`, update endpoint setup).
+- **JSON array syntax in metadata**: Ensure arrays in JSON files are not wrapped in strings. `"["item"]"` → `["item"]`.
+
 ## 2026-04-17 (Autonomous Verification)
 
 - **Pre-existing state check**: Always run test suite and build before autonomous session to verify nothing broke since last commit
