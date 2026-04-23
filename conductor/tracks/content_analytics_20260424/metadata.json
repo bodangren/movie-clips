@@ -1,0 +1,8 @@
+{
+  "id": "content_analytics_20260424",
+  "title": "Content Analytics & Performance Tracking",
+  "status": "pending",
+  "created": "2026-04-24",
+  "dependencies": ["youtube_auto_publish_20260423"],
+  "tags": ["analytics", "metrics", "youtube", "product-insight"]
+}

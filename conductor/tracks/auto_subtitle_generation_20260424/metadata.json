@@ -1,0 +1,8 @@
+{
+  "id": "auto_subtitle_generation_20260424",
+  "title": "Automated Subtitle & Caption Generation",
+  "status": "pending",
+  "created": "2026-04-24",
+  "dependencies": ["ai_integration_20250403", "ffmpeg_service_20250403"],
+  "tags": ["accessibility", "seo", "subtitles", "ai"]
+}
