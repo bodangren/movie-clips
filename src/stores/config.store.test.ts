@@ -14,6 +14,12 @@ describe('useConfigStore', () => {
     google: { location: 'global', ttsVoices: [] },
     video: { targetWidth: 720, targetHeight: 1280, fps: 30 },
     pipeline: { maxRetries: 3, timeoutMs: 300000 },
+    youtube: {
+      enabled: false,
+      clientId: '',
+      clientSecret: '',
+      redirectUri: 'http://localhost:8080/callback',
+    },
     ui: { theme: 'system', language: 'en' },
   };
 

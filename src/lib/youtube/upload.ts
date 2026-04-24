@@ -135,7 +135,7 @@ async function uploadChunks(
 
   // For small files (<= CHUNK_SIZE), upload in one chunk
   if (totalSize <= CHUNK_SIZE) {
-    return uploadChunkWithRetry(
+    const videoId = await uploadChunkWithRetry(
       sessionUri,
       videoFile,
       0,
@@ -145,6 +145,10 @@ async function uploadChunks(
       signal,
       loaded => onProgress?.({ loaded: uploadedBytes + loaded, total: totalSize })
     );
+    if (!videoId) {
+      throw new Error('Upload completed but no video ID received');
+    }
+    return videoId;
   }
 
   // For large files, upload in chunks
@@ -216,18 +220,20 @@ async function uploadChunkWithRetry(
 
       // 4xx errors are client errors, don't retry
       if (statusCode && statusCode >= 400 && statusCode < 500) {
-        throw new Error(
-          `Upload failed: ${statusCode} - ${error instanceof Error ? error.message : 'Unknown error'}`,
-          { cause: error }
-        );
+        const err = new Error(
+          `Upload failed: ${statusCode} - ${error instanceof Error ? error.message : 'Unknown error'}`
+        ) as Error & { cause: unknown };
+        err.cause = error;
+        throw err;
       }
 
       retries++;
       if (retries > MAX_RETRIES) {
-        throw new Error(
-          `Upload failed after ${MAX_RETRIES} retries: ${error instanceof Error ? error.message : 'Unknown error'}`,
-          { cause: error }
-        );
+        const err = new Error(
+          `Upload failed after ${MAX_RETRIES} retries: ${error instanceof Error ? error.message : 'Unknown error'}`
+        ) as Error & { cause: unknown };
+        err.cause = error;
+        throw err;
       }
 
       // Exponential backoff

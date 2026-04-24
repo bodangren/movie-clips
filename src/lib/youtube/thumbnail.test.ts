@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { createThumbnailGenerator, type ThumbnailGenerator } from './thumbnail';
 
 describe('Thumbnail Generation', () => {

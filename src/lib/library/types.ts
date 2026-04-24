@@ -13,6 +13,7 @@ export interface MovieMetadata {
   runtime?: number;
   genres?: string[];
   director?: string;
+  cast?: string[];
   plot?: string;
   tmdbId?: string;
   imdbId?: string;
@@ -23,6 +24,9 @@ export interface TvShowMetadata {
   season?: number;
   episode?: number;
   year?: number;
+  genres?: string[];
+  director?: string;
+  cast?: string[];
   plot?: string;
 }
 

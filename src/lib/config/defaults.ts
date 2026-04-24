@@ -24,6 +24,12 @@ export function getDefaultConfig(): AppConfig {
       maxRetries: 3,
       timeoutMs: 300000,
     },
+    youtube: {
+      enabled: false,
+      clientId: '',
+      clientSecret: '',
+      redirectUri: 'http://localhost:8080/callback',
+    },
     ui: {
       theme: 'system',
       language: 'en',

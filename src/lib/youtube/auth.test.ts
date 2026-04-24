@@ -34,6 +34,7 @@ describe('YouTube Auth', () => {
         clientId: 'test_client_id',
         clientSecret: 'test_client_secret',
         redirectUri: 'http://localhost:8080/callback',
+        enabled: true,
       },
       mockStorage
     );

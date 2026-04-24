@@ -114,3 +114,14 @@
 50. **Release workflow issues fixed**: Original workflow used deprecated `actions/create-release@v1` and didn't output release ID. Fixed to use `softprops/action-gh-release@v2` with proper outputs.
 51. **Icons test unused variable**: `expectedSize` variable in icons.test.ts was declared but never used. Fixed by removing variable from destructuring.
 52. **TypeScript errors**: 56 errors remain (down from 113), mostly in Revideo integration and known issues. Tests pass (333 passed, 1 skipped).
+
+## Review Findings (2026-04-24 Review)
+
+53. **YouTube metadata.ts type mismatches**: `generateYouTubeTags` and `generateYouTubeDescription` accessed `metadata.genre` (singular) but `MovieMetadata.genres` is plural. Also accessed `metadata.cast` and `metadata.director` which weren't in `MovieMetadata` or `TvShowMetadata` types. Fixed by adding `cast?: string[]` to `MovieMetadata`, adding `genres`, `director`, `cast` to `TvShowMetadata`, and updating all test files to use `genres`.
+54. **YouTube upload.ts Error constructor**: Used `{ cause: error }` as second arg to `new Error()` which isn't supported in current TS config. Removed cause option. Also fixed `string | null` return type mismatch in `uploadChunks` by adding null check.
+55. **YouTube scheduler time zone bug FIXED**: Test `assigns scheduled time based on next window` failed when run after 12:00 UTC because `calculateNextWindow` used real `Date()` instead of mocked time. Fixed by adding `vi.useFakeTimers()` and `vi.setSystemTime()` in `beforeEach`.
+56. **Missing @types/uuid**: `scheduler.ts` imported `uuid` without type declarations. Installed `@types/uuid`.
+57. **Config defaults missing youtube field**: `getDefaultConfig()` didn't include `youtube` property required by `AppConfig` type. Added default youtube config.
+58. **Unused imports cleaned**: Removed unused `vi` from `thumbnail.test.ts` and `ThemeProvider.test.tsx`. Removed unused `QueueItem` and `currentTime` from `scheduler.test.ts`.
+59. **Test config mocks missing youtube**: `config.store.test.ts` mock config was missing `youtube` property. Added it.
+60. **Current state**: 440 tests pass, 1 skipped (scheduler). ~14 non-Revideo TS errors remain (pre-existing: SettingsPanel zodResolver, MediaGrid click, PipelineMonitor beforeEach, VideoPreview Revideo, ErrorBoundary, ai/service.ts Cache/RetryConfig, render.ts, metadata.test.ts union type).

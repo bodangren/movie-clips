@@ -87,8 +87,8 @@ export function generateYouTubeTags(input: MetadataInput): string[] {
     }
 
     // Add genres
-    if (metadata.genre) {
-      tags.push(...metadata.genre.map(g => g.toLowerCase()));
+    if (metadata.genres) {
+      tags.push(...metadata.genres.map(g => g.toLowerCase()));
     }
 
     // Add year
@@ -161,8 +161,8 @@ function generateHashtags(mediaItem: MediaItem): string[] {
   }
 
   // Add genre hashtags
-  if (metadata?.genre) {
-    metadata.genre.forEach(g => {
+  if (metadata?.genres) {
+    metadata.genres.forEach(g => {
       const genreTag = g.replace(/[^a-zA-Z0-9]/g, '');
       if (genreTag) {
         hashtags.push(`#${genreTag}`);

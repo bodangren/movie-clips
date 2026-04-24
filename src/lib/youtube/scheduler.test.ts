@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   createUploadScheduler,
   type UploadScheduler,
-  type QueueItem,
   type UploadQueue,
   type SchedulerConfig,
 } from './scheduler';
@@ -10,11 +9,11 @@ import {
 describe('Upload Scheduler', () => {
   let scheduler: UploadScheduler;
   let mockStorage: { data: UploadQueue | null };
-  let currentTime: Date;
 
   beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-04-24T10:00:00Z')); // 10:00 AM UTC
     mockStorage = { data: null };
-    currentTime = new Date('2026-04-24T10:00:00Z'); // 10:00 AM UTC
 
     const config: SchedulerConfig = {
       uploadWindows: ['0 12 * * *', '0 18 * * *'], // 12:00 and 18:00 daily
@@ -30,6 +29,10 @@ describe('Upload Scheduler', () => {
     };
 
     scheduler = createUploadScheduler(config, storage);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   describe('addToQueue', () => {
