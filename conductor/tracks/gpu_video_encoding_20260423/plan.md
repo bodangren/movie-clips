@@ -18,13 +18,13 @@
 
 ## Phase 2: FFmpeg Encoder Integration (Day 2)
 
-- [ ] Write tests for encoder flag generation for each encoder type
-- [ ] Implement `buildEncodeCommand(encoder, preset, outputPath)` that returns correct FFmpeg args
-- [ ] Implement NVENC flag builder: `-c:v h264_nvenc -preset {fast|medium|slow} -cq 23 -pix_fmt yuv420p`
-- [ ] Implement VAAPI flag builder: `-vaapi_device /dev/dri/renderD128 -c:v h264_vaapi -qp 23`
-- [ ] Implement VideoToolbox flag builder: `-c:v h264_videotoolbox -q:v 65`
-- [ ] Implement software fallback flag builder: `-c:v libx264 -crf 23 -preset medium -pix_fmt yuv420p`
-- [ ] Integrate encoder selection into pipeline render step (auto-select best available)
+- [x] Write tests for encoder flag generation for each encoder type
+- [x] Implement `buildEncodeCommand(encoder, preset, outputPath)` that returns correct FFmpeg args
+- [x] Implement NVENC flag builder: `-c:v h264_nvenc -preset {fast|medium|slow} -cq 23 -pix_fmt yuv420p`
+- [x] Implement VAAPI flag builder: `-vaapi_device /dev/dri/renderD128 -c:v h264_vaapi -qp 23`
+- [x] Implement VideoToolbox flag builder: `-c:v h264_videotoolbox -q:v 65`
+- [x] Implement software fallback flag builder: `-c:v libx264 -crf 23 -preset medium -pix_fmt yuv420p`
+- [x] Integrate encoder selection into pipeline render step (auto-select best available)
 - [ ] Manual verification: encode a test video with each available encoder
 
 ## Phase 3: Quality & Benchmark Testing (Day 3)

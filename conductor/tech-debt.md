@@ -125,3 +125,12 @@
 58. **Unused imports cleaned**: Removed unused `vi` from `thumbnail.test.ts` and `ThemeProvider.test.tsx`. Removed unused `QueueItem` and `currentTime` from `scheduler.test.ts`.
 59. **Test config mocks missing youtube**: `config.store.test.ts` mock config was missing `youtube` property. Added it.
 60. **Current state**: 440 tests pass, 1 skipped (scheduler). ~14 non-Revideo TS errors remain (pre-existing: SettingsPanel zodResolver, MediaGrid click, PipelineMonitor beforeEach, VideoPreview Revideo, ErrorBoundary, ai/service.ts Cache/RetryConfig, render.ts, metadata.test.ts union type).
+
+## Autonomous Session (2026-04-25)
+
+61. **GPU-Accelerated Video Encoding Phase 2 complete**: FFmpeg encoder integration module implemented with TDD. Created `src-tauri/src/services/encoder_builder.rs` with `EncodeCommandBuilder` supporting NVENC, VAAPI, VideoToolbox, and software encoders. Added `EncoderConfig`, `EncoderType`, `QualityPreset` types with serialization. 16 Rust tests pass.
+62. **Encoder selector module**: Created `src-tauri/src/services/encoder_selector.rs` with auto-selection logic (NVENC > VideoToolbox > VAAPI > Software), user preference support, and fallback chain. 13 Rust tests pass.
+63. **Encoder configuration**: Added `encoder` and `preset` fields to video config schema (TypeScript and Rust). Updated `VideoConfig` struct, `parse_video_config`, and defaults. Tauri commands added: `get_encoder_config`, `set_encoder_preference`, `select_best_encoder`.
+64. **TypeScript service updated**: Added `EncoderSelection`, `EncoderConfigResponse` types and `getEncoderConfig`, `setEncoderPreference`, `selectBestEncoder` functions to `src/lib/video/service.ts`.
+65. **All tests pass**: 73 Rust tests pass, 440 frontend tests pass (1 skipped). No new TypeScript errors introduced.
+66. **Manual verification pending**: Actual FFmpeg encoding with GPU encoders needs manual testing on hardware with NVIDIA/AMD/Intel GPUs.

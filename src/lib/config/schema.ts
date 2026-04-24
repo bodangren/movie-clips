@@ -24,6 +24,8 @@ const videoSchema = z.object({
   targetWidth: z.number().min(360).max(3840).default(720),
   targetHeight: z.number().min(640).max(2160).default(1280),
   fps: z.number().min(1).max(120).default(30),
+  encoder: z.enum(['auto', 'nvenc', 'vaapi', 'videotoolbox', 'software']).default('auto'),
+  preset: z.enum(['fast', 'balanced', 'slow']).default('balanced'),
 });
 
 const pipelineSchema = z.object({

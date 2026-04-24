@@ -1,5 +1,15 @@
 # Lessons Learned
 
+## 2026-04-25 (GPU-Accelerated Video Encoding Phase 2)
+
+- **Rust enum serialization with serde**: Use `#[serde(rename = "nvenc")]` on enum variants for clean JSON representation. `EncoderType` and `QualityPreset` enums serialize to lowercase strings.
+- **FFmpeg encoder flag patterns**: Each encoder has distinct flag patterns - NVENC uses `-cq 23`, VAAPI uses `-qp 23`, VideoToolbox uses `-q:v 65`, software uses `-crf 23`. All require `-pix_fmt yuv420p` for compatibility.
+- **Encoder selection priority**: Auto-selection should validate encoders before use. `ValidationStatus::Validated` means the encoder was tested with a 1-frame encode. Parse-only results should be conservative.
+- **User preference with fallback**: Store user preference separately from actual selection. If preferred encoder is unavailable, fall back to auto-selection. Selection reason helps debugging.
+- **Config schema evolution**: Adding fields to Zod schema requires updating TypeScript defaults, Rust config structs, and parser functions. Both sides must stay in sync.
+- **Tauri command return types**: Commands can return custom structs that implement `Serialize`. Frontend receives the JSON representation directly.
+- **Rust test assertions with CLI args**: FFmpeg flags include leading dashes (e.g., `-cq`, `-crf`). Tests must check for the exact string including the dash.
+
 ## 2026-04-24 (GPU-Accelerated Video Encoding Phase 1)
 
 - **Rust `Vec<String>.contains()`**: Requires `&String` argument, not `&str`. Use `.contains(&"foo".to_string())` or `.iter().any(|s| s == "foo")`.

@@ -64,9 +64,9 @@ This file tracks all major tracks for the project. Each track has its own detail
   _Link: [./conductor/tracks/youtube_auto_publish_20260423/](./conductor/tracks/youtube_auto_publish_20260423/)_  
   YouTube Data API v3 OAuth2, resumable upload, metadata/thumbnail generation, scheduled publishing, upload queue with retry. Enables twice-daily zero-touch publishing. Depends on Pipeline & AI. **COMPLETED 2026-04-24** (automated tasks; manual verification pending)
 
-- **[ ] Track: GPU-Accelerated Video Encoding**  
+- **[~] Track: GPU-Accelerated Video Encoding**  
   _Link: [./conductor/tracks/gpu_video_encoding_20260423/](./conductor/tracks/gpu_video_encoding_20260423/)_  
-  GPU detection (NVENC, VAAPI, VideoToolbox), FFmpeg hardware encoder selection, quality presets, benchmarking, automatic software fallback. Depends on FFmpeg Service & Pipeline.
+  GPU detection (NVENC, VAAPI, VideoToolbox), FFmpeg hardware encoder selection, quality presets, benchmarking, automatic software fallback. Depends on FFmpeg Service & Pipeline. **IN PROGRESS** (Phases 1-2 complete 2026-04-25)
 
 - **[ ] Track: Content Analytics & Performance Tracking**  
   _Link: [./conductor/tracks/content_analytics_20260424/](./conductor/tracks/content_analytics_20260424/)_  

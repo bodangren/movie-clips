@@ -107,6 +107,9 @@ pub fn run() {
             commands::youtube::get_youtube_tokens,
             commands::youtube::save_youtube_tokens,
             commands::youtube::clear_youtube_tokens,
+            commands::encoder::get_encoder_config,
+            commands::encoder::set_encoder_preference,
+            commands::encoder::select_best_encoder,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

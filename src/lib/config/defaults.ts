@@ -19,6 +19,8 @@ export function getDefaultConfig(): AppConfig {
       targetWidth: 720,
       targetHeight: 1280,
       fps: 30,
+      encoder: 'auto',
+      preset: 'balanced',
     },
     pipeline: {
       maxRetries: 3,

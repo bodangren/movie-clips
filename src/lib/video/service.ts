@@ -68,6 +68,21 @@ export interface VideoConfigSummary {
   dimensions: VideoDimensions;
 }
 
+export interface EncoderSelection {
+  selected_encoder: string;
+  preset: string;
+  is_hardware: boolean;
+  fallback_available: boolean;
+  selection_reason: string;
+}
+
+export interface EncoderConfigResponse {
+  encoder: string;
+  preset: string;
+  available_encoders: string[];
+  primary_encoder: string;
+}
+
 export async function extractClip(request: ExtractClipRequest): Promise<void> {
   await invoke('extract_clip', { request });
 }
@@ -82,4 +97,19 @@ export async function getVideoStatus(): Promise<VideoServiceStatus> {
 
 export async function detectGpuEncoders(): Promise<GpuDetectionResult> {
   return invoke('detect_gpu_encoders');
+}
+
+export async function getEncoderConfig(): Promise<EncoderConfigResponse> {
+  return invoke('get_encoder_config');
+}
+
+export async function setEncoderPreference(
+  encoder?: string,
+  preset?: string
+): Promise<EncoderSelection> {
+  return invoke('set_encoder_preference', { request: { encoder, preset } });
+}
+
+export async function selectBestEncoder(): Promise<EncoderSelection> {
+  return invoke('select_best_encoder');
 }
