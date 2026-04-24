@@ -138,3 +138,10 @@ Foundation → Config → AI
 - Dependencies must be respected for successful implementation
 - Each track has detailed spec and plan in its directory
 - Regular status updates should be added to track plan files
+
+## Upcoming Tracks
+
+- [ ] **Track: Auto Subtitle Generation** _Link: [./tracks/auto_subtitle_gen_20260425/](./tracks/auto_subtitle_gen_20260425/)_
+- [ ] **Track: Content Analytics Dashboard** _Link: [./tracks/content_analytics_v2_20260425/](./tracks/content_analytics_v2_20260425/)_
+- [ ] **Track: GPU Encoding Verification** _Link: [./tracks/gpu_encoding_verify_20260425/](./tracks/gpu_encoding_verify_20260425/)_
+- [ ] **Track: YouTube Publish Verification** _Link: [./tracks/youtube_publish_verify_20260425/](./tracks/youtube_publish_verify_20260425/)_
