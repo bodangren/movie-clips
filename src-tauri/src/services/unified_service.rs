@@ -1,4 +1,5 @@
 use crate::services::ffmpeg_command::FFmpegCommandService;
+use crate::services::gpu_detection::{GpuDetectionResult, GpuDetector};
 use crate::services::health_check::FFmpegHealth;
 use crate::services::metrics::MetricsCollector;
 use crate::services::mock_video::MockVideoService;
@@ -12,6 +13,7 @@ use tokio::sync::RwLock;
 pub struct VideoServiceStatus {
     pub service_type: String,
     pub ffmpeg_health: Option<FFmpegHealth>,
+    pub gpu_detection: Option<GpuDetectionResult>,
     pub metrics: crate::services::metrics::VideoServiceMetrics,
     pub config: VideoConfigSummary,
 }
@@ -106,9 +108,18 @@ impl UnifiedVideoService {
             VideoServiceType::Mock => None,
         };
 
+        let gpu_detection = match config.service_type {
+            VideoServiceType::Command | VideoServiceType::Bindings => {
+                let detector = GpuDetector::new(Some(config.ffmpeg_path.clone()));
+                Some(detector.detect().await)
+            }
+            VideoServiceType::Mock => None,
+        };
+
         VideoServiceStatus {
             service_type: format!("{:?}", config.service_type),
             ffmpeg_health,
+            gpu_detection,
             metrics: self.metrics.get_metrics(),
             config: VideoConfigSummary {
                 ffmpeg_path: config.ffmpeg_path.clone(),

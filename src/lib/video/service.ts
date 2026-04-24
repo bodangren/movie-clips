@@ -18,9 +18,24 @@ export interface RenderVideoRequest {
   output: string;
 }
 
+export interface GpuEncoderAvailability {
+  nvenc: boolean;
+  vaapi: boolean;
+  videotoolbox: boolean;
+  software: boolean;
+}
+
+export interface GpuDetectionResult {
+  availability: GpuEncoderAvailability;
+  detected_encoders: string[];
+  primary_encoder: string;
+  validation_status: 'Validated' | 'ParseOnly' | { Failed: string };
+}
+
 export interface VideoServiceStatus {
   service_type: string;
   ffmpeg_health: FFmpegHealth | null;
+  gpu_detection: GpuDetectionResult | null;
   metrics: VideoServiceMetrics;
   config: VideoConfigSummary;
 }
@@ -63,4 +78,8 @@ export async function renderVideo(request: RenderVideoRequest): Promise<void> {
 
 export async function getVideoStatus(): Promise<VideoServiceStatus> {
   return invoke('get_video_status');
+}
+
+export async function detectGpuEncoders(): Promise<GpuDetectionResult> {
+  return invoke('detect_gpu_encoders');
 }

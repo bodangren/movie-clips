@@ -1,5 +1,13 @@
 # Lessons Learned
 
+## 2026-04-24 (GPU-Accelerated Video Encoding Phase 1)
+
+- **Rust `Vec<String>.contains()`**: Requires `&String` argument, not `&str`. Use `.contains(&"foo".to_string())` or `.iter().any(|s| s == "foo")`.
+- **Rust ownership in struct construction**: When building a struct that uses a value both as a field and in a subsequent expression, clone it: `field: value.clone()`.
+- **Tauri command for detection**: GPU detection belongs in Rust backend (shells to FFmpeg), exposed via `#[tauri::command]`, consumed by frontend through `invoke()`.
+- **FFmpeg encoder validation**: A 1-frame encode to `null` output (`-f lavfi -i color=c=black:s=64x64:d=1 -c:v {encoder} -frames:v 1 -f null -`) is a fast way to verify an encoder works without writing files.
+- **Encoder priority chain**: NVENC > VideoToolbox > VAAPI > libx264. This prioritizes speed while maintaining broad compatibility.
+
 ## 2026-04-24 (YouTube Auto-Publish Phase 2)
 
 - **Fetch-based resumable uploads**: Using `fetch` instead of `XMLHttpRequest` for chunk uploads works better in test environments (jsdom) and modern browsers. Progress can be tracked at chunk granularity rather than byte granularity.

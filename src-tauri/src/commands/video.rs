@@ -105,6 +105,17 @@ pub async fn get_video_status(
     Ok(state.get_status().await)
 }
 
+#[tauri::command]
+pub async fn detect_gpu_encoders(
+    state: tauri::State<'_, UnifiedVideoService>,
+) -> Result<crate::services::gpu_detection::GpuDetectionResult, VideoError> {
+    let config = state.config();
+    let detector = crate::services::gpu_detection::GpuDetector::new(Some(
+        config.ffmpeg_path.clone(),
+    ));
+    Ok(detector.detect().await)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

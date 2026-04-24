@@ -5,3 +5,4 @@ pub mod video_config;
 pub mod metrics;
 pub mod health_check;
 pub mod unified_service;
+pub mod gpu_detection;
