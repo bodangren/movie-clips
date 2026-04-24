@@ -117,7 +117,7 @@ describe('Pipeline Upload Integration', () => {
 
       await integration.uploadFromPipeline(result);
 
-      expect(uploadCalls[0].options.title).toBe('Test Movie');
+      expect(uploadCalls[0].options.title).toBe("5 Things You Didn't Know About Test Movie");
     });
 
     it('generates description from facts', async () => {
@@ -199,7 +199,7 @@ describe('Pipeline Upload Integration', () => {
 
       await integration.uploadFromPipeline(result);
 
-      expect(uploadCalls[0].options.title).toBe('Test Show');
+      expect(uploadCalls[0].options.title).toBe("5 Things You Didn't Know About Test Show");
       expect(uploadCalls[0].options.tags).toContain('drama');
     });
 
@@ -223,7 +223,7 @@ describe('Pipeline Upload Integration', () => {
 
       await integration.uploadFromPipeline(result);
 
-      expect(uploadCalls[0].options.title).toBe('unknown');
+      expect(uploadCalls[0].options.title).toBe("5 Things You Didn't Know About unknown");
     });
   });
 });

@@ -29,13 +29,13 @@
 
 ## Phase 3: Metadata & Thumbnail Generation (Day 3)
 
-- [ ] Write tests for title, description, tag, and thumbnail generation
-- [ ] Implement title template: "5 Things You Didn't Know About [Movie Title]"
-- [ ] Implement description generator using AI-sourced facts + hashtags
-- [ ] Implement tag generator from movie metadata (genre, year, cast, director)
-- [ ] Implement thumbnail extractor: capture frame from Revideo output (t=0 or configurable)
-- [ ] Implement thumbnail resize/format conversion (1280x720 JPEG) via FFmpeg
-- [ ] Attach metadata and thumbnail to upload request
+- [x] Write tests for title, description, tag, and thumbnail generation
+- [x] Implement title template: "5 Things You Didn't Know About [Movie Title]"
+- [x] Implement description generator using AI-sourced facts + hashtags
+- [x] Implement tag generator from movie metadata (genre, year, cast, director)
+- [x] Implement thumbnail extractor: capture frame from Revideo output (t=0 or configurable)
+- [x] Implement thumbnail resize/format conversion (1280x720 JPEG) via FFmpeg
+- [x] Attach metadata and thumbnail to upload request
 - [ ] Manual verification: inspect uploaded video metadata on YouTube
 
 ## Phase 4: Scheduling System (Day 4)

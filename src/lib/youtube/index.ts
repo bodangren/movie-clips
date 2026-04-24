@@ -3,3 +3,5 @@ export * from './auth';
 export * from './storage';
 export * from './upload';
 export * from './pipeline-integration';
+export * from './metadata';
+export * from './thumbnail';
