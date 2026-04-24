@@ -24,7 +24,7 @@
 - [x] Handle upload error responses (4xx abort, 5xx retry) (8d53ff3)
 - [x] Implement retry logic with exponential backoff (max 3 retries) (8d53ff3)
 - [x] Add upload progress reporting (bytes sent / total) (8d53ff3)
-- [~] Integrate with pipeline output to pick up rendered video files
+- [x] Integrate with pipeline output to pick up rendered video files
 - [ ] Manual verification: upload a test Short to YouTube
 
 ## Phase 3: Metadata & Thumbnail Generation (Day 3)
