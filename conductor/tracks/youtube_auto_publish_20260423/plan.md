@@ -40,12 +40,12 @@
 
 ## Phase 4: Scheduling System (Day 4)
 
-- [ ] Write tests for scheduler trigger, queue persistence, and window validation
-- [ ] Implement upload queue with persistent state (JSON file in app data dir)
-- [ ] Implement cron-like scheduler with configurable daily windows (e.g., "0 12 \* \* _", "0 18 _ \* \*")
-- [ ] Implement queue item states: pending → uploading → published / failed
-- [ ] Implement window validation: respect YouTube quota limits (max 6/day)
-- [ ] Implement failed item retry scheduling (next available window)
+- [x] Write tests for scheduler trigger, queue persistence, and window validation
+- [x] Implement upload queue with persistent state (JSON file in app data dir)
+- [x] Implement cron-like scheduler with configurable daily windows (e.g., "0 12 \* \* _", "0 18 _ \* \*")
+- [x] Implement queue item states: pending → uploading → published / failed
+- [x] Implement window validation: respect YouTube quota limits (max 6/day)
+- [x] Implement failed item retry scheduling (next available window)
 - [ ] Manual verification: schedule a video and confirm auto-publish
 
 ## Phase 5: Integration & Dashboard (Day 5)
