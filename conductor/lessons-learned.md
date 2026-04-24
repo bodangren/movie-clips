@@ -8,6 +8,14 @@
 - **AbortSignal with fetch mocks**: Mock implementations must attach `abort` event listeners to the signal and reject when triggered, otherwise cancellation tests hang indefinitely.
 - **ESLint preserve-caught-error rule**: When re-throwing errors, always attach the original error as `{ cause: error }` to preserve stack traces and satisfy the linter.
 
+## 2026-04-24 (YouTube Auto-Publish Phases 2-5)
+
+- **Pipeline integration pattern**: Extract metadata generation into a separate module (`metadata.ts`) so it can be reused by both manual uploads and auto-queue. This avoids duplication between `pipeline-integration.ts` and `pipeline-youtube-integration.ts`.
+- **Scheduler quota counting**: Count all scheduled items for the day (not just published/uploading) to prevent overscheduling. Use date string comparison (`toISOString().split('T')[0]`) for simple day-boundary checks.
+- **Retry logic design**: Allow rescheduling when `retryCount < MAX_RETRIES`, not `<=`. This gives MAX_RETRIES total attempts (initial + retries). Test with 2 reschedules for a max of 3 attempts.
+- **Fake timer compatibility**: `vi.setSystemTime` is not available in all Vitest versions. For time-dependent tests, either use simple Date mocking or test behavior without exact timestamp assertions.
+- **Queue state persistence**: Design storage as an interface (`QueueStorage`) so it can be swapped between localStorage (web), Tauri store (desktop), or memory (tests).
+
 ## 2026-04-24 (YouTube Auto-Publish Phase 1)
 
 - **Tauri store plugin for OAuth tokens**: Use separate store file (`youtube.json`) for sensitive tokens, not the main config. Rust commands `get_youtube_tokens`, `save_youtube_tokens`, `clear_youtube_tokens` wrap the store plugin.
