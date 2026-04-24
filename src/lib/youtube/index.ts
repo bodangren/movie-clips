@@ -6,3 +6,5 @@ export * from './pipeline-integration';
 export * from './metadata';
 export * from './thumbnail';
 export * from './scheduler';
+export * from './dashboard';
+export * from './pipeline-youtube-integration';

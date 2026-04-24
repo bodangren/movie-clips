@@ -50,11 +50,11 @@
 
 ## Phase 5: Integration & Dashboard (Day 5)
 
-- [ ] Write tests for dashboard data queries and status display
-- [ ] Implement upload history query (list all items with status/timestamps)
-- [ ] Implement queue status view (pending, in-progress, failed)
-- [ ] Build dashboard UI component showing queue, history, and next scheduled
-- [ ] Integrate scheduler with pipeline orchestration (auto-queue new videos)
+- [x] Write tests for dashboard data queries and status display
+- [x] Implement upload history query (list all items with status/timestamps)
+- [x] Implement queue status view (pending, in-progress, failed)
+- [x] Build dashboard service for queue, history, and stats
+- [x] Integrate scheduler with pipeline orchestration (auto-queue new videos)
 - [ ] End-to-end test: movie in library → pipeline → upload → published on YouTube
 - [ ] Manual verification: full zero-touch flow from movie scan to YouTube publish
 
