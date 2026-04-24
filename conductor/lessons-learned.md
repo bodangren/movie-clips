@@ -1,5 +1,13 @@
 # Lessons Learned
 
+## 2026-04-24 (YouTube Auto-Publish Phase 2)
+
+- **Fetch-based resumable uploads**: Using `fetch` instead of `XMLHttpRequest` for chunk uploads works better in test environments (jsdom) and modern browsers. Progress can be tracked at chunk granularity rather than byte granularity.
+- **YouTube resumable upload protocol**: Initiate with `POST /upload/youtube/v3/videos?uploadType=resumable&part=snippet,status`, then `PUT` chunks to the returned `Location` URI with `Content-Range: bytes start-end/total` headers.
+- **Exponential backoff in tests**: Tests with retry delays need extended timeouts (e.g., 15s) or fake timers. Base delay of 1s with 3 retries = 7s total sleep time.
+- **AbortSignal with fetch mocks**: Mock implementations must attach `abort` event listeners to the signal and reject when triggered, otherwise cancellation tests hang indefinitely.
+- **ESLint preserve-caught-error rule**: When re-throwing errors, always attach the original error as `{ cause: error }` to preserve stack traces and satisfy the linter.
+
 ## 2026-04-24 (YouTube Auto-Publish Phase 1)
 
 - **Tauri store plugin for OAuth tokens**: Use separate store file (`youtube.json`) for sensitive tokens, not the main config. Rust commands `get_youtube_tokens`, `save_youtube_tokens`, `clear_youtube_tokens` wrap the store plugin.
