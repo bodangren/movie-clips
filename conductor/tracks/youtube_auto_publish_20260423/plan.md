@@ -19,12 +19,12 @@
 
 ## Phase 2: Video Upload Pipeline (Day 2)
 
-- [ ] Write tests for resumable upload initiation, chunk upload, and completion
-- [ ] Implement resumable upload client (init → upload → confirm)
-- [ ] Handle upload error responses (4xx abort, 5xx retry)
-- [ ] Implement retry logic with exponential backoff (max 3 retries)
-- [ ] Add upload progress reporting (bytes sent / total)
-- [ ] Integrate with pipeline output to pick up rendered video files
+- [x] Write tests for resumable upload initiation, chunk upload, and completion (8d53ff3)
+- [x] Implement resumable upload client (init → upload → confirm) (8d53ff3)
+- [x] Handle upload error responses (4xx abort, 5xx retry) (8d53ff3)
+- [x] Implement retry logic with exponential backoff (max 3 retries) (8d53ff3)
+- [x] Add upload progress reporting (bytes sent / total) (8d53ff3)
+- [~] Integrate with pipeline output to pick up rendered video files
 - [ ] Manual verification: upload a test Short to YouTube
 
 ## Phase 3: Metadata & Thumbnail Generation (Day 3)
