@@ -92,6 +92,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_store::Builder::default().build())
+        .plugin(tauri_plugin_sql::Builder::default().build())
         .manage(video_service)
         .invoke_handler(tauri::generate_handler![
             greet,
