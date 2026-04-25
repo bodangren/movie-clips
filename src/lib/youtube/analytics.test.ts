@@ -1,9 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   createYouTubeAnalyticsClient,
+  createDailyMetricsJob,
   parseAnalyticsResponse,
   type VideoMetrics,
   type ChannelMetrics,
+  type AnalyticsClient,
 } from './analytics';
 import type { YouTubeAuth } from './auth';
 
@@ -250,5 +252,58 @@ describe('createYouTubeAnalyticsClient', () => {
     const videos = await client.getTopVideos('2024-01-01', '2024-01-31', 3);
 
     expect(videos).toHaveLength(3);
+  });
+});
+
+describe('createDailyMetricsJob', () => {
+  it('fetches metrics for last 24 hours', async () => {
+    const mockClient: AnalyticsClient = {
+      getVideoMetrics: vi.fn(),
+      getChannelMetrics: vi.fn(),
+      getTopVideos: vi.fn().mockResolvedValue([
+        {
+          videoId: 'v1',
+          title: 'Test',
+          publishedAt: '2024-01-15',
+          views: 100,
+          watchTimeMinutes: 50,
+          likes: 10,
+          comments: 2,
+          subscribersGained: 5,
+          subscribersLost: 0,
+          averageViewDuration: 30,
+          thumbnailUrl: '',
+        },
+      ]),
+    };
+
+    const job = createDailyMetricsJob(mockClient, 1);
+    const result = await job.run();
+
+    expect(mockClient.getTopVideos).toHaveBeenCalledWith(
+      expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+      expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+      50
+    );
+    expect(result).toHaveLength(1);
+    expect(result[0].videoId).toBe('v1');
+  });
+
+  it('fetches metrics for last 7 days when configured', async () => {
+    const mockClient: AnalyticsClient = {
+      getVideoMetrics: vi.fn(),
+      getChannelMetrics: vi.fn(),
+      getTopVideos: vi.fn().mockResolvedValue([]),
+    };
+
+    const job = createDailyMetricsJob(mockClient, 7);
+    await job.run();
+
+    const callArgs = vi.mocked(mockClient.getTopVideos).mock.calls[0];
+    const startDate = new Date(callArgs[0]);
+    const endDate = new Date(callArgs[1]);
+    const diffDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
+
+    expect(diffDays).toBe(7);
   });
 });

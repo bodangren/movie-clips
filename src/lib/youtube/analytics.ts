@@ -37,6 +37,21 @@ export interface AnalyticsClient {
 const ANALYTICS_API_BASE = 'https://youtubeanalytics.googleapis.com/v2/reports';
 const DATA_API_BASE = 'https://www.googleapis.com/youtube/v3';
 
+export interface DailyMetricsJob {
+  run(): Promise<VideoMetrics[]>;
+}
+
+export function createDailyMetricsJob(client: AnalyticsClient, daysBack = 1): DailyMetricsJob {
+  return {
+    async run(): Promise<VideoMetrics[]> {
+      const endDate = new Date().toISOString().split('T')[0];
+      const startDate = new Date(Date.now() - daysBack * 86400000).toISOString().split('T')[0];
+
+      return client.getTopVideos(startDate, endDate, 50);
+    },
+  };
+}
+
 export function createYouTubeAnalyticsClient(auth: YouTubeAuth): AnalyticsClient {
   async function fetchAnalytics(query: AnalyticsQuery): Promise<Record<string, string>[]> {
     const token = await auth.getValidAccessToken();
