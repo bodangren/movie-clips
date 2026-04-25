@@ -16,11 +16,11 @@
 
 ## Phase 3: Analytics Dashboard UI
 
-- [ ] 3.1 Create AnalyticsPage component with sidebar navigation
-- [ ] 3.2 Build VideoPerformanceTable with sorting and filtering
-- [ ] 3.3 Add trend charts using Recharts (views over time)
-- [ ] 3.4 Create genre/trivia type aggregation views
-- [ ] 3.5 Write component tests for all UI elements
+- [x] 3.1 Create AnalyticsPage component with sidebar navigation
+- [x] 3.2 Build VideoPerformanceTable with sorting and filtering
+- [x] 3.3 Add trend charts using Recharts (views over time)
+- [ ] 3.4 Create genre/trivia type aggregation views (deferred - requires media library linkage)
+- [x] 3.5 Write component tests for all UI elements
 
 ## Phase 4: Insights & Recommendations
 

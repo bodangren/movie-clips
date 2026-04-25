@@ -1,5 +1,12 @@
 # Lessons Learned
 
+## 2026-04-25 (Content Analytics Phase 3)
+
+- **Recharts in dark theme**: Set `stroke` on axes to muted color (`#9ca3af`), use dark background for tooltip (`#0c0c0c`), and pick distinct colors for each metric line (primary purple for views, green for watch time, amber for likes).
+- **Table sorting pattern**: Track `sortField` and `sortDirection` in state. Toggle direction when clicking same field, default to descending for new fields. Use `tabular-nums` class for right-aligned numbers.
+- **Testing table sorting**: Render component, click header to sort, verify row order by checking text content of first cell in each row. Remember that default sort may reorder mock data from input order.
+- **Decorative images in tests**: Images with `alt=""` may not be found by `getAllByRole('img')` in testing-library. Use `toContainHTML()` on parent element instead, or add meaningful alt text.
+
 ## 2026-04-25 (Content Analytics Phase 2)
 
 - **Tauri SQL plugin setup**: Add `tauri-plugin-sql` to Cargo.toml with `features = ["sqlite"]`, install `@tauri-apps/plugin-sql` npm package, initialize with `.plugin(tauri_plugin_sql::Builder::default().build())` in lib.rs.
