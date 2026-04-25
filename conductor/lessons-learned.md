@@ -1,5 +1,13 @@
 # Lessons Learned
 
+## 2026-04-25 (GPU-Accelerated Video Encoding Phase 4)
+
+- **Encoder fallback in TypeScript**: Wrap `renderVideo` with `renderVideoWithFallback` that catches encoder-specific errors (NVENC, VAAPI, VideoToolbox, generic "encoder" or "hardware" keywords) and retries with software encoder. This keeps the fallback logic transparent to the pipeline stage.
+- **Config schema evolution**: Adding `encoder` and `preset` fields to the Zod config schema in Phase 2 meant the SettingsPanel could later add dropdown selectors without schema changes. Plan ahead for config fields that UI will need.
+- **Pipeline stage retry pattern**: The render-video stage doesn't need to know about fallback internals - it just calls `renderVideoWithFallback`. Separation of concerns: the stage manages pipeline context, the service manages rendering and fallback.
+- **select elements in Tailwind**: Use `bg-input border border-white/5` on select elements to match the design system. Native selects work well for simple choices and avoid extra dependencies.
+- **Test mocking for retry logic**: Mock `invoke` to reject once then resolve to test fallback. Verify the second call has modified metadata with `encoder: 'software'` and `preset: 'balanced'`.
+
 ## 2026-04-25 (GPU-Accelerated Video Encoding Phase 3)
 
 - **FFmpeg lavfi for test content**: `testsrc=duration=10:size=640x480:rate=30` combined with `sine=frequency=1000:duration=10` generates a valid reference clip for benchmarking without external files.
