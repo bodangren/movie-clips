@@ -17,7 +17,7 @@ describe('Card', () => {
   it('applies hover class when hoverable is true', () => {
     render(<Card hoverable>Hover me</Card>);
     const card = screen.getByText('Hover me');
-    expect(card).toHaveClass('hover:shadow-lg');
+    expect(card).toHaveClass('hover:shadow-md');
   });
 
   it('renders CardHeader with title and description', () => {

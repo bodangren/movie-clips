@@ -19,7 +19,10 @@ export interface ModalFooterProps {
 }
 
 function ModalContent({ children, className = '' }: ModalContentProps) {
-  const classes = ['relative rounded-lg bg-background p-6 shadow-lg', className]
+  const classes = [
+    'relative rounded-xl bg-card p-5 border-glow shadow-2xl animate-fade-in max-w-lg w-full',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
@@ -36,7 +39,9 @@ function ModalContent({ children, className = '' }: ModalContentProps) {
 }
 
 function ModalFooter({ children, className = '' }: ModalFooterProps) {
-  const classes = ['flex justify-end gap-2 pt-4', className].filter(Boolean).join(' ');
+  const classes = ['flex justify-end gap-2 pt-4 border-t border-white/5', className]
+    .filter(Boolean)
+    .join(' ');
   return <div className={classes}>{children}</div>;
 }
 
@@ -65,7 +70,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
   if (!isOpen) return null;
 
   const overlayClasses = [
-    'fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4',
+    'fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 transition-pulse',
   ].join(' ');
 
   const modalContent = (
@@ -73,17 +78,19 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
       <ModalContent>
         {title && (
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">{title}</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-foreground">
+              {title}
+            </h2>
             <button
               type="button"
               onClick={onClose}
-              className="rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
+              className="p-1 rounded-md opacity-50 hover:opacity-100 hover:bg-white/5 transition-pulse focus:outline-none"
               aria-label="Close"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -97,7 +104,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
             </button>
           </div>
         )}
-        {children}
+        <div className="text-sm">{children}</div>
       </ModalContent>
     </div>
   );

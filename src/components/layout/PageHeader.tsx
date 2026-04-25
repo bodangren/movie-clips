@@ -8,15 +8,17 @@ export interface PageHeaderProps {
 }
 
 export function PageHeader({ title, description, actions, className = '' }: PageHeaderProps) {
-  const classes = ['flex flex-col gap-2 mb-6', className].filter(Boolean).join(' ');
+  const classes = ['flex flex-col gap-1 mb-4', className].filter(Boolean).join(' ');
 
   return (
     <div className={classes}>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
-        {actions && <div>{actions}</div>}
+        <h1 className="text-xl font-bold tracking-tight text-foreground uppercase tracking-widest">
+          {title}
+        </h1>
+        {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>
-      {description && <p className="text-muted-foreground">{description}</p>}
+      {description && <p className="text-xs text-muted-foreground font-medium">{description}</p>}
     </div>
   );
 }

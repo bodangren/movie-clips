@@ -11,20 +11,23 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorId = error ? `${textareaId}-error` : undefined;
 
     const textareaClasses = [
-      'flex min-h-[80px] w-full rounded-md border bg-background px-3 py-2 text-sm',
-      'placeholder:text-muted-foreground',
-      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
-      'disabled:cursor-not-allowed disabled:opacity-50',
-      error ? 'border-destructive focus:ring-destructive' : 'border-input',
+      'flex min-h-[80px] w-full rounded-md border border-white/5 bg-muted px-3 py-2 text-sm transition-pulse',
+      'placeholder:text-muted-foreground/50',
+      'focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary/50',
+      'disabled:cursor-not-allowed disabled:opacity-30',
+      error ? 'border-destructive focus:ring-destructive' : '',
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
     return (
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         {label && (
-          <label htmlFor={textareaId} className="text-sm font-medium">
+          <label
+            htmlFor={textareaId}
+            className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground"
+          >
             {label}
           </label>
         )}
@@ -37,7 +40,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p id={errorId} className="text-sm text-destructive">
+          <p
+            id={errorId}
+            className="text-[10px] text-destructive font-medium uppercase tracking-tight"
+          >
             {error}
           </p>
         )}

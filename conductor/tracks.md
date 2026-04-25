@@ -145,3 +145,5 @@ Foundation → Config → AI
 - [ ] **Track: Content Analytics Dashboard** _Link: [./tracks/content_analytics_v2_20260425/](./tracks/content_analytics_v2_20260425/)_
 - [ ] **Track: GPU Encoding Verification** _Link: [./tracks/gpu_encoding_verify_20260425/](./tracks/gpu_encoding_verify_20260425/)_
 - [ ] **Track: YouTube Publish Verification** _Link: [./tracks/youtube_publish_verify_20260425/](./tracks/youtube_publish_verify_20260425/)_
+
+- [~] [Visual Refresh: Define Unique Identity](tracks/visual_refresh_20260425/index.md)

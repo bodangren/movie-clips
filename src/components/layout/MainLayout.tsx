@@ -7,12 +7,12 @@ export interface MainLayoutProps {
 }
 
 export function MainLayout({ sidebar, children, className = '' }: MainLayoutProps) {
-  const classes = ['flex min-h-screen', className].filter(Boolean).join(' ');
+  const classes = ['flex min-h-screen bg-background', className].filter(Boolean).join(' ');
 
   return (
     <div className={classes} data-testid="main-layout">
       {sidebar}
-      <main className="flex-1 p-6">{children}</main>
+      <main className="flex-1 p-4 overflow-y-auto">{children}</main>
     </div>
   );
 }

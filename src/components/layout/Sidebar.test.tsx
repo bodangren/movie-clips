@@ -22,7 +22,7 @@ describe('Sidebar', () => {
   it('applies active class to current route', () => {
     render(<Sidebar links={mockLinks} currentId="dashboard" />);
     const dashboardButton = screen.getByText('Dashboard').closest('button');
-    expect(dashboardButton).toHaveClass('bg-primary');
+    expect(dashboardButton).toHaveClass('bg-primary/10');
   });
 
   it('calls onToggle when collapse button is clicked', () => {

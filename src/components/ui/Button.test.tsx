@@ -37,19 +37,19 @@ describe('Button', () => {
   it('renders small size', () => {
     render(<Button size="sm">Small</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('text-sm', 'px-3', 'py-1');
+    expect(button).toHaveClass('text-xs', 'px-2.5', 'py-1.5');
   });
 
   it('renders medium size by default', () => {
     render(<Button size="md">Medium</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('text-base', 'px-4', 'py-2');
+    expect(button).toHaveClass('text-sm', 'px-4', 'py-2');
   });
 
   it('renders large size', () => {
     render(<Button size="lg">Large</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('text-lg', 'px-6', 'py-3');
+    expect(button).toHaveClass('text-base', 'px-6', 'py-3');
   });
 
   it('handles click events', async () => {

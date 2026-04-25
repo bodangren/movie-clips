@@ -11,21 +11,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const errorId = error ? `${inputId}-error` : undefined;
 
     const inputClasses = [
-      'flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm',
+      'flex h-9 w-full rounded-md border border-white/5 bg-muted px-3 py-1 text-sm transition-pulse',
       'file:border-0 file:bg-transparent file:text-sm file:font-medium',
-      'placeholder:text-muted-foreground',
-      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
-      'disabled:cursor-not-allowed disabled:opacity-50',
-      error ? 'border-destructive focus:ring-destructive' : 'border-input',
+      'placeholder:text-muted-foreground/50',
+      'focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary/50',
+      'disabled:cursor-not-allowed disabled:opacity-30',
+      error ? 'border-destructive focus:ring-destructive' : '',
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
     return (
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="text-sm font-medium">
+          <label
+            htmlFor={inputId}
+            className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground"
+          >
             {label}
           </label>
         )}
@@ -38,7 +41,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p id={errorId} className="text-sm text-destructive">
+          <p
+            id={errorId}
+            className="text-[10px] text-destructive font-medium uppercase tracking-tight"
+          >
             {error}
           </p>
         )}
