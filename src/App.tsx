@@ -7,6 +7,7 @@ import {
   PlaySquare,
   ChevronRight,
   Monitor,
+  BarChart3,
 } from 'lucide-react';
 import { MainLayout, Sidebar, PageHeader } from './components/layout';
 import { useUIStore } from './stores/ui.store';
@@ -15,6 +16,7 @@ import { useLibraryStore } from './stores/library.store';
 import { MediaGrid, FilterBar } from './components/library';
 import { PipelineMonitor } from './components/pipeline';
 import { SettingsPanel } from './components/config';
+import { AnalyticsPage } from './components/analytics';
 import { ErrorBoundary } from './components/providers';
 
 // Lazy load VideoPreview as it depends on Revideo which can be resource-intensive
@@ -36,6 +38,7 @@ function App() {
     { id: 'library', label: 'Media Library', icon: <Film size={20} /> },
     { id: 'pipeline', label: 'Pipeline', icon: <Activity size={20} /> },
     { id: 'preview', label: 'Live Preview', icon: <PlaySquare size={20} /> },
+    { id: 'analytics', label: 'Analytics', icon: <BarChart3 size={20} /> },
     { id: 'settings', label: 'Settings', icon: <Settings size={20} /> },
   ];
 
@@ -146,6 +149,16 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
             </div>
+          </div>
+        );
+      case 'analytics':
+        return (
+          <div className="space-y-6 animate-fade-in">
+            <PageHeader
+              title="Content Analytics"
+              description="Track video performance and audience engagement."
+            />
+            <AnalyticsPage />
           </div>
         );
       case 'settings':
