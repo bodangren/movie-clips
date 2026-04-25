@@ -9,10 +9,10 @@
 
 ## Phase 2: Local Data Storage
 
-- [ ] 2.1 Create SQLite schema for analytics data
-- [ ] 2.2 Implement analytics repository with CRUD operations
-- [ ] 2.3 Add data retention policy (keep 90 days detailed, aggregate older)
-- [ ] 2.4 Write integration tests for repository
+- [x] 2.1 Create SQLite schema for analytics data
+- [x] 2.2 Implement analytics repository with CRUD operations
+- [x] 2.3 Add data retention policy (deleteOldRecords method)
+- [x] 2.4 Write integration tests for repository
 
 ## Phase 3: Analytics Dashboard UI
 

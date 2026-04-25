@@ -1,5 +1,19 @@
 # Lessons Learned
 
+## 2026-04-25 (Content Analytics Phase 2)
+
+- **Tauri SQL plugin setup**: Add `tauri-plugin-sql` to Cargo.toml with `features = ["sqlite"]`, install `@tauri-apps/plugin-sql` npm package, initialize with `.plugin(tauri_plugin_sql::Builder::default().build())` in lib.rs.
+- **SQLite repository pattern**: Create repository interface with CRUD methods, implement with SQL plugin's `Database.load()` and `execute()`/`select()`. Use `INSERT OR REPLACE` for upserts and `COALESCE(SUM(...), 0)` for safe aggregations.
+- **Mocking Tauri SQL plugin in Vitest**: `vi.mock` is hoisted - define mock functions at module level, reference them inside the mock factory. Use `vi.fn(() => Promise.resolve({...}))` pattern instead of pre-declared variables.
+- **Data retention as repository method**: Implement `deleteOldRecords(beforeDate)` rather than complex aggregation policies. The caller decides retention period (e.g., 90 days).
+
+## 2026-04-25 (Content Analytics Phase 1)
+
+- **YouTube Analytics API v2**: Endpoint is `youtubeanalytics.googleapis.com/v2/reports`. Required params: `ids=channel==MINE`, `startDate`, `endDate`, `metrics`, `dimensions=video`. Returns columns/rows structure.
+- **OAuth2 token reuse**: The analytics client reuses the existing `YouTubeAuth.getValidAccessToken()` which handles refresh tokens automatically. No separate auth flow needed.
+- **Video details batch fetch**: Use `youtube/v3/videos?part=snippet,statistics&id=...` to get titles/thumbnails for analytics video IDs. Batch up to 50 IDs per request.
+- **Daily metrics job**: `createDailyMetricsJob(client, daysBack)` calculates date range and delegates to `client.getTopVideos()`. Simple wrapper enables scheduled execution later.
+
 ## 2026-04-25 (GPU-Accelerated Video Encoding Phase 4)
 
 - **Encoder fallback in TypeScript**: Wrap `renderVideo` with `renderVideoWithFallback` that catches encoder-specific errors (NVENC, VAAPI, VideoToolbox, generic "encoder" or "hardware" keywords) and retries with software encoder. This keeps the fallback logic transparent to the pipeline stage.
