@@ -1,3 +1,4 @@
+use crate::services::benchmark::{BenchmarkRunner, BenchmarkSummary};
 use crate::services::encoder_builder::{EncoderConfig, EncoderType, QualityPreset};
 use crate::services::encoder_selector::{EncoderSelection, EncoderSelector};
 use crate::services::gpu_detection::GpuDetector;
@@ -103,6 +104,33 @@ pub async fn select_best_encoder(
     let selection = selector.select(&gpu_result);
 
     Ok(selection)
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct BenchmarkRequest {
+    pub preset: Option<String>,
+}
+
+#[tauri::command]
+pub async fn run_encoder_benchmark(
+    request: BenchmarkRequest,
+    state: tauri::State<'_, UnifiedVideoService>,
+) -> Result<BenchmarkSummary, VideoError> {
+    let config = state.config();
+    let detector = GpuDetector::new(Some(config.ffmpeg_path.clone()));
+    let gpu_result = detector.detect().await;
+
+    let preset = request
+        .preset
+        .and_then(|p| match p.as_str() {
+            "fast" => Some(QualityPreset::Fast),
+            "slow" => Some(QualityPreset::Slow),
+            _ => Some(QualityPreset::Balanced),
+        })
+        .unwrap_or(config.preset.clone());
+
+    let runner = BenchmarkRunner::new(Some(config.ffmpeg_path.clone()), None);
+    runner.run_full_benchmark(&gpu_result, preset).await
 }
 
 #[cfg(test)]

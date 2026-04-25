@@ -110,6 +110,7 @@ pub fn run() {
             commands::encoder::get_encoder_config,
             commands::encoder::set_encoder_preference,
             commands::encoder::select_best_encoder,
+            commands::encoder::run_encoder_benchmark,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

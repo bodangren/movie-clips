@@ -8,3 +8,4 @@ pub mod unified_service;
 pub mod gpu_detection;
 pub mod encoder_builder;
 pub mod encoder_selector;
+pub mod benchmark;

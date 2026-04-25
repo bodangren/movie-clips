@@ -29,13 +29,13 @@
 
 ## Phase 3: Quality & Benchmark Testing (Day 3)
 
-- [ ] Write tests for benchmark runner and quality comparison
-- [ ] Implement benchmark module: encode a 10-second reference clip with each available encoder
-- [ ] Measure wall-clock time per encoder
-- [ ] Measure output file size per encoder
-- [ ] Calculate PSNR between reference and each output (quality metric)
-- [ ] Store benchmark results in app config for comparison
-- [ ] Implement benchmark UI panel in settings (table: encoder, time, size, PSNR)
+- [x] Write tests for benchmark runner and quality comparison
+- [x] Implement benchmark module: encode a 10-second reference clip with each available encoder
+- [x] Measure wall-clock time per encoder
+- [x] Measure output file size per encoder
+- [x] Calculate PSNR between reference and each output (quality metric)
+- [x] Store benchmark results in app config for comparison
+- [x] Implement benchmark UI panel in settings (table: encoder, time, size, PSNR)
 - [ ] Manual verification: run benchmark and review results in UI
 
 ## Phase 4: Fallback Handling & Configuration (Day 4)

@@ -4,6 +4,7 @@ import { configSchema, type AppConfig } from '@/lib/config/schema';
 import { useConfigStore } from '@/stores/config.store';
 import { ConfigForm } from './ConfigForm';
 import { ConfigSection } from './ConfigSection';
+import { BenchmarkPanel } from './BenchmarkPanel';
 import { Input, Button } from '@/components/ui';
 
 export function SettingsPanel() {
@@ -86,6 +87,14 @@ export function SettingsPanel() {
               <Input type="number" {...form.register('video.fps', { valueAsNumber: true })} />
             </div>
           </div>
+        </ConfigSection>
+
+        <ConfigSection
+          title="Encoder Benchmark"
+          description="Compare encoder performance and quality."
+          defaultCollapsed={true}
+        >
+          <BenchmarkPanel />
         </ConfigSection>
 
         <div className="flex justify-end gap-3 pt-4 border-t border-white/5">

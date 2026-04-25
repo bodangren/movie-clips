@@ -113,3 +113,26 @@ export async function setEncoderPreference(
 export async function selectBestEncoder(): Promise<EncoderSelection> {
   return invoke('select_best_encoder');
 }
+
+export interface BenchmarkResult {
+  encoder: string;
+  encoder_type: string;
+  preset: string;
+  duration_ms: number;
+  file_size_bytes: number;
+  psnr_score: number | null;
+  success: boolean;
+  error_message: string | null;
+}
+
+export interface BenchmarkSummary {
+  results: BenchmarkResult[];
+  reference_path: string;
+  fastest_encoder: string | null;
+  smallest_encoder: string | null;
+  best_quality_encoder: string | null;
+}
+
+export async function runEncoderBenchmark(preset?: string): Promise<BenchmarkSummary> {
+  return invoke('run_encoder_benchmark', { request: { preset } });
+}
