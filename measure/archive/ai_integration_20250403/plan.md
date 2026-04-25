@@ -65,7 +65,7 @@
      - [x] Sub-task: Implement frontend service layer (`src/lib/ai/service.ts`)
      - [x] Sub-task: Add progress reporting for long operations (ProgressCallback)
      - [x] Sub-task: Test end-to-end with mock service
-- [x] Task: Conductor - User Manual Verification 'AI/LLM Integration'
+- [x] Task: Measure - User Manual Verification 'AI/LLM Integration'
       - [x] Sub-task: Test Gemini analyzer with real movie data (AUTONOMOUS: automated tests pass, manual verification deferred)
       - [x] Sub-task: Test TTS generation with sample text (AUTONOMOUS: unit tests pass, manual verification deferred)
       - [x] Sub-task: Verify cache reduces duplicate API calls (AUTONOMOUS: 53 tests pass)

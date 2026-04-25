@@ -1,6 +1,7 @@
 use crate::services::unified_service::UnifiedVideoService;
 use crate::services::video_service::{VideoDimensions, VideoError, VideoService};
 use serde::{Deserialize, Serialize};
+use tauri::Emitter;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ExtractClipRequest {
@@ -114,6 +115,83 @@ pub async fn detect_gpu_encoders(
         config.ffmpeg_path.clone(),
     ));
     Ok(detector.detect().await)
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct RunPipelineRequest {
+    pub source_path: String,
+    pub title: String,
+    pub poster_path: String,
+    pub output_dir: String,
+}
+
+#[tauri::command]
+pub async fn run_pipeline(
+    request: RunPipelineRequest,
+    app: tauri::AppHandle,
+) -> Result<String, VideoError> {
+    use tokio::io::{AsyncBufReadExt, BufReader};
+    use tokio::process::Command;
+
+    let mut child = Command::new("bun")
+        .args([
+            "run",
+            "src/lib/video/pipeline-runner.ts",
+            &request.source_path,
+            &request.title,
+            &request.poster_path,
+            &request.output_dir,
+        ])
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::piped())
+        .spawn()
+        .map_err(|e| VideoError::Internal(e.to_string()))?;
+
+    let stdout = child.stdout.take().unwrap();
+    let stderr = child.stderr.take().unwrap();
+    let mut stdout_reader = BufReader::new(stdout).lines();
+    let mut stderr_reader = BufReader::new(stderr).lines();
+
+    let app_handle = app.clone();
+    let app_handle2 = app.clone();
+
+    let _stdout_task = tokio::spawn(async move {
+        while let Ok(Some(line)) = stdout_reader.next_line().await {
+            if line.starts_with("PROGRESS:") {
+                if let Ok(progress) = line[9..].parse::<f32>() {
+                    let _ = app_handle.emit("pipeline-progress", progress);
+                }
+            } else if line.starts_with("STAGE:") {
+                let _ = app_handle.emit("pipeline-stage", &line[6..]);
+            } else if line == "PIPELINE_COMPLETE" {
+                let _ = app_handle.emit("pipeline-status", "completed");
+            } else if line.starts_with("PIPELINE_ERROR:") {
+                let _ = app_handle.emit("pipeline-status", "failed");
+                let _ = app_handle.emit("pipeline-error", &line[15..]);
+            }
+            println!("pipeline-stdout: {}", line);
+        }
+    });
+
+    let _stderr_task = tokio::spawn(async move {
+        while let Ok(Some(line)) = stderr_reader.next_line().await {
+            eprintln!("pipeline-stderr: {}", line);
+        }
+    });
+
+    let status = child
+        .wait()
+        .await
+        .map_err(|e| VideoError::Internal(e.to_string()))?;
+
+    if status.success() {
+        Ok("Pipeline completed successfully".to_string())
+    } else {
+        Err(VideoError::Internal(format!(
+            "Pipeline process failed with status: {}",
+            status
+        )))
+    }
 }
 
 #[cfg(test)]

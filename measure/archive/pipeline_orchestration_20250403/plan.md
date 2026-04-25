@@ -35,7 +35,7 @@ This track will be implemented following TDD methodology with detailed tasks cre
 - Follow Test-Driven Development: write tests first, then implementation
 - Regular commits with descriptive messages
 - Quality gates at each phase
-- Manual verification per Conductor workflow
+- Manual verification per Measure workflow
 
 ## Success Checklist
 - All acceptance criteria from spec met

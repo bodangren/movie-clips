@@ -7,15 +7,18 @@ let cachedConfig: AppConfig | null = null;
 export async function loadConfig(): Promise<AppConfig> {
   try {
     const raw = await invoke<Record<string, unknown>>('get_config');
+    console.log('[Config] loaded from Tauri store:', JSON.stringify(raw?.paths));
     const result = configSchema.safeParse(raw);
     if (result.success) {
       cachedConfig = result.data;
+      console.log('[Config] validated, paths:', JSON.stringify(result.data.paths));
       return result.data;
     }
-    console.warn('Config validation failed, using defaults:', result.error);
+    console.warn('[Config] validation failed, using defaults:', result.error);
     cachedConfig = getDefaultConfig();
     return cachedConfig;
-  } catch {
+  } catch (err) {
+    console.warn('[Config] load failed, using defaults:', err);
     cachedConfig = getDefaultConfig();
     return cachedConfig;
   }
@@ -30,8 +33,10 @@ export function getConfig(): AppConfig {
 
 export async function saveConfig(config: AppConfig): Promise<void> {
   const validated = configSchema.parse(config);
+  console.log('[Config] saving paths:', JSON.stringify(validated.paths));
   await invoke('save_config', { config: validated });
   cachedConfig = validated;
+  console.log('[Config] saved successfully');
 }
 
 export async function resetConfig(): Promise<AppConfig> {

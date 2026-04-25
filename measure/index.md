@@ -1,4 +1,4 @@
-# Conductor Index - movie-clips
+# Measure Index - movie-clips
 
 > Universal File Resolution Protocol: Named references resolve to paths below.
 

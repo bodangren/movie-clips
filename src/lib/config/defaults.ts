@@ -1,15 +1,17 @@
 import type { AppConfig } from './schema';
 
+const PROJECT_ROOT = '/home/daniel-bo/Desktop/movie-clips';
+
 export function getDefaultConfig(): AppConfig {
   const isDev = import.meta.env.DEV;
 
   return {
     version: 1,
     paths: {
-      movies: isDev ? './Movies' : '',
-      tv: isDev ? './tv-clips' : '',
-      output: isDev ? './output' : '',
-      temp: isDev ? './temp' : '',
+      movies: isDev ? `${PROJECT_ROOT}/Movies` : '',
+      tv: isDev ? `${PROJECT_ROOT}/tv-clips` : '',
+      output: isDev ? `${PROJECT_ROOT}/output` : '',
+      temp: isDev ? `${PROJECT_ROOT}/temp` : '',
     },
     google: {
       location: 'global',

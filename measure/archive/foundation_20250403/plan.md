@@ -96,7 +96,7 @@
     - [x] Sub-task: Verify all acceptance criteria from spec
     - [x] Sub-task: Performance check (build completes in ~500ms)
     - [x] Sub-task: Bundle size analysis (JS: 193KB, CSS: 23KB gzipped)
-- [x] Task: Conductor - User Manual Verification 'Foundation & Setup' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Foundation & Setup' (Protocol in workflow.md)
     - [x] Sub-task: Developer follows setup instructions from README
     - [x] Sub-task: Verifies hot reload works for frontend (Vite HMR configured)
     - [x] Sub-task: Tests example Tauri command (greet, get_app_info, scan_directory)

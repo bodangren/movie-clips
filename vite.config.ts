@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import revideo from '@revideo/vite-plugin';
 import path from 'path';
 
@@ -8,6 +9,7 @@ const host = process.env.TAURI_DEV_HOST;
 // https://vite.dev/config/
 export default defineConfig(async () => ({
   plugins: [
+    tailwindcss(),
     react(),
     // @ts-expect-error revideo plugin types are incompatible with Vite 8 Plugin type
     (revideo.default || revideo)({

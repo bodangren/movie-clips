@@ -110,7 +110,7 @@
     - [x] Sub-task: Implement performance metrics collection
     - [x] Sub-task: Add health checks for FFmpeg availability
     - [x] Sub-task: Create video service status reporting
-- [ ] Task: Conductor - User Manual Verification 'Rust FFmpeg Service'
+- [ ] Task: Measure - User Manual Verification 'Rust FFmpeg Service'
     - [ ] Sub-task: Test clip extraction with sample video
     - [ ] Sub-task: Test title segment creation with image+audio
     - [ ] Sub-task: Test video assembly with multiple segments

@@ -78,6 +78,11 @@ fn scan_directory(path: String) -> Result<Vec<String>, AppError> {
     Ok(files)
 }
 
+#[tauri::command]
+fn read_file(path: String) -> Result<String, AppError> {
+    Ok(std::fs::read_to_string(&path)?)
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     use services::unified_service::UnifiedVideoService;
@@ -98,6 +103,7 @@ pub fn run() {
             greet,
             get_app_info,
             scan_directory,
+            read_file,
             commands::config::get_config,
             commands::config::save_config,
             commands::config::reset_config,
@@ -105,6 +111,7 @@ pub fn run() {
             commands::video::render_video,
             commands::video::get_video_status,
             commands::video::detect_gpu_encoders,
+            commands::video::run_pipeline,
             commands::youtube::get_youtube_tokens,
             commands::youtube::save_youtube_tokens,
             commands::youtube::clear_youtube_tokens,

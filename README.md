@@ -98,7 +98,7 @@ npm run tauri build
 │   │   └── main.rs         # Entry point
 │   ├── Cargo.toml          # Rust dependencies
 │   └── tauri.conf.json     # Tauri configuration
-├── conductor/              # Project management (Conductor)
+├── measure/              # Project management (Measure)
 │   └── tracks/             # Track plans and specs
 ├── e2e/                    # Playwright E2E tests
 └── package.json            # Project configuration

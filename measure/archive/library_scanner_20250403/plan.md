@@ -58,7 +58,7 @@
      - [x] Sub-task: Create `src/lib/library/service.ts` combining scanner, NFO parser, subtitle parser
      - [x] Sub-task: Add progress callback for scanning operations
      - [x] Sub-task: Integrate with config for library paths
-- [ ] Task: Conductor - User Manual Verification
+- [ ] Task: Measure - User Manual Verification
      - [ ] Sub-task: Test scanning a real media directory
      - [ ] Sub-task: Verify NFO parsing with real files
      - [ ] Sub-task: Verify subtitle extraction

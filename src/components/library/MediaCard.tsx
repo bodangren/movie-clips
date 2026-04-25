@@ -1,4 +1,5 @@
 import { type MediaItem } from '@/lib/library/types';
+import { convertFileSrc } from '@tauri-apps/api/core';
 
 export interface MediaCardProps {
   item: MediaItem;
@@ -51,9 +52,12 @@ export function MediaCard({
       <div className="aspect-[2/3] relative bg-muted">
         {item.type === 'movie' && 'posterPath' in item && item.posterPath ? (
           <img
-            src={`file://${item.posterPath}`}
+            src={convertFileSrc(item.posterPath)}
             alt={`${title} poster`}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         ) : (
           <div

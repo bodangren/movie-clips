@@ -25,6 +25,7 @@
     "@revideo/player-react": "^0.10.4",
     "@revideo/renderer": "^0.10.4",
     "@revideo/ui": "^0.10.4",
+    "@tailwindcss/vite": "^4.2.4",
     "@tauri-apps/api": "^2.10.1",
     "@tauri-apps/plugin-sql": "^2.4.0",
     "ai": "^6.0.154",

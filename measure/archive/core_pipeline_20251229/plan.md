@@ -16,7 +16,7 @@
 - [x] Task: Implement Configuration Module
     - [x] Sub-task: Create `src/config.ts` to manage env vars (API keys, paths)
     - [x] Sub-task: Create `src/utils/logger.ts` for structured logging
-- [~] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffolding & Configuration' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 1: Project Scaffolding & Configuration' (Protocol in workflow.md)
 
 ## Phase 2: Movie Selection & Metadata
 - [x] Task: Implement Movie Scanner
@@ -25,7 +25,7 @@
 - [x] Task: Implement NFO Parser
     - [x] Sub-task: Write tests for `NfoParser` (using sample XML)
     - [x] Sub-task: Implement `src/modules/nfo-parser.ts` to read `movie.nfo`
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Movie Selection & Metadata' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 2: Movie Selection & Metadata' (Protocol in workflow.md)
 
 ## Phase 3: Content Analysis (Gemini)
 - [x] Task: Implement Subtitle Parser
@@ -34,7 +34,7 @@
 - [x] Task: Implement Gemini Client
     - [x] Sub-task: Create `src/modules/llm-analyzer.ts` with prompt engineering for 5 facts (18-24 words per fact)
     - [x] Sub-task: Integration test with a dummy subtitle file
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Content Analysis (Gemini)' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 3: Content Analysis (Gemini)' (Protocol in workflow.md)
 
 ## Phase 4: Asset Generation (TTS & Images)
 - [x] Task: Implement TTS Generator
@@ -43,7 +43,7 @@
     - [x] Sub-task: Unit test to verify audio file creation
 - [x] Task: Implement Title Card Generator
     - [x] Sub-task: Implement `src/modules/title-card.ts` (start with simple FFmpeg text overlay or HTML->Image)
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Asset Generation (TTS & Images)' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 4: Asset Generation (TTS & Images)' (Protocol in workflow.md)
 
 ## Phase 5: Video Assembly (FFmpeg)
 - [x] Task: Implement Clip Extractor
@@ -51,11 +51,11 @@
 - [x] Task: Implement Video Assembler
     - [x] Sub-task: Implement `src/modules/video-assembler.ts` to concat parts
     - [x] Sub-task: Add logic to resize/crop to 9:16 vertical format
-- [ ] Task: Conductor - User Manual Verification 'Phase 5: Video Assembly (FFmpeg)' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 5: Video Assembly (FFmpeg)' (Protocol in workflow.md)
 
 ## Phase 6: Orchestration & CLI
 - [x] Task: Create Main Entry Point
     - [x] Sub-task: Implement `src/index.ts` to tie all modules together
 - [ ] Task: Manual Run Verification
     - [ ] Sub-task: Run the full pipeline on a sample movie from `Movies/`
-- [ ] Task: Conductor - User Manual Verification 'Phase 6: Orchestration & CLI' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 6: Orchestration & CLI' (Protocol in workflow.md)
