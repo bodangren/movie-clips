@@ -86,6 +86,30 @@ export function SettingsPanel() {
               <label className="text-sm font-medium">FPS</label>
               <Input type="number" {...form.register('video.fps', { valueAsNumber: true })} />
             </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Encoder Preference</label>
+              <select
+                {...form.register('video.encoder')}
+                className="w-full h-10 px-3 rounded-md bg-input border border-white/5 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+              >
+                <option value="auto">Auto (Recommended)</option>
+                <option value="nvenc">NVIDIA NVENC</option>
+                <option value="vaapi">VAAPI (Intel/AMD)</option>
+                <option value="videotoolbox">VideoToolbox (Apple)</option>
+                <option value="software">Software (libx264)</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Quality Preset</label>
+              <select
+                {...form.register('video.preset')}
+                className="w-full h-10 px-3 rounded-md bg-input border border-white/5 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+              >
+                <option value="fast">Fast (lower quality)</option>
+                <option value="balanced">Balanced</option>
+                <option value="slow">Slow (better quality)</option>
+              </select>
+            </div>
           </div>
         </ConfigSection>
 

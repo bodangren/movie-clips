@@ -5,7 +5,7 @@ import type {
   PipelineStageResult,
   PipelineError,
 } from '../types';
-import { renderVideo, RenderVideoRequest } from '../../video/service';
+import { renderVideoWithFallback, RenderVideoRequest } from '../../video/service';
 import { getConfig } from '../../config/service';
 
 export interface RenderVideoStageOptions {
@@ -56,7 +56,7 @@ export function createRenderVideoStage(options: RenderVideoStageOptions = {}): P
           output: outputPath,
         };
 
-        await renderVideo(request);
+        await renderVideoWithFallback(request);
 
         ctx.finalOutput = outputPath;
         return { success: true, data: outputPath };

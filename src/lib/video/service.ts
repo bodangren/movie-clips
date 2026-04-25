@@ -91,6 +91,40 @@ export async function renderVideo(request: RenderVideoRequest): Promise<void> {
   await invoke('render_video', { request });
 }
 
+export async function renderVideoWithFallback(
+  request: RenderVideoRequest,
+  options?: { retryWithSoftware?: boolean }
+): Promise<void> {
+  try {
+    await renderVideo(request);
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const isEncoderError =
+      options?.retryWithSoftware !== false &&
+      (errorMessage.toLowerCase().includes('encoder') ||
+        errorMessage.toLowerCase().includes('nvenc') ||
+        errorMessage.toLowerCase().includes('vaapi') ||
+        errorMessage.toLowerCase().includes('videotoolbox') ||
+        errorMessage.toLowerCase().includes('hardware'));
+
+    if (isEncoderError) {
+      console.warn('GPU encoder failed, retrying with software encoder:', errorMessage);
+      // Retry with software encoder by updating the request metadata
+      const metadata = JSON.parse(request.metadata_json);
+      metadata.encoder = 'software';
+      metadata.preset = 'balanced';
+      const fallbackRequest: RenderVideoRequest = {
+        metadata_json: JSON.stringify(metadata),
+        output: request.output,
+      };
+      await renderVideo(fallbackRequest);
+      console.log('Software encoder fallback succeeded');
+    } else {
+      throw error;
+    }
+  }
+}
+
 export async function getVideoStatus(): Promise<VideoServiceStatus> {
   return invoke('get_video_status');
 }

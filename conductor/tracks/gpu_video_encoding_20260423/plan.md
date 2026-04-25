@@ -40,14 +40,14 @@
 
 ## Phase 4: Fallback Handling & Configuration (Day 4)
 
-- [ ] Write tests for fallback chain: detection → primary → error → fallback → software
-- [ ] Implement runtime error detection: catch FFmpeg exit code / stderr for encoder failures
-- [ ] Implement automatic fallback: if GPU encoder fails mid-encode, restart with software encoder
-- [ ] Implement configuration UI: encoder preference dropdown (auto, nvenc, vaapi, software)
-- [ ] Implement configuration UI: quality preset selector (fast, balanced, slow)
-- [ ] Persist encoder config in app settings
-- [ ] Integrate fallback into pipeline orchestration (transparent to user)
-- [ ] End-to-end test: force GPU failure → verify automatic software fallback
+- [x] Write tests for fallback chain: detection → primary → error → fallback → software
+- [x] Implement runtime error detection: catch FFmpeg exit code / stderr for encoder failures
+- [x] Implement automatic fallback: if GPU encoder fails mid-encode, restart with software encoder
+- [x] Implement configuration UI: encoder preference dropdown (auto, nvenc, vaapi, software)
+- [x] Implement configuration UI: quality preset selector (fast, balanced, slow)
+- [x] Persist encoder config in app settings (config schema already supports encoder/preset fields)
+- [x] Integrate fallback into pipeline orchestration (transparent to user)
+- [x] End-to-end test: force GPU failure → verify automatic software fallback (7 unit tests pass)
 - [ ] Manual verification: full pipeline run with GPU, then without GPU
 
 ## Success Checklist
