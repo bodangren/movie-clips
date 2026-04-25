@@ -1,5 +1,13 @@
 # Lessons Learned
 
+## 2026-04-25 (GPU-Accelerated Video Encoding Phase 3)
+
+- **FFmpeg lavfi for test content**: `testsrc=duration=10:size=640x480:rate=30` combined with `sine=frequency=1000:duration=10` generates a valid reference clip for benchmarking without external files.
+- **PSNR calculation via FFmpeg**: Use `ffmpeg -i ref -i encoded -lavfi psnr -f null -` and parse stderr for `average:XX.XX` to get quality scores.
+- **Benchmark runner design**: Encapsulate temp directory management, reference generation, per-encoder benchmarking, and result aggregation in a single runner struct. This makes testing easier and the API cleaner.
+- **Async file operations in Rust**: Use `tokio::fs` for reading file metadata (file sizes) in async contexts. `std::fs` would block the async runtime.
+- **TypeScript union types for null**: `psnr_score: number | null` is cleaner than optional fields when the backend always sends the field but sometimes with `null`.
+
 ## 2026-04-25 (GPU-Accelerated Video Encoding Phase 2)
 
 - **Rust enum serialization with serde**: Use `#[serde(rename = "nvenc")]` on enum variants for clean JSON representation. `EncoderType` and `QualityPreset` enums serialize to lowercase strings.
