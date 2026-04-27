@@ -61,11 +61,11 @@ This file tracks all major tracks for the project. Each track has its own detail
 ### Phase 5: Automation & Performance (2026-04-23)
 
 - **[x] Track: YouTube Auto-Publish Integration**  
-  _Link: [./measure/tracks/youtube_auto_publish_20260423/](./measure/tracks/youtube_auto_publish_20260423/)_  
+  _Link: [./measure/archive/youtube_auto_publish_20260423/](./measure/archive/youtube_auto_publish_20260423/)_  
   YouTube Data API v3 OAuth2, resumable upload, metadata/thumbnail generation, scheduled publishing, upload queue with retry. Enables twice-daily zero-touch publishing. Depends on Pipeline & AI. **COMPLETED 2026-04-24** (automated tasks; manual verification pending)
 
 - **[x] Track: GPU-Accelerated Video Encoding**  
-  _Link: [./measure/tracks/gpu_video_encoding_20260423/](./measure/tracks/gpu_video_encoding_20260423/)_  
+  _Link: [./measure/archive/gpu_video_encoding_20260423/](./measure/archive/gpu_video_encoding_20260423/)_  
   GPU detection (NVENC, VAAPI, VideoToolbox), FFmpeg hardware encoder selection, quality presets, benchmarking, automatic software fallback. Depends on FFmpeg Service & Pipeline. **COMPLETED 2026-04-25** (automated tasks; manual verification pending)
 
 - **[~] Track: Content Analytics & Performance Tracking**  
@@ -147,5 +147,5 @@ Foundation → Config → AI
 - [ ] **Track: YouTube Publish Verification** _Link: [./tracks/youtube_publish_verify_20260425/](./tracks/youtube_publish_verify_20260425/)_
 
 - [x] **Track: Visual Refresh: Define Unique Identity**
-  *Link: [./archive/visual_refresh_20260425/](./archive/visual_refresh_20260425/)*
-  *Status: Complete*
+      _Link: [./archive/visual_refresh_20260425/](./archive/visual_refresh_20260425/)_
+      _Status: Complete_
